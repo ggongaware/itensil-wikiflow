@@ -1,0 +1,41 @@
+body {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    background-color: #fff;
+    margin: 0px;
+    overflow: hidden;
+}
+
+table {
+    font-size: 1em;
+}
+
+#mast {
+    background-image: url(../pix/brd/mastBg.gif);
+    background-repeat: repeat-x;
+    height: 50px;
+    position:relative;
+    -khtml-user-select: none;
+}
+
+.mastUsr {
+    vertical-align: top;
+    text-align: right;
+    padding:2px 4px 2px 0px;
+    font-size:10px;
+}
+
+.mastUsr a {
+    color: #06c;
+}
+
+.actItem div.treeSel {
+	background-color: #fff;
+	background-image: url(../pix/trSel.gif);
+	background-repeat: repeat-y;
+}
+
+.freeStep div.treeSel {
+	 background-color: #fd8;
+	 background-image: none;
+}

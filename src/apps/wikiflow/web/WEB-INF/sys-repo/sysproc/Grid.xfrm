@@ -1,0 +1,286 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:ix="http://itensil.com/ns/xforms">
+
+ <xf:model id="mod">
+    <xf:instance>
+		<data>
+		    <ncols>4</ncols>
+		    <nrows>4</nrows>
+		    <label>Title</label><notes>This is editable. Click 'setup' for advanced features.</notes>
+		    <show-row-head>t</show-row-head>
+		    <show-foot>f</show-foot>
+		    <colh/><colh/><colh/><colh/><colh/><colh/><colh/><colh/><colh/><colh/><colh/><colh/>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <row head=""><aa/><bb/><cc/><dd/>
+		        <ee/><ff/><gg/><hh/><ii/>
+		        <jj/><kk/><ll/>
+		    </row>
+		    <foot><head/><ex/><ex/><ex/><ex/><ex/><ex/><ex/><ex/><ex/><ex/><ex/><ex/></foot>
+		</data>
+	</xf:instance>
+    <xf:bind type="xsd:int" nodeset="nrows" constraint=". &lt;= count(../row)"/>
+    <xf:bind type="xsd:int" nodeset="ncols" constraint=". &lt;= count(../colh)"/>
+    <xf:submission id="submission"
+                 action=""
+                 replace="none"
+                 method="put">
+        <xf:action ev:event="xforms-submit-done">
+            <xf:message level="modal">Saved</xf:message>
+        </xf:action>
+        <xf:action ev:event="xforms-submit-error">
+            <xf:message level="modal">Problem saving...</xf:message>
+        </xf:action>
+    </xf:submission>
+ </xf:model>
+
+<style>
+p.gridx table {
+	border-collapse:collapse;
+	border: 1px solid #999;
+	}
+p.gridx td.field div.xfctrl,
+p.gridx th.field div.xfctrl,
+p.gridx th.foot div.xfctrl,
+p.gridx div.head div.xfctrl {
+    background: none;
+    margin: 0px;
+    padding: 1px;
+    }
+p.gridx td.field {
+    padding: 1px;
+    border: 1px solid #999;
+    }
+p.gridx td.foot {
+    padding: 6px;
+    vertical-align: top;
+    border: 1px solid #999;
+    font-weight:bold;
+    }
+p.gridx td.field input {
+    border-color: #fff;
+    }
+p.gridx td.field textarea {
+    width:120px;
+    margin: 0px;
+    border-color: #fff;
+    font-size: 11px;
+    overflow: auto;
+    }
+p.gridx th.field {
+    background-color: #9cf;
+	border: 1px solid #999;
+    }
+p.gridx th.field textarea{
+    width:120px;
+    margin: 0px;
+    background-color: #9cf;
+    border-color: #9cf;
+    overflow: auto;
+    line-height: 11px;
+    font-family:arial;
+    font-weight:bold;
+    }
+p.gridx th.foot {
+    background-color: #ffd;
+	border: 1px solid #999;
+    }
+p.gridx th.foot textarea {
+    width:120px;
+    margin: 0px;
+    background-color: #ffd;
+    border-color: #ffd;
+    overflow: auto;
+    font-family:arial;
+    font-weight:bold;
+    }
+p.gridx th a {
+    font-weight: normal;
+    }
+p.gridx div.head div.head input {
+    font-size: 20px;
+    border-color: #fff;
+    width: 400px;
+    }
+p.gridx div.head div.notes textarea {
+     font-family:arial;
+     border-color: #fff;
+     overflow: auto;
+     width: 400px;
+    }
+div.setup {
+    position: absolute;
+    top: 100px;
+    left: 160px;
+    border: 1px solid #666;
+    background-color: #ddF;
+    padding: 8px;
+    width: 390px;
+    }
+p.gridx div.setup div.xfctrl {
+    background-color: #ddF;
+    }
+a.view {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    }
+</style>
+
+<p class="gridx">
+    <div class="head">
+        <xf:input ref="label" class="head"><xf:label/></xf:input>
+        <xf:textarea ref="notes" class="notes"><xf:label/></xf:textarea>
+    </div>
+    <table>
+        <tr>
+            <th><ix:attr name="style" value="if(show-row-head = 't', '', 'display:none')"/></th>
+            <xf:repeat nodeset="colh[position() &lt;= ../ncols]">
+            <th class="field"><xf:textarea ref="." style="height:2.2em"><xf:label/></xf:textarea></th>
+            </xf:repeat>
+        </tr>
+        <xf:repeat nodeset="row[position() &lt;= ../nrows]">
+            <tr>
+                <th class="field">
+                    <ix:attr name="style" value="if(../show-row-head = 't', '', 'display:none')"/>
+                    <xf:textarea ref="@head" style="height:2.2em"><xf:label/></xf:textarea>
+                </th>
+                <xf:repeat nodeset="*[position() &lt;= ../../ncols]">
+                    <td class="field">
+                        <xf:textarea ref="v" style="height:3em"><xf:label/></xf:textarea></td>
+                </xf:repeat>
+            </tr>
+        </xf:repeat>
+        <xf:repeat nodeset="foot[../show-foot = 't']">
+            <tr>
+                <th class="foot">
+                    <ix:attr name="style" value="if(../show-row-head = 't', '', 'display:none')"/>
+                    <xf:textarea ref="head" style="height:2em"><xf:label/></xf:textarea>
+                </th>
+                <xf:repeat nodeset="ex[position() &lt;= ../../ncols]">
+                    <td class="foot"><xf:output value="evaluate(., ../..)"/></td>
+                </xf:repeat>
+            </tr>
+        </xf:repeat>
+    </table>
+    <a href="javascript://">setup<xf:toggle case="setup" ev:event="click"/></a>
+
+    <xf:switch>
+        <xf:case id="hide"></xf:case>
+        <xf:case id="setup">
+            <div class="setup">
+                <xf:input ref="ncols" style="width:4em">
+                     <xf:label>Column Count:</xf:label>
+                     <xf:hint>Max columns is <xf:output value="count(../colh)"/></xf:hint>
+                     <xf:rebuild model="mod" ev:event="xforms-value-changed"/>
+                </xf:input>
+                <xf:input ref="nrows" style="width:4em">
+                    <xf:label>Row Count:</xf:label>
+                    <xf:hint>Max rows is <xf:output value="count(../row)"/></xf:hint>
+                    <xf:rebuild model="mod" ev:event="xforms-value-changed"/>
+                </xf:input>
+                <xf:select1 ref="show-row-head" style="width:6em">
+                    <xf:label>Row Headers:</xf:label>
+                    <xf:item><xf:label>Show</xf:label><xf:value>t</xf:value></xf:item>
+                    <xf:item><xf:label>Hide</xf:label><xf:value>f</xf:value></xf:item>
+                </xf:select1>
+                <xf:select1 ref="show-foot" style="width:6em">
+                    <xf:label>Footer:</xf:label>
+                    <xf:item><xf:label>Show</xf:label><xf:value>t</xf:value></xf:item>
+                    <xf:item><xf:label>Hide</xf:label><xf:value>f</xf:value></xf:item>
+                    <xf:rebuild model="mod" ev:event="xforms-value-changed"/>
+                </xf:select1>
+				<div style="padding-left:16px">
+                <xf:repeat nodeset="foot/ex[../../show-foot = 't' and position() &lt;= ../../ncols]">
+                    <exf:variable name="pos" value="position()"/>
+                    <xf:input ref="." style="width:20em"><xf:label>Footer Expression <xf:output value="$pos"/>:</xf:label></xf:input>
+                </xf:repeat>
+				</div>
+                <div style="text-align:right"><a href="javascript://">done<xf:toggle case="hide" ev:event="click"/></a></div>
+            </div>
+        </xf:case>
+    </xf:switch>
+</p>
+<!--
+<ix:guide x="240" y="100"> Add/remove columns as needed.</ix:guide>
+-->
+<p><xf:submit submission="submission">
+	<xf:label>Save</xf:label>
+</xf:submit></p>
+
+</form>

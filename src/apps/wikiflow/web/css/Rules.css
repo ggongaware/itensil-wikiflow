@@ -1,0 +1,320 @@
+body {
+      margin: 0px;
+      overflow: hidden;
+}
+
+table {
+    font-family: arial;
+    font-size: 11px;
+}
+
+.panContent div.tree {
+	margin: 10px 4px 4px 4px;
+}
+
+a.devLink {
+    padding: 8px;
+    font-family: arial;
+    font-style: italic;
+    color: #999;
+    font-size: 10px;
+}
+
+.cont a {
+	color: #666;
+	text-decoration: none;
+	font-size:11px;
+}
+
+a.boldMe {
+	color: #000;
+	font-weight:bold;
+	font-size:13px;
+}
+
+.tree div.unrec,
+.dndDummy div.unrec {
+	position: relative;
+    top: 0px;
+    left: 35px;
+    padding-bottom: 1px;
+    border-bottom: 2px solid #fff;
+    margin: 0px 39px 0px 0px;
+    color: #900;
+}
+
+.tree div.xftmpl {
+    position: relative;
+    top: 0px;
+    left: 35px;
+    padding-bottom: 1px;
+    border-top: 2px solid #fff;
+    margin: 0px 39px 0px 0px;
+}
+
+.dndDummy div.xftmpl {
+	position: relative;
+    top: 0px;
+    padding-bottom: 1px;
+    border-top: 2px solid #fff;
+}
+
+.tree .dndDrop div.xftmpl {
+    border-top: 2px solid #9c9;
+}
+
+.tree .dndGroup div.xftmpl div.cont {
+    border-color: #0066ff;
+}
+
+.tree .foldTailBar {
+	font-size:18px;
+	border: 2px solid #fff;
+}
+
+.tree .dndDrop .foldTailBar {
+	background-color: #cef;
+}
+
+.tree div.fldIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #f90;
+    background-color: #fc0;
+}
+
+.tree div.docIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #99f;
+    background-color: #ccf;
+}
+
+.tree div.defIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #99f;
+    background-color: #ccf;
+}
+
+.tree div.cont {
+	zoom:1;
+}
+
+div.cont td.field {
+	font-weight: bold;
+}
+
+.tree div.xpath div.cont,
+.dndDummy div.xpath div.cont {
+    background-color: #ffffcc;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+.tree div.field div.cont,
+.dndDummy div.field div.cont {
+    background-color: #ffeecc;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+.tree div.otherwise div.cont,
+.dndDummy div.otherwise div.cont {
+    background-color: #eeeeee;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+.tree div.sub div.cont,
+.dndDummy div.sub div.cont {
+    background-color: #efe;
+    color: #666;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+
+.tree div.return div.cont,
+.dndDummy div.return div.cont {
+    background-color: #ddddff;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+.tree div.set div.cont,
+.dndDummy div.set div.cont {
+    background-color: #ddffff;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+.tree div.ruleTrace1 div.cont {
+	border-color: #0d0;
+	color: #0a0;
+}
+
+.tree .traceMsg {
+	font-size: 10px;
+	padding: 2px;
+	display: none;
+}
+
+.tree div.ruleTrace1 .traceMsg {
+	display: block;
+	background-color: #0a0;
+	color: #fff;
+}
+
+.tree div.ruleTrace2 div.cont {
+	border-color: #d66;
+	color: #a00;
+}
+
+.tree div.ruleTrace2 .traceMsg {
+	display: block;
+	background-color: #a66;
+	color: #fff;
+}
+
+div.cont div.delete {
+	float:right;
+	padding: 3px 3px 0px 0px;
+}
+
+div.cont div.delete span {
+	cursor:pointer;
+}
+
+.retLabel {
+	font-size:12px;
+	font-weight: bold;
+}
+
+div.cont .invalid input {
+    background-color: #fcc;
+}
+    
+    
+/* Attribute Panel*/
+div.attrManager {
+	margin:4px;
+}
+
+div.attrManager .invalid input {
+	background-color: #f99;
+}
+
+table.attrManager {
+	border-collapse: collapse;
+	margin:4px;
+	border: 1px solid #ccf;
+}
+
+table.attrManager td {
+	padding: 2px 2px 3px 2px;
+	border-bottom: 1px solid #ccf;
+	
+}
+
+table.attrManager th {
+	text-align:left;
+	color: #666;
+	border-bottom: 1px solid #ccf;
+}
+
+table.attrManager td.attrDel {
+	font-size: 10px;
+	padding: 5px 12px 2px 4px;
+	color: #000;
+}
+
+.attrLink {
+	color:#009;
+	cursor: pointer;
+}
+
+div.attrDrag {
+    width: 13px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 8px;
+    margin:2px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.attrName {
+	display:none;
+}
+
+.dndDummy .attrName {
+	display: block;
+	padding-left:16px;
+}
+
+div.diagXf table.attrOpt th {
+	text-align:left;
+	color: #666;
+}
+
+div.diagXf table.attrOpt {
+	margin: 4px;
+	border-collapse: collapse;
+	border: 2px solid #fff;
+}
+
+div.diagXf table.attrOpt td {
+	padding: 1px 4px 1px 4px;
+	border-bottom: 2px solid #fff;
+	border-top: 2px solid #fff;
+}
+
+div.diagXf table.attrOpt input.xftext,
+.tree div.cont input.xftext  {
+	border: 1px solid #999;
+	font-size: 11px;
+}
+
+div.diagXf table.attrOpt td.attrDel {
+	border: 2px solid #fff;
+	color: #000;
+}
+
+span.attrlink {
+	color: #009;
+	text-decoration: underline;
+	font-size:10px;
+	cursor: pointer;
+	padding-left: 6px;
+	line-height: 13px;
+}
+
+div.attrDel {
+	cursor: pointer;
+}
+
+.canPath {
+	background-color: #eee;
+	color: #666;
+	border-bottom: 1px solid #ccc;
+	padding: 2px 2px 2px 16px;
+}
+
+.canPath span.active {
+	color: #000;
+	font-weight: bold;
+}
+
+u.click {
+	cursor: pointer;
+}
+
+

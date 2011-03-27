@@ -1,0 +1,54 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:ir="http://itensil.com/repository"
+    xmlns:d="DAV:">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <properties/>
+        </xf:instance>
+
+        <xf:instance id="pal">
+            <pal xmlns:ir="http://itensil.com/repository" xmlns:d="DAV:">
+                <ir:description/>
+            </pal>
+        </xf:instance>
+
+        <xf:bind nodeset="d:displayname" type="ix:fileName" constraint=". != ''"/>
+
+        <xf:action ev:event="xforms-model-construct-done" exf:if="not(ir:description)">
+            <xf:duplicate ref="/properties" origin="instance('pal')/ir:description" />
+        </xf:action>
+
+        <xf:submission id="submission" replace="none" method="post" action="../shell/setProps">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:6px;width:350px">
+
+        <xf:input ref="d:displayname">
+          <xf:label>Name:</xf:label>
+          <xf:hint>This name needs to be unique.</xf:hint>
+        </xf:input>
+
+        <xf:textarea ref="ir:description" style="width:20em;height:3em">
+            <xf:label>Description:</xf:label>
+        </xf:textarea>
+
+        <xf:submit submission="submission" class="diagBtn dbSave"/>
+
+    </div>
+
+</form>

@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="itensil.workflow.activities.state">
+     <!-- MySQL Based -->
+
+    <class name="FlowState" lazy="false" node="flow-state" table="iten_wf_flow_state">
+        <id name="id" node="@id">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="active" node="@active"/>
+		<component name="cust0" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust0Name"/>
+            <property name="type" column="cust0Type"/>
+        </component>
+		<component name="cust1" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust1Name"/>
+            <property name="type" column="cust1Type"/>
+        </component>
+		<component name="cust2" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust2Name"/>
+            <property name="type" column="cust2Type"/>
+        </component>
+		<component name="cust3" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust3Name"/>
+            <property name="type" column="cust3Type"/>
+        </component>
+		<component name="cust4" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust4Name"/>
+            <property name="type" column="cust4Type"/>
+        </component>
+		<component name="cust5" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust5Name"/>
+            <property name="type" column="cust5Type"/>
+        </component>
+		<component name="cust6" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust6Name"/>
+            <property name="type" column="cust6Type"/>
+        </component>
+		<component name="cust7" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust7Name"/>
+            <property name="type" column="cust7Type"/>
+        </component>
+		<component name="cust8" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust8Name"/>
+            <property name="type" column="cust8Type"/>
+        </component>
+		<component name="cust9" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="cust9Name"/>
+            <property name="type" column="cust9Type"/>
+        </component>
+		<component name="custA" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="custAName"/>
+            <property name="type" column="custAType"/>
+        </component>
+		<component name="custB" class="FlowColumn">
+            <parent name="flow"/>
+            <property name="name" column="custBName"/>
+            <property name="type" column="custBType"/>
+        </component>
+        
+        <map name="roles" node="." embed-xml="false" inverse="true">
+            <key not-null="true">
+                <column name="flowId" sql-type="varchar(20) binary"/>
+            </key>
+            <map-key type="string" column="role"/>
+            <one-to-many class="FlowRole" />
+            <!-- there's room here to use loaders with HQL or native SQL for sets like this -->
+        </map>
+    </class>
+
+    <class name="FlowRole" lazy="false" node="role" table="iten_wf_flow_role">
+        <id name="id" node="@id" length="20">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <properties name="flow_role" unique="true">
+            <many-to-one name="flow" class="FlowState" embed-xml="false" node="@flow" not-null="true">
+                <column name="flowId" sql-type="varchar(20) binary"/>
+            </many-to-one>
+            <property name="role" node="@role"/>
+        </properties>
+        <property name="assignId" node="@assignId" length="20">
+            <column name="assignId" sql-type="varchar(20) binary"/>
+        </property>
+    </class>
+
+    <class name="FlowStepLog" table="iten_wf_flow_log" lazy="false">
+
+        <id name="id">
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="flow" class="FlowState" embed-xml="false" node="@flow" not-null="true">
+            <column name="flowId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+
+        <many-to-one name="token" class="Activity" embed-xml="false" node="@token" not-null="false">
+            <column name="tokenId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+
+        <property name="txId" length="20">
+            <column name="txId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="stepId"/>
+        <property name="subStateInt" column="subState"/>
+        <property name="timeStamp"/>
+        <property name="expireTime"/>
+        
+        <property name="userId" length="20">
+            <column name="userId" sql-type="varchar(20) binary"/>
+        </property>
+
+    </class>
+
+    <query name="FlowState.lastLogTx">
+        FROM FlowStepLog stl
+        WHERE stl.flow = :flow
+            AND stl.token = :token
+            AND stl.txId = :txId
+            ORDER BY stl.id ASC
+    </query>
+    
+    <query name="FlowState.nextToLastLogTx"><![CDATA[
+        FROM FlowStepLog stl
+        WHERE stl.flow = :flow
+            AND stl.token = :token
+            AND stl.id < :lastId
+            AND stl.stepId = :enterStepId
+            ORDER BY stl.id DESC
+    ]]></query>
+
+    <query name="FlowState.clearAllTokens">
+        DELETE Activity act WHERE act.flow = :flow
+    </query>
+
+    <query name="FlowState.getActiveStepsByStep">
+        FROM Activity act 
+        	LEFT JOIN act.states sta
+        WHERE act.flow = :flow AND sta.stepId = :stepId
+    </query>
+
+    <query name="FlowState.getActiveSteps">
+        FROM Activity act 
+        	LEFT JOIN act.states sta
+        WHERE act.flow = :flow AND sta.subStateInt IN ( :subStates )
+    </query>
+
+    <query name="FlowState.countStepTokens">
+        SELECT COUNT(*) FROM Activity act 
+        	LEFT JOIN act.states sta
+        WHERE act.flow = :flow AND sta.stepId = :stepId
+    </query>
+
+    <query name="FlowState.countTokens">
+        SELECT COUNT(*) FROM Activity act WHERE act.flow = :flow
+    </query>
+
+    <query name="FlowState.getTokens">
+        FROM Activity act WHERE act.flow = :flow
+    </query>
+
+    <query name="FlowState.countAllActiveSteps">
+        SELECT COUNT(*) FROM Activity act
+        	LEFT JOIN act.states sta
+        WHERE act.flow = :flow
+            AND sta.stepId IS NOT NULL
+            AND sta.subStateInt != :endSubState
+    </query>
+
+    <query name="FlowState.getLogStepsByToken"><![CDATA[
+        FROM FlowStepLog stl
+        WHERE stl.token = :token
+            AND (:since IS NULL OR stl.timeStamp < :since)
+        ORDER BY stl.timeStamp ASC
+    ]]></query>
+    
+    
+    <query name="FlowState.getExitLogSteps"><![CDATA[
+        FROM FlowStepLog stl
+        WHERE stl.token = :token
+        	AND stl.stepId = :stepId
+            AND stl.subStateInt IN ( :exitSubStates )
+        ORDER BY stl.timeStamp ASC
+    ]]></query>
+
+    <query name="FlowState.getLogStepsByStep"><![CDATA[
+        FROM FlowStepLog stl
+        WHERE stl.flow = :flow
+            AND stl.stepId = :stepId
+            AND (:since IS NULL OR stl.timeStamp < :since)
+        ORDER BY stl.timeStamp ASC
+    ]]></query>
+
+    <query name="FlowState.getLogSteps"><![CDATA[
+        FROM FlowStepLog stl
+        WHERE stl.flow = :flow
+            AND (:since IS NULL OR stl.timeStamp < :since)
+        ORDER BY stl.timeStamp ASC
+    ]]></query>
+    
+    <query name="FlowState.getProjectFlows" cacheable="true">
+    	SELECT DISTINCT act.flow
+    	FROM Activity act
+    		LEFT JOIN act.projects as proj
+    	WHERE proj = :projId
+    </query>
+
+	<query name="FlowState.recentlyActiveFlows" cacheable="true">
+		SELECT DISTINCT nod.parentNode.parentNode
+		FROM NodeEntity nod, FlowStepLog stl 
+		WHERE nod.nodeId = stl.token.id
+			AND stl.token.userSpaceId = :userSpaceId
+			AND nod.parentNode.parentNode.deleted = 0
+			AND nod.parentNode.parentNode.localUri LIKE 'process/%'
+		ORDER BY stl.timeStamp DESC
+    </query>
+    
+    <query name="FlowState.changeIdLog">
+		UPDATE FlowStepLog flog
+			SET flog.token.id = :nid
+			WHERE flog.token.id = :oid
+	</query>
+
+</hibernate-mapping>

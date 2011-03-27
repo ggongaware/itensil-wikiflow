@@ -1,0 +1,259 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:iw="http://itensil.com/workflow"
+    xmlns:rl="http://itensil.com/ns/rules">
+    
+    
+    <xf:model id="qmodel">
+        <xf:instance id="ins">
+       	<quiz xmlns="" xmlns:iw="http://itensil.com/workflow">
+       		<quizSect failStep="" passScore="1">
+       			<activity oldid="//N" id="Sample" role="" flow=""><label/><description/>
+       			    <iw:article layout="">Introduction...</iw:article>
+	       			<iw:attr name="" type="xsd:NMTOKEN" quizType="1right">
+		        		<quizText>What is the last word in this sample question?</quizText>
+		        		<item label="what" value="" quizKey=""/>
+		        		<item label="sample" value="" quizKey=""/>
+		        		<item label="question" value="" quizKey="1"/>
+		        		<item label="last" value="" quizKey=""/>
+		        	</iw:attr>
+		        	<iw:media/>
+		        </activity>
+       		</quizSect>
+       	</quiz>
+        </xf:instance>
+        
+        <xf:instance id="pal">
+        <data xmlns="" xmlns:iw="http://itensil.com/workflow">
+	      	<activity oldid="//N" id="" role="" flow=""><label/><description/><iw:article layout=""></iw:article></activity>
+	        <iw:attr name="" type="xsd:NMTOKEN" quizType="1right">
+	        	<quizText/>
+	        	<item label="Answer1" value="" quizKey="1"/>
+	        	<item label="Answer2" value="" quizKey=""/>
+	        </iw:attr>
+	        <quizSect failStep="" passScore="1">
+	        	<activity oldid="//N" id="" role="" flow=""><label/><description/><iw:article layout=""></iw:article></activity>
+	        </quizSect>
+	        <item label="Label" value="" quizKey=""/>
+        </data>
+        </xf:instance>
+
+		<xf:bind nodeset="quizSect/activity/iw:media" type="ix:file" />
+		
+		<xf:submission id="save" replace="none" method="put" action="javascript:QuizWiz.saveQuiz(model.getDefaultInstance())">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close />
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+    </xf:model>
+<style>
+
+div.quiz {
+	background-color: #fff;
+	padding: 4px;
+}
+
+.quiz td.attrDel {
+	vertical-align:top
+}
+
+.quiz div.xfctrl {
+	background-color: transparent;
+}
+
+.quiz td div.xfctrl	{
+	padding: 0px;
+}
+
+.quiz textarea {
+	height: 5em;
+}
+
+div.quizScreen {
+	padding: 8px;
+	border: 2px solid #99c;
+	background-color: #ddf;
+}
+
+span.quizScreen {
+	font-size: 12px;
+	line-height: 17px;
+	color: #669;
+	font-weight: bold;
+}
+
+div.quizSect {
+	font-size: 13px;
+	color: #fff;
+	background-color: #999;
+	font-weight: bold;
+	padding: 1px 2px 1px 8px;
+}
+
+table.quizSect {
+	margin: 0px 0px 0px 16px;
+	border-collapse: collapse;
+}
+
+div.question {
+	margin: 3px 3px 3px 16px;
+	padding: 2px 2px 2px 8px;
+	border: 1px solid #999;
+}
+
+table.question {
+	clear: both;
+}
+
+table.answer {
+	margin: 0px 0px 0px 26px;
+	border-collapse: collapse;
+}
+
+.answer .wrong input {
+	text-decoration: line-through;
+}
+
+.answer div.qkey {
+	font-size: 9px;
+	color: #fff;
+	background-color: #090;
+	text-align: center;
+	width: 36px;
+}
+
+.wrong div.qkey {
+	background-color: #900;
+	cursor: pointer;
+}
+</style>
+    <div class="quiz">
+    <table><tbody>
+    	<xf:repeat nodeset="quizSect">
+    	 <exf:variable name="sectPos" value="position()"/>
+    	 <tr class="quizSect">
+    	  <td>
+    	  
+    	  	
+    	  
+    		<div class="quizSect">
+    		<table stlye="float:right;border-collapse:collapse;">
+    	  	<tr>
+    	  		<td>
+    	  		<xf:output value="concat('Quiz Section ', $sectPos)"/>
+    	  		</td>
+    	  		<td style="width:90px">&#160;</td>
+    	  		<td><xf:input ref="@passScore" style="width:2em;font-size:11px">
+				    			<xf:label style="width:90px;color:#fff;">Passing Score:</xf:label>
+				    		</xf:input></td>
+    	  		<td> / <xf:output value="count(activity/iw:attr) + (count(activity)*0)"/></td>
+    	  	</tr>
+    	  	</table>
+    		
+    		</div>
+    		<table class="quizSect"><tbody>
+    		<xf:repeat nodeset="activity">
+    		 <exf:variable name="screenPos" value="position()"/>
+    		 <tr class="quizScreen">
+    		  <td>
+    		  	<div class="quizScreen">
+    		  	<xf:input ref="@id" style="width:25em;font-weight:bold">
+    		  		<xf:label style="width:90px"><xf:output class="quizScreen" value="concat('Screen ', $screenPos, ' Title')"/></xf:label>
+    		  	</xf:input>
+    			<xf:textarea ref="iw:article" style="width:30em">
+    				<xf:label style="width:90px">Intro</xf:label>
+    			</xf:textarea>
+    			<xf:input ref="iw:media">
+	    			<xf:label style="width:90px">&#160;</xf:label>
+	    		</xf:input>
+    			<table class="question"><tbody>
+    			<xf:repeat nodeset="iw:attr">
+    			 <exf:variable name="questPos" value="position()"/>
+    			 <tr class="question">
+    			  <td>
+    			  <div class="question">
+	    			<xf:textarea ref="quizText" style="width:30em">
+		    			<xf:label style="width:75px;color:#666">
+		    			<xf:output class="question" value="concat('Question ', $questPos)"/></xf:label>
+		    		</xf:textarea>
+					<table class="answer"><tbody>
+		    		<xf:repeat nodeset="item">
+		    		<tr class="answer">
+		    			<ix:attr name="class" value="if(@quizKey = 1, 'answer', 'answer wrong')"/>
+		    				<td><xf:output value="substring('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',position(),1)"/></td>
+		    				<td><div class="qkey"><xf:output value="if(@quizKey = 1, 'correct', 'wrong')"/><xf:action ev:event="click">
+		    					<xf:setvalue ref="../item[@quizKey = 1]/@quizKey" value="''"/>
+		    					<xf:setvalue ref="@quizKey" value="1"/>
+		    				</xf:action></div></td>
+			    			<td>
+				    		<xf:input ref="@label" style="width:30em">
+				    			<xf:label/>
+				    		</xf:input>
+				    		</td>
+				    		<td class="attrDel"><div class="attrDel">X<xf:destroy ref="." ev:event="click"/></div></td>
+		    		</tr>
+		    		</xf:repeat>
+					</tbody>
+					<tfoot>
+					<tr>
+						<td colspan="4"><u class="attrLink"><xf:action ev:event="click">
+								<xf:duplicate ref="." origin="instance('pal')/item"/>
+	    					</xf:action>Add Answer</u></td>
+					</tr>
+					</tfoot>
+					</table>
+				  </div>
+				  </td>
+				  <td class="attrDel"><div class="attrDel">X<xf:destroy ref="." ev:event="click"/></div></td>
+		    	 </tr>
+    			</xf:repeat>
+    			</tbody>
+    			<tfoot>
+					<tr>
+						<td colspan="2"><u class="attrLink"><xf:action ev:event="click">
+								<xf:duplicate ref="." origin="instance('pal')/iw:attr"/>
+	    					</xf:action>Add Question</u></td>
+					</tr>
+				</tfoot>
+    			</table>
+    			</div>
+    		</td>
+    		<td class="attrDel"><div class="attrDel">X<xf:destroy ref="." ev:event="click"/></div></td>
+    		</tr>
+    		</xf:repeat>
+    	</tbody>
+    	<tfoot>
+			<tr>
+				<td colspan="2"><u class="attrLink"><xf:action ev:event="click">
+						<xf:duplicate ref="." origin="instance('pal')/activity"/>
+   					</xf:action>Add Screen</u></td>
+			</tr>
+		</tfoot>
+    	</table>
+    	</td>
+    	<td class="attrDel"><div class="attrDel">X<xf:destroy ref="." ev:event="click"/></div></td>
+    	</tr>
+    	</xf:repeat>
+    </tbody>
+    <tfoot>
+		<tr>
+			<td colspan="2"><u class="attrLink"><xf:action ev:event="click">
+					<xf:duplicate ref="." origin="instance('pal')/quizSect"/>
+  					</xf:action>Add Section</u></td>
+		</tr>
+	</tfoot>
+    </table>
+    <xf:submit submission="save" class="diagBtn dbCreate">
+    </xf:submit>
+    
+    </div>
+    
+    
+</form>

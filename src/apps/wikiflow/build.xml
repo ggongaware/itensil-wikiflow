@@ -1,0 +1,309 @@
+<project name="wikiflow" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+	<property file="${root.src}/build.properties"/>
+    <dirname property="Wikif.home" file="${ant.file}"/>
+    <property name="Wikif.src" value="${Wikif.home}/java"/>
+    <property name="Wikif.build" value="${Wikif.home}/.built"/>
+    <property name="Wikif.classbin" value="${Wikif.build}/classes"/>
+	<property name="Wikif.dist" value="${Wikif.home}/dist"/>
+
+    <property name="share.security" value="${root.src}/share/security"/>
+    <property name="share.mail" value="${root.src}/share/mail"/>
+	<property name="share.scripting" value="${root.src}/share/scripting"/>
+
+    <property name="component.workflow" value="${root.src}/component/workflow"/>
+    <property name="component.repository" value="${root.src}/component/repository"/>
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement path="${component.workflow}/.built/classes"/>
+        <pathelement path="${component.repository}/.built/classes"/>
+    </path>
+
+<!--
+    <path id="classpath.test">
+        <path refid="classpath.build"/>
+        <dirset dir="${Wikif.classbin}"/>
+        <fileset dir="${Wikif.home}/test-etc">
+            <include name="**/*.jar"/>
+        </fileset>
+        <dirset dir="${Wikif.home}/test-etc"/>
+    </path>
+-->
+    <patternset id="meta.files">
+		<include name="**/*.xml"/>
+    	<include name="**/*.sql"/>
+    	<include name="**/*.jsc"/>
+		<include name="**/*.properties"/>
+	</patternset>
+
+    <target name="init">
+        <mkdir dir="${Wikif.classbin}"/>
+    	<mkdir dir="${Wikif.dist}"/>
+        <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+	
+	<target name="clean">
+	    <delete dir="${Wikif.classbin}"/>
+	    <delete includeemptydirs="true">
+	    	<fileset dir="web/WEB-INF/classes" includes="**/*"/>
+	    </delete>
+	</target>
+	
+	<target name="cleanAll" depends="clean">
+		<ant dir="${share.security}" target="clean"/>
+		<ant dir="${share.mail}" target="clean"/>
+		<ant dir="${share.scripting}" target="clean"/>
+		<ant dir="${component.workflow}" target="clean"/>
+		<ant dir="${component.repository}" target="clean"/>
+	</target>
+
+    <target name="shares" depends="init" unless="skip-dep">
+  		<ant dir="${share.security}" target="share">
+    		<property name="share.dir" value="${Wikif.classbin}"/>
+    	</ant>
+        <ant dir="${share.mail}" target="share">
+    		<property name="share.dir" value="${Wikif.classbin}"/>
+    	</ant>
+    	<ant dir="${share.scripting}" target="share">
+    		<property name="share.dir" value="${Wikif.classbin}"/>
+    	</ant>
+  	</target>
+
+    <target name="components" depends="init">
+        <ant dir="${component.workflow}"/>
+        <ant dir="${component.repository}"/>
+    </target>
+
+	<target name="build" depends="compile"/>
+
+    <target name="compile" depends="shares, components" description="Compile main source tree java files into class files">
+        <!-- Compile the java files -->
+        <javac destdir="${Wikif.classbin}" debug="${compile.debug}"
+				deprecation="${compile.deprecation}"
+				optimize="${compile.optimize}"
+				target="${compile.target}" source="${compile.sourcever}">
+            <src path="${Wikif.src}"/>
+            <exclude name="**/CVS/**"/>
+            <classpath refid="classpath.build"/>
+        </javac>
+
+        <copy todir="${Wikif.classbin}">
+			<fileset dir="${Wikif.src}">
+				<patternset refid="meta.files"/>
+			</fileset>
+		</copy>
+
+    </target>
+
+    <target name="smallwebpak">
+        <zip destfile="${Wikif.dist}/smallwebpak.zip" compress="true">
+             <fileset dir="web" defaultexcludes="true">
+                 <exclude name=".*"/>
+             	 <exclude name=".*/*" />
+                 <exclude name="samples/*" />
+                 <exclude name="WEB-INF/lib/*.jar" />
+                 <exclude name="**/*.swf" />
+             </fileset>
+        	<fileset dir="web" defaultexcludes="true">
+        		<include name="WEB-INF/lib/itensil*.jar"/>
+        		<include name="WEB-INF/lib/poi*.jar"/>
+        		<!-- <include name="WEB-INF/lib/hibernate3.jar"/> -->
+        	</fileset>
+        </zip>
+    </target>
+	
+
+    <target name="fullwebpak">
+        <zip destfile="${Wikif.dist}/fullwebpak.zip" compress="true">
+             <fileset dir="web" defaultexcludes="true">
+                 <exclude name=".*"/>
+             	 <exclude name=".*/*" />
+                 <exclude name="samples/*" />
+             </fileset>
+        </zip>
+    </target>
+	
+	<target name="smallwebpak-client">
+        <zip destfile="${Wikif.dist}/smallwebpak-client.zip" compress="true">
+             <fileset dir="web" defaultexcludes="true">
+                 <exclude name=".*"/>
+             	 <exclude name=".*/*" />
+                 <exclude name="samples/*" />
+                 <exclude name="WEB-INF/**" />
+                 <exclude name="**/*.swf" />
+             </fileset>
+        </zip>
+    </target>
+	
+	<target name="war.exploded" depends="compile">
+		<copy todir="web/WEB-INF/lib" flatten="true">
+			<fileset dir="${root}/lib">
+	            <include name="**/*.jar"/>
+				<exclude name="mysql-connector*.jar"/>
+				<exclude name="javax.servlet*.jar"/>
+	        </fileset>
+	        <fileset dir="${root}/src/common/dist/lib">
+	            <include name="**/*.jar"/>
+	        </fileset>
+		</copy>
+		<copy todir="web/WEB-INF/classes">
+            <fileset dir="${Wikif.classbin}"/>
+			<fileset dir="${component.workflow}/.built/classes"/>
+			<fileset dir="${component.repository}/.built/classes"/>
+        </copy>
+		<copy todir="web/WEB-INF/classes" overwrite="true">
+			<fileset dir="web/WEB-INF/src">
+				<patternset refid="meta.files"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="jboss.war" depends="war.exploded">
+		<war destfile="${Wikif.dist}/wikiflow.war" webxml="web/WEB-INF/web.xml">
+			<fileset dir="web">
+				<exclude name="WEB-INF/classes/**"/>
+				<exclude name="WEB-INF/web.xml"/>
+				<exclude name="WEB-INF/lib/**"/>
+				<exclude name="WEB-INF/src/**"/>
+				<exclude name=".*"/>
+				<exclude name=".*/*" />
+			</fileset>
+			<lib dir="web/WEB-INF/lib">
+				<exclude name="log4j*.jar"/>
+				<exclude name="jta*.jar"/>
+				<exclude name="antlr*.jar"/>
+				<exclude name="mail.jar"/>
+				<exclude name="cglib.jar"/>
+				<exclude name="activation.jar"/>
+			</lib>
+			<!-- <lib dir="${root}/lib">
+				<include name="c3p0*.jar"/>
+				<include name="mysql-connector*.jar"/>
+			</lib> -->
+			<classes dir="web/WEB-INF/classes">
+				<!-- <exclude name="hibernate.cfg.xml"/> -->
+			</classes>
+			<!-- <classes dir="deploy-conf/jboss-src"/> -->
+		</war>
+	</target>
+	
+	<!-- test all the components -->
+    <target name="test">
+        
+    	
+    	<mkdir dir="${Wikif.build}/test-classes"/>
+
+
+        <property name="component.workflow" value="${root.src}/component/workflow"/>
+        <property name="component.repository" value="${root.src}/component/repository"/>
+    	
+    	<javac  destdir="${Wikif.build}/test-classes"
+				debug="${compile.debug}"
+ 				deprecation="${compile.deprecation}"
+				optimize="${compile.optimize}"
+				target="${compile.target}" source="${compile.sourcever}">
+    		
+    		<src path="${root}/src/common/java-test"/>			
+			<src path="${share.security}/java-test"/>			
+    		<src path="${component.workflow}/java-test"/>
+			<src path="${component.repository}/java-test"/>
+			<src path="${Wikif.home}/java-test"/>
+    		
+			<exclude name="**/CVS/**"/>
+			<classpath>
+				<path refid="classpath.build"/>	
+    			<pathelement path="${Wikif.classbin}"/>
+			</classpath>
+    		
+		</javac>
+    	
+        <copy todir="${Wikif.build}/test-classes">
+			<fileset dir="${component.workflow}/java-test">
+				<patternset refid="meta.files"/>
+				<exclude name="hibernate.cfg.xml"/>
+			</fileset>
+        	<fileset dir="${component.repository}/java-test">
+				<patternset refid="meta.files"/>
+				<exclude name="hibernate.cfg.xml"/>
+			</fileset>
+        	<fileset dir="${Wikif.home}/java-test">
+				<patternset refid="meta.files"/>
+			</fileset>
+		</copy>
+				
+
+    	<mkdir dir="${Wikif.dist}/testlog"/>
+    	
+        <junit printsummary="on" fork="yes" maxmemory="150m">
+            <formatter type="xml" />
+        	
+            <batchtest fork="yes" todir="${Wikif.dist}/testlog">
+               <fileset dir="${root}/src/common/java-test">
+              		<include name="**/*Junit.java" />
+              	</fileset>
+             	<fileset dir="${share.security}/java-test">
+	              		<include name="**/*Junit.java" />
+              	</fileset>
+          		<fileset dir="${component.workflow}/java-test">
+	          		<include name="**/*Junit.java" />
+	          	</fileset>
+      			<fileset dir="${component.repository}/java-test">
+	          		<include name="**/*Junit.java" />
+	           	</fileset>
+            	<fileset dir="${Wikif.home}/java-test">
+	          		<include name="**/*Junit.java" />
+	           	</fileset>
+            </batchtest>
+        	
+        	<classpath>
+        		<pathelement path="${Wikif.build}/test-classes"/>
+        		<pathelement path="${Wikif.classbin}"/>
+        		<pathelement path="${component.workflow}/.built/classes"/>
+        		<pathelement path="${component.repository}/.built/classes"/>
+        		<path refid="classpath.build"/>	
+        	</classpath>
+        </junit>
+
+        <mkdir dir="${Wikif.dist}/testreport"/>
+
+        <junitreport todir="${Wikif.dist}/testreport">
+            <fileset dir="${Wikif.dist}/testlog">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${Wikif.dist}/testreport" />
+        </junitreport>
+    </target>
+
+    <target name="schema" depends="compile" description="">
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Wikif.classbin}"/>
+        </taskdef>
+        <schemaupdate properties="hibernate.properties" quiet="no" text="no">
+            <fileset dir="${Wikif.src}">
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </schemaupdate>
+    </target>
+
+	<target name="schemaTimecard" depends="compile" description="">
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Wikif.classbin}"/>
+        </taskdef>
+        <schemaupdate properties="hibernate.properties" quiet="no" text="no">
+            <fileset dir="${Wikif.src}">
+                <include name="itensil/timecard/**/*.hbm.xml"/>
+            </fileset>
+        </schemaupdate>
+    </target>
+
+</project>

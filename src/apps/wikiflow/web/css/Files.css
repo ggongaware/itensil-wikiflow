@@ -1,0 +1,241 @@
+.fileTree div.icon,
+.flowTree div.icon,
+.userTree div.icon,
+.flowRow div.icon,
+div.deco,
+div.selDeco,
+.copy div.icon,
+.attach div.icon,
+.launch div.icon,
+.activity div.icon,
+.token div.icon,
+.mnTNavLab div.icon,
+.file span.icon,
+.perms div.icon {
+    background-image: url(../pix/fileIcons.gif);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.fileTree div.label {
+    padding-bottom: 3px;
+}
+
+.fileTree .empty div.label {
+    color: #999;
+}
+
+table.perms div.perm {
+    position: relative;
+    width: 97px;
+    height: 28px;
+    background-image: url(../pix/perms.gif);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+div.permDiag,
+div.histDiag {
+    padding: 4px;
+    position: relative;
+}
+
+table.perms div.click {
+    cursor: pointer;
+}
+
+table.perms div.click span.name {
+    color: #006;
+    text-decoration: underline;
+}
+
+span.addPerm {
+    color: #006;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 4px;
+}
+
+div.dialog .upload {
+	padding: 1px 8px 8px 8px;
+}
+
+div.dialog .upload .note {
+	margin-bottom: 4px;
+	font-size: 12px;
+}
+
+div.dialog .upload .field {
+	margin-bottom: 4px;
+}
+
+div.fieldOpt {
+	padding:2px 6px 8px 8px;
+}
+
+table.perms,
+table.hist {
+    border-bottom: 1px solid #9BACCC;
+    position: relative;
+}
+
+table.perms td,
+table.hist td {
+    padding: 4px;
+    border-right: 1px solid #9BACCC;
+    border-bottom: 1px solid #9BACCC;
+}
+
+table.perms .attrDel {
+	cursor: pointer;
+}
+
+table.prelative td {
+	padding:2px;
+	border: 0 none;
+}
+
+table.perms th,
+table.hist th {
+    padding: 1px 1px 1px 4px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #9BACCC;
+}
+
+table.perms td.user,
+table.perms td.group,
+table.hist td.first {
+    border-left: 1px solid #9BACCC;
+}
+
+table.perms div.who {
+    position: relative;
+}
+
+table.perms span.name {
+    padding-left: 18px;
+}
+
+table.perms div.icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+table.hist tr.default td {
+    font-weight: bold;
+}
+
+table.hist td.click {
+    color: #006;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+table.perms tr.alt td,
+table.hist tr.alt td {
+    background-color: #f1f1f1;
+}
+
+.blankIco { background-position: 16px 16px; }
+.defIco { background-position: 0px 0px; }
+.fldIco { background-position: -16px 0px; }
+.htm_Ico,
+.html_Ico { background-position: -32px 0px; }
+.gif_Ico,
+.jpg_Ico,
+.png_Ico,
+.jpeg_Ico,
+.bmp_Ico,
+.tif_Ico { background-position: -48px 0px; }
+.txt_Ico { background-position: -64px 0px; }
+.msg_Ico,
+.eml_Ico { background-position: -80px 0px; }
+.url_Ico,
+.linkIco { background-position: -96px 0px; }
+.avi_Ico,
+.mov_Ico,
+.wmv_Ico,
+.mpg_Ico { background-position: -112px 0px; }
+.ppt_Ico,
+.pptx_Ico { background-position: 0px -16px; }
+.doc_Ico,
+.docx_Ico { background-position: -16px -16px; }
+.xls_Ico,
+.xlsx_Ico { background-position: -32px -16px; }
+.vsd_Ico { background-position: -48px -16px; }
+.swf_Ico { background-position: -64px -16px; }
+.xml_Ico,
+.xslt_Ico,
+.xsd_Ico,
+.xsl_Ico { background-position: -80px -16px; }
+.rprt_Ico,
+.xrpt_Ico { background-position: -96px -16px; }
+.kb_Ico { background-position: -112px -16px; }
+.groupIco { background-position: 0px -32px; }
+.everyoneIco { background-position: -16px -32px; }
+.userIco { background-position: -32px -32px; }
+.wav_Ico,
+.wma_Ico,
+.m4a_Ico,
+.ogg_Ico,
+.mp3_Ico { background-position: -48px -32px; }
+.zip_Ico,
+.gz_Ico,
+.rar_Ico,
+.bz2_Ico { background-position: -64px -32px; }
+.milestoneIco { background-position: -80px -32px; }
+.flow_Ico,
+.flowIco { background-position: -96px -32px; }
+.projectIco { background-position: -112px -32px; }
+.psd_Ico { background-position: 0px -48px; }
+.ai_Ico,
+.eps_Ico { background-position: -16px -48px; }
+.fla_Ico { background-position: -32px -48px; }
+.pdf_Ico { background-position: -48px -48px; }
+.xfrm_Ico,
+.xformIco { background-position: -64px -48px; }
+.task1Ico { background-position: -80px -48px; }
+.task2Ico { background-position: -96px -48px; }
+.task3Ico { background-position: -112px -48px; }
+.star1Ico { background-position: 0px -64px; }
+.star2Ico { background-position: -16px -64px; }
+.star3Ico { background-position: -32px -64px; }
+.task4Ico { background-position: -48px -64px; }
+.bookIco { background-position: -64px -64px; }
+.bugIco { background-position: -80px -64px; }
+.carIco { background-position: -96px -64px; }
+.pcIco { background-position: -112px -64px; }
+
+.chatIco { background-position: 0px -80px; }
+.drinkIco { background-position: -16px -80px; }
+.cashIco { background-position: -32px -80px; }
+.medalIco { background-position: -48px -80px; }
+.findIco { background-position: -64px -80px; }
+.pillIco { background-position: -80px -80px; }
+.js_Ico,
+.boltIco { background-position: -96px -80px; }
+.phoneIco { background-position: -112px -80px; }
+
+.flagIco { background-position: 0px -96px; }
+.writeIco { background-position: -16px -96px; }
+.sheildIco { background-position: -32px -96px; }
+.worldIco { background-position: -48px -96px; }
+.truckIco { background-position: -64px -96px; }
+.clockIco { background-position: -80px -96px; }
+.homeIco { background-position: -96px -96px; }
+.rule_Ico { background-position: -112px -96px; }
+
+.entity_Ico { background-position: 0px -112px; }
+.orgIco { background-position: -16px -112px; }
+.grantsIco { background-position: -32px -112px; }
+.humansIco { background-position: -48px -112px; }
+.animalIco { background-position: -64px -112px; }
+.bioIco { background-position: -80px -112px; }
+.conflictIco { background-position: -96px -112px; }
+.researchIco { background-position: -112px -112px; }
+
+

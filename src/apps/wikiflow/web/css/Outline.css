@@ -1,0 +1,136 @@
+body.outline {
+	overflow-x:visible;
+	overflow-y:auto;
+}
+
+.outline ul {
+	list-style-type: square;
+	_position: relative;
+}
+
+.outline ol {
+	_position: relative;
+}
+	
+.outline li {
+	border-left: 1px dashed #ddf;
+	border-right: 1px dashed #ddf;
+	border-top: 1px dashed #ddf;
+	background-position: left bottom;
+	background-image: url(../pix/flow/outSepSeq.gif);
+	background-repeat: repeat-x;
+	padding: 1px 1px 8px 1px;
+	_position: relative;
+}
+
+.row0 li, 
+.row2 li,
+.row3 li {  border: 0 none;  background-image: none; }
+
+.row0 li.procPar,
+.row2  li.procPar,
+.row3  li.procPar { background-image: none;  }
+
+
+.row0 button.iten_emac,
+.row2 button.iten_emac,
+.row3 button.iten_emac { background-color: #ddd; color: #666; border-color: #999;}
+
+.outline li.procPar {
+	padding: 1px 1px 26px 1px;
+	background-image: url(../pix/flow/outSepPar.gif);
+}
+
+.row0 li.procPar,
+.row2  li.procPar,
+.row3  li.procPar { background-image: none;  }
+
+.outline span.procExt {
+	float: right;
+}
+
+.outline span.procExt div.subProc {
+	float: left;
+	width: 90px;
+	font-size: 10px;
+	background-color: #cfc;
+	height: 12px;
+	line-height: 10px;
+	overflow: hidden;
+}
+
+.outline span.pName  {
+	text-decoration: underline;
+	font-style: italic;
+	color: #069;
+}
+
+.outline span.procExt div.pRole {
+	float: left;
+	width: 90px;
+	font-size: 10px;
+	background-color: #ffc;
+	height: 12px;
+	overflow: hidden;
+}
+
+table.mlayout {
+	border-collapse: collapse;
+	width: 95%;
+}
+
+table.mlayout td.row0 {
+	padding: 20px 6px 6px 6px;
+	background-color: #cfc;
+	border: 1px solid #ada;
+	background-repeat: no-repeat;
+	background-image: url(../pix/flow/outLoRow0.gif);
+}
+
+table.mlayout td.row1 {
+	padding: 16px 4px 4px 4px;
+	border: 1px solid #ada;
+	background-repeat: no-repeat;
+	background-image: url(../pix/flow/outLoRow1.gif);
+}
+
+table.mlayout td.row2 {
+	padding: 20px 6px 6px 6px;
+	background-color: #ffc;
+	border: 1px solid #ada;
+	background-repeat: no-repeat;
+	background-image: url(../pix/flow/outLoRow2.gif);
+}
+
+table.mlayout td.row3 {
+	padding: 20px 6px 6px 6px;
+	background-color: #eef;
+	border: 1px solid #ada;
+	background-repeat: no-repeat;
+	background-image: url(../pix/flow/outLoRow3.gif);
+}
+
+
+span.meetMem {
+	border: 1px solid #ccc;
+	line-height: 16px;
+	margin: 1px 1px 1px 0px;
+	padding: 0px;
+	cursor: pointer;
+	font-size: 10px;
+}
+
+span.meetMem b {
+	padding: 1px 2px 1px 1px;
+	margin: 0px 1px 0px 0px;
+}
+
+.mtMem0 b { background-color: #5b7; color: #fff; }
+.mtMem1 b { background-color: #b6d; color: #fff; }
+.mtMem2 b { background-color: #b77; color: #fff; }
+.mtMem3 b { background-color: #2ce; color: #fff; }
+.mtMem4 b { background-color: #ea1; color: #fff; }
+.mtMem5 b { background-color: #ae9; color: #fff; }
+.mtMem6 b { background-color: #666; color: #fff; }
+.mtMem7 b { background-color: #23c; color: #fff; }
+.mtMem8 b { background-color: #aa3; color: #fff; }

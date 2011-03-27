@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity xmlns="http://itensil.com/ns/entity">
+	<data dataRev="0" browseRev="0"/>
+	<forms/>
+	<queries/>
+	<events>
+		<event-sys type="create" relation=""/>
+		<event-sys type="delete" relation=""/>
+	</events>
+</entity>

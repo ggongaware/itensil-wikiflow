@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.workflow.state.hibernate">
+
+    <class name="HBStepState" node="state" table="wf_state">
+        <composite-id>
+            <key-property name="flowId"/>
+            <key-property name="tokenId"/>
+        </composite-id>
+
+        <property name="txId"/>
+        <property name="stepId"/>
+        <property name="subStateInt" column="subState"/>
+        <property name="timeStamp"/>
+        <property name="expireTime"/>
+
+    </class>
+
+    <query name="StepState.loadStates">
+        FROM HBStepState st WHERE st.flowId = :flowId AND st.tokenId = :tokenId
+    </query>
+    <query name="StepState.getActiveSteps">
+        FROM HBStepState st WHERE st.flowId = :flowId AND st.subStateInt IN ( :subStates )
+    </query>
+    <query name="StepState.removeToken">
+        DELETE HBStepState st WHERE st.flowId = :flowId AND st.tokenId = :tokenId
+    </query>
+    <query name="StepState.clearAllTokens">
+        DELETE HBStepState st WHERE st.flowId = :flowId
+    </query>
+
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<knowledgebase xmlns="http://itensil.com/xml/knowledgebase" attachPrefix="" policy="editAny" showAuthor="true" showDate="true">
+<article createBy="SysAdmin" createTime="May 25, 2005 14:00" id="Welcome" modifyBy="" modifyTime="Tue Oct 3 18:06:08 PDT 2006">Here is a running sample process:
+[inject[process/Sample|Start Sample|/system/sysproc/Sample]]
+
+
+''Try The Process Building Tutorial''
+[copy[/system/help/Tutorial/|process/Tutorial|Build a Tutorial Process|chart.flow]]
+
+
+To make new processes:
+#Find the ''process/Blank'' folder
+#''Drag &amp; Drop'' it to the process folder and choose ''copy''
+#Click the new folder, probably \\Blank(1)\\, and click ''Properties'' to rename it
+#Click the new folder again, and click ''Edit''
+
+To run new processes:
+#Edit this page or a new wiki page
+#Drag a ''MyNewProcess/chart.flow'' into the edit text zone
+#Save the page, and click the new inject button</article>
+</knowledgebase>

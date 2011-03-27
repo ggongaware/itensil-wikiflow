@@ -1,0 +1,95 @@
+<project name="Repository" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+    <property file="${root.src}/build.properties"/>
+    <dirname property="Repository.home" file="${ant.file}"/>
+    <property name="Repository.src" value="${Repository.home}/java"/>
+    <property name="Repository.build" value="${Repository.home}/.built"/>
+    <property name="Repository.classbin" value="${Repository.build}/classes"/>
+    <property name="share.security" value="${root.src}/share/security"/>
+
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <patternset id="meta.files">
+		<include name="**/*.xml"/>
+		<include name="**/*.properties"/>
+	</patternset>
+
+    <target name="init">
+        <mkdir dir="${Repository.classbin}"/>
+        <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+
+
+    <target name="shares" depends="init" unless="skip-dep">
+  		<ant dir="${share.security}" target="share">
+    		<property name="share.dir" value="${Repository.classbin}"/>
+    	</ant>
+  	</target>
+  	
+	<target name="build" depends="compile"/>
+
+    <target name="compile" depends="shares" description="Compile main source tree java files into class files">
+        <!-- Compile the java files -->
+        <javac destdir="${Repository.classbin}" debug="${compile.debug}"
+				deprecation="${compile.deprecation}"
+				optimize="${compile.optimize}"
+				target="${compile.target}" source="${compile.sourcever}">
+            <src path="${Repository.src}"/>
+            <exclude name="**/CVS/**"/>
+            <classpath refid="classpath.build"/>
+        </javac>
+
+        <copy todir="${Repository.classbin}">
+			<fileset dir="${Repository.src}">
+				<patternset refid="meta.files"/>
+			</fileset>
+		</copy>
+    </target>
+
+    <target name="schema" depends="compile" description="">
+    
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Repository.classbin}"/>
+        </taskdef>
+        <schemaupdate properties="hibernate.properties" quiet="no" text="no">
+            <fileset dir="${Repository.src}">
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </schemaupdate>
+        
+        <!--
+        <taskdef name="schemaexport" classname="org.hibernate.tool.hbm2ddl.SchemaExportTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Repository.classbin}"/>
+        </taskdef>
+        
+        <schemaexport
+            properties="hibernate.properties"
+            quiet="no"
+            text="no"
+            drop="no"
+            delimiter=";"
+            output="schema-export.sql">
+            <fileset dir="${Repository.src}">
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </schemaexport>
+        -->
+    </target>
+
+    <target name="clean">
+    	<delete dir="${Repository.classbin}"/>
+    </target>
+    
+</project>

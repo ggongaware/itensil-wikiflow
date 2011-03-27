@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  JBoss MySQL Configuration                                           -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<datasources>
+    <local-tx-datasource>
+        <jndi-name>ItensilDS</jndi-name>
+        <connection-url>jdbc:mysql://localhost/itensil?autoReconnect=true</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>itensil</user-name>
+        <password>password</password>
+    </local-tx-datasource>
+</datasources>

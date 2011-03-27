@@ -1,0 +1,65 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins" src="../_comadmin/getInfo"/>
+
+        <xf:bind nodeset="name|mount|baseUrl|pass|user" constraint=". != ''"/>
+        <xf:bind nodeset="email" type="ix:email" constraint=". != ''"/>
+
+        <xf:submission id="submission" replace="none" method="post" action="../_comadmin/setInfo">
+            <xf:action ev:event="xforms-submit-done">
+                <script>
+                	// refresh
+                	location.href = location.href;
+                </script>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:6px;width:400px">
+
+		<xf:group>
+			<xf:label>Community</xf:label>
+	        <xf:input ref="name">
+	          <xf:label>Community Name:</xf:label>
+	          <xf:hint>This shouldn't have spaces or characters that aren't numbers and letters.</xf:hint>
+	        </xf:input>
+	        
+	        <xf:input ref="baseUrl">
+	          <xf:label>Base URL:</xf:label>
+	          <xf:hint>This will be used in invitation and alert emails.</xf:hint>
+	        </xf:input>
+	        
+	       	<xf:input ref="brand">
+	          <xf:label>Brand:</xf:label>
+	          <xf:hint>Leave blank for default.</xf:hint>
+	        </xf:input>
+	        
+	       	<xf:select ref="features">
+	            <xf:label>Features:</xf:label>
+	            <xf:item><xf:label>Guests</xf:label><xf:value>guests</xf:value></xf:item>
+	            <xf:item><xf:label>Rulesets</xf:label><xf:value>rules</xf:value></xf:item>
+	            <xf:item><xf:label>Courses</xf:label><xf:value>course</xf:value></xf:item>
+	            <xf:item><xf:label>Org Hierarchies</xf:label><xf:value>orgs</xf:value></xf:item>
+	            <xf:item><xf:label>Entities</xf:label><xf:value>entity</xf:value></xf:item>
+	            <xf:item><xf:label>No Meetings</xf:label><xf:value>nomeet</xf:value></xf:item>
+	        </xf:select>
+
+        </xf:group>
+        
+	   	<xf:submit submission="submission" class="diagBtn dbSave"/>
+
+    </div>
+
+</form>
+

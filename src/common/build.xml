@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<project name="Common" default="build" basedir=".">
+
+    <property name="root" value="../.."/>
+	<property name="root.src" value="${root}/src"/>
+	<property file="${root.src}/build.properties"/>
+	
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+        
+
+	<target name="init">
+	    <mkdir dir="${Common.classbin}"/>
+    </target>
+
+    <target name="core" depends="init">    	
+    	<javac  destdir="${Common.classbin}"
+				debug="${compile.debug}"
+ 				deprecation="${compile.deprecation}"
+				optimize="${compile.optimize}"
+				target="${compile.target}" source="${compile.sourcever}">
+			<src path="${Common.src}"/>			
+			<exclude name="**/CVS/**"/>
+			<classpath refid="classpath.build"/>
+		</javac>
+    </target>
+	
+	<target name="build" depends="jar"/>
+    
+    <target name="jar" depends="core">
+    	<mkdir dir="${Common.dist}/lib"/>
+    	<jar destfile="${Common.dist}/lib/itensil.common.jar"
+				basedir="${Common.classbin}">
+		  	<exclude name="itensil/testcase/**"/>
+		</jar>
+    </target>
+
+    <target name="clean">
+    	<delete dir="${Common.build}"/>
+    </target>
+
+</project>

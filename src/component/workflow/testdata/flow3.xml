@@ -1,0 +1,62 @@
+<flow version="1.0">
+
+    <steps>
+    <!-- No start
+        <start id="s1" apptype="">
+            <label/>
+            <description/>
+            <path id="p1" to="a1"><label/></path>
+        </start>  -->
+        <activity id="a1" apptype="">
+            <label/>
+            <description/>
+            <path id="p2" to="w0"><label/></path>
+        </activity>
+        <!-- orphan -->
+        <activity id="orphan" apptype="">
+            <label/>
+            <description/>
+            <path id="p2" to="w1"><label/></path>
+        </activity>
+        <switch id="w0" mode="XOR" apptype="">
+        	<path id="p3" to="w1">
+                <condition/>
+                <label/>
+            </path>
+        </switch>
+        <switch id="w1" mode="XOR" apptype="">
+            <label/>
+            <description/>
+            <path id="p3" to="a1">
+                <condition>loop</condition>
+                <label/>
+            </path>
+            <!-- Missing to step  -->
+            <path id="p4" to="t1">
+                <!-- last condition always otherwise for XOR -->
+                <condition/>
+                <label/>
+            </path>
+        </switch>
+        <!-- empty id -->
+        <timer id="" mode="wait" apptype="">
+            <label/>
+            <description/>
+            <path id="p5" to="e1"><label/></path>
+            <wait amount="3" unit="s"/>
+        </timer>
+        <end id="e1" apptype="">
+            <label/>
+            <description/>
+        </end>
+        <!--
+        <timer id="t2" mode="until" apptype="">
+            <until id="u1"><condition>loop</condition></until>
+        </timer>
+        -->
+    </steps>
+
+    <notes>
+    </notes>
+
+</flow>

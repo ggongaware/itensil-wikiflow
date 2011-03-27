@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grant:GrantApplication 
+	xmlns:Other="http://apply.grants.gov/forms/Other-V1.0" 
+	xmlns:Project="http://apply.grants.gov/forms/Project-V1.0" 
+	xmlns:SF424="http://apply.grants.gov/forms/SF424-V1.0" 
+	xmlns:SF424A="http://apply.grants.gov/forms/SF424A-V1.0" 
+	xmlns:footer="http://apply.grants.gov/system/Footer-V1.0" 
+	xmlns:grant="http://apply.grants.gov/system/MetaGrantApplication" 
+	xmlns:header="http://apply.grants.gov/system/Header-V1.0" 
+	xmlns:p="http://apply.grants.gov/system/Attachments-V1.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:glob="http://apply.grants.gov/system/Global-V1.0"
+	xmlns:globLib="http://apply.grants.gov/system/GlobalLibrary-V1.0"
+	
+	xsi:schemaLocation="http://apply.grants.gov/system/MetaGrantApplication http://apply.grants.gov/system/schemas/MetaGrantApplicatio.xsd 
+		http://apply.grants.gov/system/Global-V1.0 http://apply.grants.gov/system/schemas/Global-V1.0.xsd 
+		http://apply.grants.gov/system/GlobalLibrary-V1.0 http://apply.grants.gov/system/schemas/GlobalLibrary-V1.0.xsd 
+		http://apply.grants.gov/system/Header-V1.0 http://apply.grants.gov/system/schemas/Header-V1.0.xsd 
+		http://apply.grants.gov/system/Footer-V1.0 http://apply.grants.gov/system/schemas/Footer-V1.0.xsd 
+		http://apply.grants.gov/system/Attachments-V1.0 http://apply.grants.gov/system/schemas/Attachments-V1.0.xsd 
+		http://apply.grants.gov/forms/SF424A-V1.0 http://apply.grants.gov/forms/schemas/SF424A-V1.0.xsd
+		http://apply.grants.gov/forms/Project-V1.0 http://apply.grants.gov/forms/schemas/Project-V1.0.xsd
+		http://apply.grants.gov/forms/Other-V1.0 http://apply.grants.gov/forms/schemas/Other-V1.0.xsd
+		http://apply.grants.gov/forms/SF424-V1.0 http://apply.grants.gov/forms/schemas/SF424-V1.0.xsd">
+
+  <header:GrantSubmissionHeader glob:schemaVersion="1.0">
+    	<glob:HashValue glob:hashAlgorithm="SHA-1"></glob:HashValue>
+		<header:AgencyName>S2S Testing</header:AgencyName>
+		<header:CFDANumber>81.117</header:CFDANumber>
+		<header:ActivityTitle>Census Bureau Data Products</header:ActivityTitle>
+		<header:OpportunityID>DE-PS36-04GO94006</header:OpportunityID>
+		<header:OpportunityTitle>Geothermal Outreach</header:OpportunityTitle>
+		<header:OpeningDate>2008-03-03</header:OpeningDate>
+		<header:ClosingDate>2008-09-09</header:ClosingDate>
+		<header:SubmissionTitle>APPID-543211</header:SubmissionTitle>
+  </header:GrantSubmissionHeader>
+  
+  <grant:Forms>
+  
+    <SF424A:BudgetInformation glob:coreSchemaVersion="1.0" SF424A:programType="Non-Construction">
+      <glob:FormVersionIdentifier>1.0</glob:FormVersionIdentifier>
+    </SF424A:BudgetInformation>
+    
+    <Project:ProjectNarrativeAttachments globLib:FormVersion="1.0">
+      <Project:Attachments>
+        <p:AttachedFile>
+          <p:FileName>att1.txt</p:FileName>
+          <p:MimeType>text/plain</p:MimeType>
+          <p:FileLocation p:href="cid:att1.txt"/>
+          <glob:HashValue glob:hashAlgorithm="SHA-1"></glob:HashValue>
+        </p:AttachedFile>
+      </Project:Attachments>
+    </Project:ProjectNarrativeAttachments>
+    
+    <Other:OtherNarrativeAttachments globLib:FormVersion="1.0">
+      <Other:Attachments>
+        <p:AttachedFile>
+          <p:FileName>att2.txt</p:FileName>
+          <p:MimeType>text/plain</p:MimeType>
+          <p:FileLocation p:href="cid:att2.txt"/>
+          <glob:HashValue glob:hashAlgorithm="SHA-1"></glob:HashValue>
+        </p:AttachedFile>
+      </Other:Attachments>
+    </Other:OtherNarrativeAttachments>
+    
+    <SF424:GrantApplication glob:coreSchemaVersion="1.0">
+      <glob:FormVersionIdentifier>1.0</glob:FormVersionIdentifier>
+      <SF424:ApplicationTypeCode>N</SF424:ApplicationTypeCode>
+      <SF424:AgencyName>SF424:AgencyName</SF424:AgencyName>
+      <SF424:Project>
+        <SF424:ProjectTitle>SF424:ProjectTitle</SF424:ProjectTitle>
+        <SF424:ProposedStartDate>2001-01-01</SF424:ProposedStartDate>
+        <SF424:ProposedEndDate>2001-01-01</SF424:ProposedEndDate>
+      </SF424:Project>
+      <SF424:Individual>
+        <SF424:AuthorizedRepresentative/>
+      </SF424:Individual>
+    </SF424:GrantApplication>
+  </grant:Forms>
+
+</grant:GrantApplication>

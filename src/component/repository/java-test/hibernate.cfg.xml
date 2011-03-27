@@ -1,0 +1,45 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Don't forget to copy your JDBC driver to the lib/ directory! -->
+        <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://orca.itensil.com/workflow</property>
+		<property name="connection.username">workflow</property>
+		<property name="connection.password">workflowPass</property>
+        <property name="current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+        
+        <property name="jdbc.batch_size">10</property>
+        <property name="cache.use_second_level_cache">false</property>
+
+        <!--
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+		<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="connection.url">jdbc:hsqldb:tmpdata/test</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password"></property>
+        -->
+
+        <property name="show_sql">false</property>
+        <property name="transaction.factory_class">
+             org.hibernate.transaction.JDBCTransactionFactory
+        </property>
+        <property name="cache.provider_class">
+             org.hibernate.cache.HashtableCacheProvider
+        </property>
+
+        <mapping resource="itensil/repository/hibernate/Repository.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/EntityManager.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/NodeEntity.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/VersionEntity.hbm.xml"/>
+
+        <!-- security mappings -->
+        <mapping resource="itensil/security/hibernate/UserSpace.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>

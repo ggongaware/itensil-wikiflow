@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledgebase xmlns="http://itensil.com/xml/knowledgebase" attachPrefix="" policy="editAny" showAuthor="true" showDate="true">
+<article createBy="SysAdmin" createTime="May 25, 2005 14:00" id="Project Team Page" modifyBy="fycRVw0BAF3mChMBS$fk" modifyTime="2007-08-23T17:50:43Z" refId="" layout="2colA">!!!!Project Description
+
+(Insert description here.)
+
+----
+
+!!!!Project Notes
+
+(Add links to articles and web sites.)
+
+----
+
+!!!!Process Comments
+
+(Include user suggestions and tips.)
+
+----
+
+!!!!Create New Project Pages
+
+([[Click here]] to create a new page for your project. Click Index link to search content in all project pages.)
+++++
+
+!!!!Activity Status
+
+(Drag To Do list activities here. Drag documents from activity folders and place beneath the activity status widget.)
+
+----
+
+!!!!Activity Launchers
+
+(Drag ''chart.flow'' icons from process folders here to create activity Launch buttons.)
+
+----
+
+!!!!Process Templates
+
+(Drag documents from process template folders here.)
+
+----
+
+!!!!Project Schedule
+
+(Insert link to Google calendar.)
+
+
+</article>
+</knowledgebase>

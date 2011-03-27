@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:dt="http://exslt.org/dates-and-times"
+    xmlns:ir="http://itensil.com/ns/report-exslt"
+    exclude-result-prefixes="dt ir">
+    
+    <xsl:output method="xml" indent="yes"/>
+    
+    <!-- root -->
+    <xsl:template match="/data">
+    	<out>
+    		<xsl:value-of select="val"/>
+    		<xsl:value-of select="document(file2)/data/val"/>
+    		<xsl:value-of select="document(file2)/data/val"/>
+    	</out>
+    </xsl:template>
+    
+</xsl:stylesheet>

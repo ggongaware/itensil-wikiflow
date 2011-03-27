@@ -1,0 +1,45 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+        <xf:instance id="ins" src="../act/processList?uri=/home/process"/>
+        <xf:bind type="xsd:dateTime" nodeset="node/@lastmodified"/>
+    </xf:model>
+
+    <div style="width:350px;height:300px;overflow:auto;background-color:#fff;">
+		<table style="width:330px;" cellpadding="0" cellspacing="0" border="0">
+		<tbody>
+		<xf:repeat nodeset="node">
+		<tr class="flowRow">
+			<script ev:event="mousedown">
+				var base = model.getValue("@uri");
+				model.context.act.apply({uri:Uri.absolute(base, model.getValue("@uri",contextNode))}, [event.uiEvent, model.context.item]);
+			</script>
+			<td style="padding-left:6px;">
+			<script>
+				var style = model.getValue("@style", contextNode);
+				var icon = style ? style.substring(5) : "def";
+				makeElementNbSpd(uiParent, "div", "icon " + icon + "Ico");
+			</script>
+			</td>
+			<td><xf:output ref="@uri" style="font-weight:bold"/>
+			<div class="desc"><xf:output ref="@description"/></div>
+			</td>
+			<td style="text-align:right;padding-right:6px;width:120px">
+			<xf:output ref="@lastmodified" style="color:#09c"/>
+			<div><xf:output value="script('UserTree.getUserName(Xml.stringForNode(contextNode))', @owner)"/></div>
+			</td>
+		</tr>
+		</xf:repeat>
+		</tbody>
+		</table>
+    </div>
+
+
+
+
+</form>

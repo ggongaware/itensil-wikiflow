@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml" />
+	<iw:type icon="zip_" />
+	
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start here.</description>
+			<path id="p1" to="Step" startDir="E" endDir="W"
+				points="94,55-150,55">
+				<label />
+			</path>
+		</start>
+
+		<end id="End" apptype="" style="left:680px;top:30px">
+			<label />
+			<description />
+		</end>
+
+		<activity id="Step" role="" style="left:150px;top:30px">
+			<label />
+			<description />
+			<iw:article layout="">[submit[!Continue]]</iw:article>
+			<path id="p2" startDir="E" endDir="W" to="Group$$S"
+				points="260,55-315,55">
+				<label />
+			</path>
+		</activity>
+		
+		<group id="Group" style="left:315px;top:30px">
+			<label />
+			<description />
+			
+			<enter id="Group$$S" style="left:45px;top:145px">
+				<label />
+				<description />
+				<path id="path" startDir="E" endDir="W"
+					points="95,170-201,170" to="Group/Step">
+					<label />
+				</path>
+				<path id="path 2" startDir="E" endDir="W"
+					points="95,180-105,180-105,235-201,235" to="Group/Step 2">
+					<label />
+				</path>
+			</enter>
+			
+			<exit id="Group$$E" style="left:590px;top:135px">
+				<label />
+				<description />
+				<path id="p3" startDir="E" endDir="W" to="Step 3"
+					points="425,55-505,55">
+					<label />
+				</path>
+			</exit>
+			
+			<activity role="" id="Group/Step"
+				style="left:200px;top:135px">
+				<label />
+				<description />
+				<iw:article layout="">[submit[!Continue]]</iw:article>
+				<path id="path 3" startDir="E" endDir="W"
+					points="310,170-350,170" to="Group/Step 3">
+					<label />
+				</path>
+			</activity>
+			
+			<activity role="" id="Group/Step 2"
+				style="left:200px;top:220px">
+				<label />
+				<description />
+				<iw:article layout="">[submit[!Continue]]</iw:article>
+				<path id="path 5" startDir="E" endDir="W"
+					points="310,235-505,235-505,175-590,175" to="Group$$E">
+					<label />
+				</path>
+			</activity>
+			
+			<activity role="" id="Group/Step 3"
+				style="left:350px;top:135px">
+				<label />
+				<description />
+				<iw:article layout="">[submit[!Continue]]</iw:article>
+				<path id="path 4" startDir="E" endDir="W"
+					points="460,170-590,170" to="Group$$E">
+					<label />
+				</path>
+			</activity>
+		</group>
+		
+		<activity id="Step 3" role="" style="left:505px;top:30px">
+			<label />
+			<description />
+			<iw:article layout="">[submit[!Continue]]</iw:article>
+			<path id="p4" startDir="E" endDir="W" to="End"
+				points="615,55-680,55">
+				<label />
+			</path>
+		</activity>
+	</steps>
+
+	<notes />
+	
+</flow>

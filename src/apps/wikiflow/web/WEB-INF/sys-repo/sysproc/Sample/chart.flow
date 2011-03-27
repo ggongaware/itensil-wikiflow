@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml"/>
+	<iw:type icon="task1"/>
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start  here.</description>
+			<path id="p1" to="Do This" startDir="E" endDir="N" points="90,55-180,55-180,80"><label/></path></start>
+		<end id="End" apptype="" style="left:580px;top:125px">
+			<label/>
+			<description/>
+		</end>
+		<activity role="role1" id="Do This" style="left:120px;top:80px"><label>New Step</label><description/><iw:article modifyBy="" modifyTime="Tue Oct 3 18:21:28 PDT 2006">You have some options here:
+[submit[ !Pick A | pick = 'A']] [submit[ Pick B | pick = 'B']]
+
+[[About Submit Tags]]</iw:article><path id="p2" startDir="S" endDir="W" to="Switch" points="180,140-180,255-215,255"><label/></path>
+		</activity>
+		<switch mode="xor" id="Switch" style="left:215px;top:215px"><label>New Decision</label><description/><path id="p3" startDir="N" endDir="W" to="Do Option A" points="275,215-275,150-380,150"><condition>pick = 'A'</condition>
+				<label style="left:320px;top:160px">Pick A</label></path>
+			<path id="path" startDir="E" endDir="W" points="335,255-380,255" to="Do Option B"><condition/>
+				<label style="left:340px;top:265px">Pick B</label></path>
+		</switch>
+		<activity role="role2" id="Do Option A" style="left:380px;top:115px"><label>New Step</label><description/><iw:article modifyBy="" modifyTime="Tue Oct 3 18:20:43 PDT 2006">You picked [[Option A]]!
+
+[submit[!Finish]]</iw:article><path id="p4" startDir="E" endDir="W" to="End" points="490,150-580,150"><label/></path>
+		</activity>
+		<activity role="role2" id="Do Option B" style="left:380px;top:220px"><label>New Step</label><description/><iw:article modifyBy="" modifyTime="Tue Oct 3 18:20:21 PDT 2006">You Picked Option B!
+[submit[!Finish]]</iw:article><path id="path 2" startDir="E" endDir="W" points="490,260-510,260-510,160-580,160" to="End"><label/></path>
+		</activity>
+	</steps>
+	<notes>
+	</notes>
+</flow>

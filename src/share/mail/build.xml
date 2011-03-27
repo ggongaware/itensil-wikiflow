@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<project name="Mail" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+    <property file="${root.src}/build.properties"/>
+    <dirname property="Mail.home" file="${ant.file}"/>
+    <property name="Mail.src" value="${Mail.home}/java"/>
+    <property name="Mail.build" value="${Mail.home}/.built"/>
+    <property name="Mail.classbin" value="${Mail.build}/classes"/>
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+	<target name="init">
+	    <mkdir dir="${Mail.classbin}"/>
+	    <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+	
+	<target name="clean">
+    	<delete dir="${Mail.classbin}"/>
+    </target>
+
+	<target name="build" depends="core"/>
+
+    <target name="core" depends="init">
+
+    	<javac  destdir="${Mail.classbin}"
+				debug="${compile.debug}"
+ 				deprecation="${compile.deprecation}"
+ 				target="${compile.target}" source="${compile.sourcever}"
+				optimize="${compile.optimize}">
+			<src path="${Mail.src}"/>
+			<exclude name="**/CVS/**"/>
+			<classpath refid="classpath.build"/>
+		</javac>
+    </target>
+
+    <target name="share" depends="core">
+        <fail unless="share.dir" message="share.dir required"/>
+        <copy todir="${share.dir}">
+            <fileset dir="${Mail.classbin}"/>
+        </copy>
+    </target>
+
+    <target name="schema" depends="core" description="">
+
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Mail.classbin}"/>
+        </taskdef>
+        <schemaupdate properties="hibernate.properties" quiet="no" text="no">
+            <fileset dir="${Security.src}">
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </schemaupdate>
+    </target>
+
+    
+
+</project>

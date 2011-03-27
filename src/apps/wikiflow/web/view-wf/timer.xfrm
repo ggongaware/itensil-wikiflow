@@ -1,0 +1,30 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+    
+    <xf:model id="fmodel">
+    	<xf:instance id="ins" src="javascript: Xml.jsToXml(model.context)" />
+    	<xf:bind type="xsd:dateTime" nodeset="dt" />
+    </xf:model>
+    
+    <div style="padding:8px">
+	    <xf:input ref="dt" style="width:12em">
+	    	<xf:label><xf:output ref="../timId"/> time:</xf:label>
+	    </xf:input>
+	    
+	    <xf:trigger class="diagBtn dbSave">
+	    	<xf:action ev:event="DOMActivate">
+		    	<script>
+		    		var ctx = model.context;
+		    		var dt = DateUtil.parse8601(model.getValue("dt"), true);
+		    		ActivityTree.setManualActivityTimer(ctx.actId, ctx.timId, DateUtil.to8601(dt, true));
+		    		PmCanvas.showWorkzone(null, ctx._step);
+		    	</script>
+		    	<xf:close/>
+	    	</xf:action>
+	    </xf:trigger>
+    </div>
+</form>

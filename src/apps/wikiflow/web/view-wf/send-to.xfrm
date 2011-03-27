@@ -1,0 +1,45 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+
+	<xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <sendto>
+            	<activity/>
+            	<flow>/home/process/New Process</flow>
+            	<master-flow>/system/sysproc/Starter</master-flow>
+            	<name>New Process</name>
+            	<flowBase>/home/process/</flowBase>
+            </sendto>
+        </xf:instance>
+        
+        <xf:submission id="submission" replace="none" method="post" action="../act/sendToFlow">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close />
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+		
+		<xf:bind nodeset="name" type="ix:fileName" constraint=". != ''"/>
+		<xf:bind nodeset="flow" calculate="concat(../flowBase, ../name)"/>
+		
+   	</xf:model>
+   	   	
+   	<div style="padding:6px;width:350px">
+   	
+ 		<xf:input ref="name">
+          <xf:label>Name:</xf:label>
+          <xf:hint>This process name should be unique.</xf:hint>
+        </xf:input>
+        
+        <xf:submit submission="submission" class="diagBtn dbCreate"/>
+    </div>
+
+</form>

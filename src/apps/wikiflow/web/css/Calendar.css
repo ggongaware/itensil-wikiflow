@@ -1,0 +1,64 @@
+div.calPop {
+    position:absolute;
+    z-index: 19;
+    border:1px solid #009;
+    padding:2px;
+    background-color: #fff;
+    width: 151px;
+    top: 0px;
+    width: expression('146px');
+    -moz-box-sizing:border-box;
+}
+
+div.calPop .cal {
+  FONT-FAMILY: Arial, Helvetica;
+  font-size: 11px;
+  background-color:  #9cf;
+  cursor: pointer;
+}
+
+div.calPop .calName {
+  FONT-FAMILY: Arial, Helvetica;
+  font-size: 11px;
+  background-color: #69c;
+  color: #fff;
+}
+div.calPop .calArrow {
+  FONT-FAMILY: Arial, Helvetica;
+  font-size: 11px;
+  background-color:  #69c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+div.calPop .calMonth {
+  FONT-FAMILY:  Arial, Helvetica;
+  font-size: 10px;
+  background-color:  #69c;
+  font-weight: bold;
+}
+
+div.calPop .calSelday {
+  FONT-FAMILY:  Arial, Helvetica;
+  font-size: 11px;
+  background-color:  #FFFFFF;
+  font-weight: bold;
+}
+
+div.calPop .calSelweek {
+  FONT-FAMILY:  Arial, Helvetica;
+  font-size: 11px;
+  background-color:  #BBEEFF;
+  cursor: pointer;
+}
+
+span.xfCal {
+    font-size: 12px;
+    line-height: 13px;
+    margin-left: 3px;
+    width: 23px;
+    padding-right: 23px;
+    cursor: pointer;
+    background-image: url(../pix/calBtn.gif);
+    background-repeat: no-repeat;
+}

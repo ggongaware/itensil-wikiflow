@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="../js/ScriptHost.js"></script>
+<script type="text/javascript" src="../js/CoreUtil.js"></script>
+<script type="text/javascript" src="../js/XMLBuilder.js"></script>
+<script type="text/javascript" src="../js/xpath.js"></script>
+<script type="text/javascript" src="../js/XSchema.js"></script>
+<script type="text/javascript" src="../js/brwsr/Util.js"></script>
+<script type="text/javascript" src="../js/brwsr/Menu.js"></script>
+<script type="text/javascript" src="../js/brwsr/ComboBox.js"></script>
+<script type="text/javascript" src="../js/brwsr/Calendar.js"></script>
+<script type="text/javascript" src="../js/xf/XFCommon.js"></script>
+<script type="text/javascript" src="../js/xf/XFActions.js"></script>
+<script type="text/javascript" src="../js/xf/brwsr/XFControls.js"></script>
+<script type="text/javascript" src="../js/xf/XForms.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/Menu.css" />
+<link rel="stylesheet" type="text/css" href="../css/ComboBox.css" />
+<link rel="stylesheet" type="text/css" href="../css/Calendar.css" />
+<link rel="stylesheet" type="text/css" href="../css/Wiki.css" />
+<script type="text/javascript">
+SH.debug = true;
+var xf;
+
+function loadForm() {    
+    var xb = new XMLBuilder();
+    xf = new XForm(xb.loadURI('contract.xfrm'), "contract", xb, 'contract.xfrm');
+    xf.render(document.getElementById('frm'));    
+}
+</script>
+<style>
+
+body {
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+</style>
+</head>
+<body onload="loadForm()" onunload="xf.remove()">
+<div class="wikiView">
+    <div class="form" id="frm"></div>
+</div>
+</body>
+</html>

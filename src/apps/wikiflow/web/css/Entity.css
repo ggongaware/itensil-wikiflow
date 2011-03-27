@@ -1,0 +1,214 @@
+div.entHead {
+	border:1px solid #999999;
+	left:0px;
+	padding-left:0px;
+	position:absolute;
+	top:18px;
+	background-color: #eee;
+    height: 18px;
+}
+
+div.entHead button .mbIco {
+    position: absolute;
+    top: 0px;
+    left: 2px;
+    height: 14px;
+}
+
+div.entHead button label {
+    display: block;
+    text-align: left;
+    font-family: verdana, sans-serif;
+    font-size: 10px;
+    line-height: 14px;
+    height: 14px;
+    width: 30px;
+    position: relative;
+    padding: 0px 0px 0px 16px;
+    color: #006;
+    border: 1px solid #006;
+    background-color: #D0DCF6;
+    margin: 1px 0px 0px 0px;
+    cursor: pointer;
+}
+
+div.entHead button {
+   border: 0;
+   padding: 0;
+   margin: 0;
+   background: none;
+   font-size: 1px;
+}
+
+.invalid input {
+    background-color: #fcc;
+}
+
+div.entManager {
+	margin:4px;
+}
+
+div.entManager .invalid input {
+	background-color: #f99;
+}
+
+table.entManager {
+	border-collapse: collapse;
+	margin:4px;
+	border: 1px solid #ccf;
+}
+
+table.entManager td {
+	padding: 2px 2px 3px 2px;
+	border-bottom: 1px solid #ccf;
+	
+}
+
+table.entManager div.xfctrl {
+	zoom:1;
+}
+
+table.entManager .disab {
+	display:none;
+}
+
+table.entManager th {
+	text-align:left;
+	color: #666;
+	border-bottom: 1px solid #ccf;
+}
+
+table.entManager td.attrDel {
+	font-size: 10px;
+	padding: 5px 12px 2px 4px;
+	color: #000;
+}
+
+.entManager div.xfctrl {
+	padding:1px 0px 1px 0px;
+}
+
+.entManager div.xfctrl  label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 35px;
+    position:relative;
+}
+
+tr.entRow td {
+	background-color: #f0f0f0;
+}
+
+table td.addRow  {
+	padding: 5px;
+}
+
+div.diagXf div.main {
+	padding: 8px;
+}
+
+div.diagXf p button {
+	margin-left: 8px;
+}
+
+.entManager div.xfctrl input {
+    font-size: 11px;
+    border: 1px solid #999;
+}
+
+.attrLink {
+	color: #009;
+	cursor: pointer;
+}
+
+.attrDel {
+	cursor: pointer;
+}
+
+table.entityGrid {
+	margin: 10px;
+	width: 96%;
+	border: 1px solid #9BACCC;
+	position:relative;
+}
+
+table.entityGrid .xfnum {
+	text-align: right;
+}
+
+table.entityGrid th {
+	padding-right: 6px;
+}
+
+table.entityGrid td {
+	cursor: pointer;
+}
+
+table.entityGrid tr.g_select td {
+	background-color: #fd8;
+}
+
+table.entButtons {
+	margin-left:12px;	
+	position:relative;
+}
+
+table.entButtons td {
+	font-size: 10px;
+	zoom: 1;
+}
+
+table.entButtons div.minorBtn {
+	margin-top: 0px;
+	zoom: 1;
+}
+
+div.entLabel {
+	color:#556699;
+	font-size:11px;
+	font-weight:bold;
+	padding:8px 4px 0px 0px;
+}
+
+table.entityGrid .entXFctrl div.xfctrl {
+	background-color: transparent;
+}
+
+div.xfrmEntity {
+	zoom: 1;
+}
+
+table.entityGrid  div.togStat {
+	position: relative;
+	float: left;
+	padding: 0px;
+	margin: 1px 3px 2px 0px;
+	top: 0px;
+	left: 0px;
+}
+
+table.entityGrid div.close {
+	background-position: 0px -11px;
+}
+	
+
+table.entityGrid tr.entActRow {
+	display: none;
+}
+
+table.entityGrid div.entActRow {
+	position: relative;
+	margin: 4px 4px;
+}
+
+span.attrlink {
+	color: #009;
+	text-decoration: underline;
+	font-size:11px;
+	cursor: pointer;
+	padding-left: 6px;
+}
+
+table.entityGrid  span.attrlink {
+	vertical-align: top;
+}

@@ -1,0 +1,29 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:ir="http://itensil.com/repository"
+    xmlns:d="DAV:">
+
+<xf:model id="fmodel">
+	<xf:instance id="ins"><data/></xf:instance>
+</xf:model>
+
+<div style="padding:8px;width:335px">
+<p>
+Editing a Microsoft Office document requires <b>Microsoft SharePoint client components</b>. These components are often installed automatically with Microsoft Office.
+However a compatible version was either blocked by security options or has not been detected. 
+</p>
+<p><b>If you see a security message at the top of the browser:</b><br/>
+<img src="../pix/support_mssharp.gif" style="border:1px solid #000"/><br/>
+You will need to click options to enable the component, then reload the web page and repeat your last action.
+</p>
+<p><b>Otherwise:</b><br/>
+Microsoft SharePoint client components can be installed from a Microsoft Office installation disk, or from microsoft.com:
+</p>
+<a href="http://www.microsoft.com/downloads/details.aspx?&amp;displaylang=en&amp;familyid=DF39E250-F7AE-445A-AC9D-A80C9035ED6B&amp;displaylang=en" target="_blank">Microsoft Download Center</a>
+</div>
+
+</form>

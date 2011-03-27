@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity xmlns="http://itensil.com/ns/entity">
+	<data dataRev="36" browseRev="11"><attr name="Name" label="Name" browse="1" default="Unkown" type="xsd:string"/><attr name="Color" label="Color" browse="2" default="Unkown" type="xsd:NMTOKEN"><item label="Blue" value="Blue"/><item label="Red" value="Red"/><item label="Gold" value="Gold"/><item label="Unkown" value="Unkown"/><item label="Pink" value="Pink"/><item label="Green" value="Green"/><item label="Brown" value="Brown"/></attr><attr name="Weight" label="Weight" browse="3" default="0" type="xsd:float"/><attr name="Location" label="Location" browse="" default="" type="xsd:string"/></data>
+	<forms><form src="Main.xfrm" label="Main"/></forms>
+	<queries/>
+	<events>
+		<event-sys type="create" relation=""/>
+		<event-sys type="delete" relation=""/>
+	</events>
+</entity>

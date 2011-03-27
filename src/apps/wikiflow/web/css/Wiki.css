@@ -1,0 +1,1260 @@
+
+/* Top Mast */
+div.wikiMast {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 20px;
+}
+
+div.wikiDiag {
+    background-image: url(../pix/kb/diagMastBg.gif);
+    background-repeat: repeat-x;
+    background-color: #fff;
+    width: 730px;
+    height: 380px;
+}
+
+.workzone .panContent {
+    background-image: url(../pix/kb/wzMastBg.gif);
+    background-repeat: repeat-x;
+}
+
+/* Search */
+.highlight {
+    color: #000000;
+    background-color: #FFFF99;
+}
+
+img.highlight {
+    border: dotted 2px #FFFF66;
+    background:none;
+}
+
+input.wikiSearchText {
+    font-size: 10px;
+    line-height: 11px;
+    width: 125px;
+    border: 1px solid #9BACCC;
+}
+
+div.wikiSearchMast {
+    position:absolute;
+    top:0px;
+    left:480px;
+    width:200px;
+    height:22px;
+    background-image: url(../pix/kb/srchEmb.gif);
+    background-repeat: no-repeat;
+    background-position: 4px 3px;
+    padding: 3px 0px 0px 27px;
+    margin-left: 1px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div.wikSearchShow {
+    margin-left: 0px;
+    border-left: 1px solid #79859F;
+    position:relative;
+}
+
+div.wikiSearchMast a.wikiS {
+    position:absolute;
+    top: 4px;
+    color: #06c;
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 11px;
+    padding-left: 8px;
+}
+
+div.wikiSearchRes {
+    position:absolute;
+    top:20px;
+    left:480px;
+    border-left:1px solid #79859F;
+    width:200px;
+    height:400px;
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size:11px;
+}
+
+div.wikiSel {
+	margin: 4px 0px 0px 27px;
+}
+
+div.wikiResultsBox {
+    position:absolute;
+    top:30px;
+    left:0px;
+    width:200px;
+    height:370px;
+    overflow:auto;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+
+/* frame/body */
+div.wikiViewBox {
+    font-size: 12px;
+    font-family: Arial,Helvetica,Sans-Serif;
+    position:absolute;
+    top: 20px;
+    left: 0px;
+    overflow:auto;
+}
+
+body.wikiView {
+    margin: 8px;
+    font-size: 12px;
+    font-family: Arial,Helvetica,Sans-Serif;
+    overflow:auto;
+}
+
+div.wikiViewSet {
+    position: relative;
+    clear: both;
+    zoom:1;
+}
+
+div.wikiHead {
+    margin: 0px 12px 8px 18px;
+    position: relative;
+}
+
+.wikiHead h1 {
+    font-family: Gill Sans,Gill Sans MT,Arial,Helvetica,Sans-Serif;
+    font-size: 26px;
+    line-height: 27px;
+    color: #639;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #9BACCC;
+}
+
+.wiki2nd .wikiHead h1 {
+    font-family: Gill Sans,Gill Sans MT,Arial,Helvetica,Sans-Serif;
+    font-size: 20px;
+    line-height: 27px;
+    color: #666;
+    font-weight: bold;
+    margin: 0px;
+    padding: 4px 0px 0px 0px;
+    border-bottom: 1px solid #B9CAEA;
+}
+
+.wikiHead .meta {
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 10px;
+    color: #8B9CBC;
+    position:relative;
+}
+
+div.wikiFrameLinks {
+    font-family: Arial,Helvetica,Sans-Serif;
+    padding:4px 12px 0px 6px;
+    font-size:11px;
+    color:#6672AA;
+    overflow:hidden;
+    white-space:nowrap
+}
+
+div.wikiEditBtn {
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 10px;
+    color: #006;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin: 10px 12px 0px 0px;
+    padding: 2px 0px 0px 14px;
+}
+
+div.wikiBackBtn {
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 10px;
+    color: #006;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin: 10px 12px 0px 0px;
+    padding: 2px 0px 0px 14px;
+}
+
+div.wikiEditBtn .mbIco,  div.wikiBackBtn .mbIco{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 14px;
+}
+
+div.wikiViewBox div.wikiEditView {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+div.wikiEditBar {
+    position: relative;
+    background-color: #eee;
+    border-left: 1px solid #79859F;
+    border-right: 1px solid #79859F;
+    height: 18px;
+    margin: 0px 0px 0px 3px;
+    padding: 1px 2px 1px 2px;
+}
+
+input.wikiEditTitle {
+    font-weight: bold;
+    border: 1px solid #79859F;
+    margin: 0px 0px 0px 3px;
+    padding: 2px;
+}
+
+textarea.wikiEditBox {
+    border: 1px solid #79859F;
+    margin: 0px 0px 0px 3px;
+    font-size: 12px;
+    padding: 2px;
+}
+
+textarea.dndDrop {
+    border-color: #f90;
+}
+
+div.wikiSaveBtn .mbIco {
+    position: absolute;
+    top: 0px;
+    left: 2px;
+    height: 14px;
+}
+
+div.wikiSaveBtn {
+    font-family: verdana, sans-serif;
+    font-size: 10px;
+    line-height: 15px;
+    height: 15px;
+    width: 30px;
+    position: relative;
+    padding: 0px 0px 0px 16px;
+    color: #006;
+    border: 1px solid #006;
+    background-color: #D0DCF6;
+    cursor: pointer;
+}
+
+
+div.wikEdBtn {
+    position: absolute;
+    display: block;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    background-image: url(../pix/kb/edBtns.gif);
+    border: 1px solid #eee;
+    text-decoration: none;
+    font-size: 1px;
+    cursor: pointer;
+    behavior: url(../css/ieHover.htc);
+}
+
+div.wikEdBtn:hover, div.wikEdBtn_hover {
+    background-color: #B1C0FF;
+    border: 1px solid #009;
+}
+
+.edBold {
+    background-position: 0px 0px;
+    left: 60px;
+}
+
+.edItal {
+    background-position: 0px -16px;
+    left: 78px;
+}
+.edUnder {
+    background-position: 0px -32px;
+    left: 98px;
+}
+
+.edStrik {
+    background-position: 0px -48px;
+    left: 116px;
+}
+
+.edLink {
+    background-position: 0px -64px;
+    left: 134px;
+}
+
+
+
+.edHttp {
+    background-position: 0px -128px;
+    left: 152px;
+}
+
+.edTags {
+    background-position: 0px -112px;
+    left: 224px;
+}
+
+.edUlist {
+    background-position: 0px -160px;
+    left: 152px;
+}
+
+.edOlist {
+    background-position: 0px -176px;
+    left: 170px;
+}
+
+.edOdent {
+    background-position: 0px -208px;
+    left: 188px;
+}
+
+.edIdent {
+    background-position: 0px -224px;
+    left: 206px;
+}
+
+/* ops */
+.edPrev {
+    background-position: 0px -80px;
+    left: 274px;
+}
+
+.edMark {
+    background-position: 0px -240px;
+    left: 292px;
+}
+
+.edCanc {
+    background-position: 0px -96px;
+    left: 324px;
+}
+
+.edRem {
+    background-position: 0px -144px;
+    left: 356px;
+}
+
+/* meet */
+
+.edDue {
+    background-position: 0px -256px;
+    left: 274px;
+}
+
+.edPara {
+    background-position: 0px -272px;
+    left: 306px;
+}
+
+.edClean {
+    background-position: 0px -288px;
+    left: 134px;
+}
+
+
+div.wikiView {
+    margin:1px 7px 16px 18px;
+    position:relative;
+    -khtml-user-select: auto;
+}
+
+.wikiView div {
+    background-color: inherit;
+}
+
+.wikiView a {
+    color: #429;
+    background-color: inherit;
+}
+
+.wikiView a:hover {
+    background-color: #E4EEF5;
+}
+
+.wikiView h1,.wikiView h2,.wikiView h3,.wikiView h4,.wikiView h5,.wikiView h6 {
+    font-weight: bold;
+    text-decoration: none;
+    color: #343E45;
+    margin: 4px 4px 4px 0px;
+}
+.wikiView h1 { font-size: 22px; }
+.wikiView h2 { font-size: 18px; }
+.wikiView h3 { font-size: 16px; }
+.wikiView h4 { font-size: 14px; }
+.wikiView h5 { font-size: 12px; }
+.wikiView h6 { font-size: 11px; }
+
+
+.wikiView hr {
+    border-top: dashed 1px #9BACCC;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin-right: 6px;
+    height: 1px;
+    color: #9BACCC;
+}
+
+.wikiView a.exists {
+    font-weight: bold;
+}
+
+.wikiView a.missing {
+    font-style: italic;
+}
+
+.wikiView table.wiki {
+    border-collapse: collapse;
+    border: 2px solid #9BACCC;
+	font-size: 11px;
+	margin: 5px 0px 0px 0px;
+}
+
+.wikiView table.wiki th {
+    background: #eee;
+    border: 1px solid #aaa;
+    padding: 3px;
+}
+
+.wikiView table.wiki td {
+    border: 1px solid #aaa;
+    padding: 3px;
+}
+
+.wikiView caption {
+    padding: 4px 0px 1px 0px;
+}
+
+.wikiView blockquote {
+	margin: 8px;
+	padding-left: 8px;
+	border-left: 2px solid #9BACCC;
+}
+
+/*
+    fix ie6 "peekaboo bug" using the "holly hack".
+    Note, this style only gets applied to ie6
+  */
+* html .wikiView,
+* html .wikiView .floatRight,
+* html .wikiView .floatLeft{
+    height: 0.1%;
+}
+/* end peekaboo */
+
+.wikiView .floatRight {
+    float: right;
+}
+
+.wikiView .floatLeft {
+    float: left;
+}
+
+.wikiView .float_default {
+    padding: 8px;
+    margin: 2px 17px 2px 8px;
+    width: 40%;
+}
+
+.wikiView .float_shaded {
+    padding: 8px;
+    width: 40%;
+    margin: 2px 17px 2px 8px;
+    background-color: #eeeeee;
+}
+
+.wikiView .float_glance {
+    -moz-box-sizing: border-box;
+    padding: 6px;
+    margin: 0px 17px 0px 2px;
+    border: 1px solid #9BACCC;
+    width: 150px;
+    font-size: 11px;
+}
+
+.wikiView .float_tip {
+	padding: 14px 6px 6px 24px;
+	margin: 2px 17px 2px 2px;
+	border: solid 1px #999999;
+	color: #333333;
+	width: 40%;
+	background-image: url(../pix/kb/tip.gif);
+	background-repeat: no-repeat;
+	background-position: 3 3;
+}
+
+.wikiView .float_warning {
+	padding: 12px 6px 6px 26px;
+	margin: 2px 17px 2px 2px;
+	border: solid 1px #E9997A;
+	color: #AA441D;
+	width: 40%;
+	background-image: url(../pix/kb/warn.gif);
+	background-repeat: no-repeat;
+	background-position: 3 3;
+}
+
+.wikiView pre {
+    border: dashed 1px #9BACCC;
+    padding: 8px;
+    background-color: #f0f0f0;
+}
+
+.wikiView div.hard {
+    clear:both;
+}
+
+.wikiView .syntax1 {
+    color: #009999;
+}
+
+.wikiView .syntax2 {
+    color: #cc0099;
+}
+
+.wikiView .syntax3 {
+    color: #cc9900;
+}
+
+.wikiView .syntax4 {
+    color: #00bb00;
+}
+
+
+
+.wikiView .revision table {
+    border-collapse: collapse;
+    border: 2px solid #9BACCC;
+    font-size: 11px;
+	margin: 5px 0px 0px 0px;
+}
+
+.wikiView .revision thead th {
+    text-align: left;
+    padding: 2px 2px 1px 6px;
+}
+
+.wikiView .revision tbody td {
+    font-size: 10px;
+}
+
+.wikiView .revision  th {
+    background: #eee;
+    border: 1px solid #aaa;
+    padding: 1px;
+}
+
+.wikiView .revision  td {
+    border: 1px solid #aaa;
+    padding: 2px;
+}
+
+.wikiView .revision  td.default {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.wikiView div.include {
+    margin: 8px 0px 8px 0px;
+}
+
+.wikiView div.form {
+    position: relative;
+    zoom:1;
+}
+
+.wikiView div.xfctrl {
+    clear: left;
+    margin: 2px 0px 0px 0px;
+    padding: 5px 6px 7px 4px;
+    background-color: #f3f3f3;
+    overflow: hidden;
+    zoom:1;
+}
+
+.wikiView table.xfselect td {
+	vertical-align: top;
+	padding: 1px;
+}
+
+.wikiView table.xfselect input.xfitem {
+	margin-top: 0;
+}
+
+.wikiView  .link {
+ 	color: #009;
+ 	text-decoration: underline;
+ 	cursor:pointer;
+}
+
+.wikiView div.form legend {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wikiView div.form fieldset {
+    padding: 4px;
+    border: 1px solid #666;
+}
+
+.wikiView div.xfctrl label {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.wikiView div.xfctrl input {
+    margin-top: 3px;
+    width: 15em;
+    font-size: 12px;
+    border: 1px solid #999;
+}
+
+.wikiView div.xfctrl textarea {
+    margin-top: 3px;
+    font-size: 12px;
+    border: 1px solid #999;
+}
+
+.wikiView div.xfctrl tr.item input {
+    width: auto;
+    border: thin none;
+}
+
+.wikiView div.form td input.xftext {
+    margin: 0px;
+}
+
+.wikiView div.form input.xfnum {
+	text-align: right;
+}
+
+.wikiView div.form td div.xfctrl {
+    margin: 0px;
+    padding: 1px 0px 1px 0px;
+}
+
+.wikiView div.xfctrl  label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 120px;
+    position:relative;
+}
+
+.wikiView fieldset.array {
+	border-color: #999;
+}
+
+.wikiView .arrayAdd {
+	text-decoration: underline;
+	color: #090;
+	cursor: pointer;
+}
+
+.wikiView .arrayRem  {
+	color: #900;
+	cursor: pointer;
+	padding: 0px 2px 0px 2px;
+}
+
+.wikiView .selArr {
+	padding:0;
+	display: block;
+}
+
+
+/* IE6 fix */
+.wikiView div.form table {
+    position: relative;
+}
+
+.wikiView div.form tr.item label {
+    width: auto;
+    padding: 0px;
+    float: none;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.wikiView div.invalid input,
+.wikiView div.invalid td.combo  {
+    background-color: #fcc !important;
+}
+
+.wikiView .invalid label {
+    color: #900;
+}
+
+.wikiView div.form button label {
+    padding: 0px;
+    float: none;
+    margin: 0px;
+    font-size: 12px;
+    font-weight: normal;
+    width: auto;
+}
+
+.wikiView div.form button {
+    border: 1px solid #6672AA;
+    background-color: #DAE7FF;
+    padding: 2px;
+    cursor: pointer;
+    width: 75px;
+    height: 23px;
+    color: #6672AA;
+}
+
+.wikiResultsBox .toc {
+	padding: 1px 6px 1px 4px;
+}
+
+.wikiResultsBox .toc a.exists {
+	display: inline;
+}
+
+.wikiResultsBox .row {
+    border-top: 1px solid #E1F1FF;
+    border-left: 1px solid #E1F1FF;
+    border-right: 1px solid #7D87A5;
+    border-bottom: 1px solid #7D87A5;
+    padding: 1px 2px 1px 8px;
+    color: black;
+}
+
+.wikiResultsBox .rowEnd {
+    clear: both;
+    margin-bottom: 3px;
+}
+
+
+.wikiResultsBox table.wiki {
+    font-size: 10px;
+    color: #666666;
+    width: 185px;
+    margin: 1px 0px 1px 0px;
+}
+
+.wikiResultsBox table.wiki td {
+    border: 1px solid #ccc;
+    padding: 0px;
+    background: none!important;
+}
+
+.wikiResultsBox table.wiki th {
+    border: 1px solid #ccc;
+    padding: 0px;
+    background: none!important;
+}
+
+
+.wikiResultsBox a.exists {
+    display: block;
+    font-weight: bold;
+    color: #000099;
+    text-decoration: none;
+}
+
+.wikiResultsBox a.attach, .wikiResultsBox a.index {
+    color: #000099;
+    text-decoration: none;
+}
+
+.wikiResultsBox a.attach:hover, .wikiResultsBox a.index:hover {
+    text-decoration: underline;
+}
+
+.wikiResultsBox a.exists:hover {
+    text-decoration: underline;
+}
+
+.wikiResultsBox h1, .wikiResultsBox h2, .wikiResultsBox h3, .wikiResultsBox h4, .wikiResultsBox h5, .wikiResultsBox h6 {
+    margin: 3px 0px 3px 0px;
+}
+
+.wikiResultsBox .group {
+     padding: 8px 2px 0px 8px;
+     color: #6672AA;
+}
+
+
+.wikiResultsBox h1 { font-size: 12px; clear:right; color: #6672AA; font-weight: bold;}
+.wikiResultsBox h2 { font-size: 11px; color: #6672AA; font-weight: bold;}
+.wikiResultsBox h3 { font-size: 11px; color: #6672AA; font-weight: bold;}
+.wikiResultsBox h4 { font-size: 11px; color: #6672AA; font-weight: normal;}
+.wikiResultsBox h5 { font-size: 11px; color: #6672AA; font-weight: normal;}
+.wikiResultsBox h6 { font-size: 10px; color: #6672AA; font-weight: normal;}
+
+.rItem {
+    color: #666666;
+    overflow: hidden;
+    line-height: 11px;
+}
+
+.rItem span {
+    background: none!important;
+}
+
+.rItem .highlight {
+    color: #333333;
+    background-color: #EEEE99 !important;
+}
+
+.wikiResultsBox span.media {
+    font-style: italic;
+}
+
+.wikiResultsBox div.include {
+    font-style: italic;
+    margin: 4px;
+}
+
+.rItem a.exists {
+    display: inline;
+    font-weight: normal;
+}
+
+.wikiResultsBox ul, .wikiResultsBox ol {
+    padding: 0px;
+	margin: 2px 6px 2px 16px;
+}
+
+.rItem img {
+    width: 100px;
+    height: auto;
+}
+
+.rItem br.hard {
+    clear:both;
+}
+
+img.fico {
+    border: 0;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    margin-bottom: 1px;
+    background-color: inherit;
+}
+
+.edit img {
+    width: 16px;
+    height: 16px;
+}
+
+.catAdd {
+    font-style: italic;
+}
+
+img.topBtn {
+    width: 12px;
+    height: 12px;
+    background-color: #DAE7FF;
+}
+
+a.attach {
+    position: relative;
+    padding-left: 18px;
+}
+
+a.attach div.icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.wikiView div.soon {
+    background-color: #ffc;
+    font-style: italic;
+}
+
+
+.wikiView .activity {
+    background-color: #ffc;
+    cursor: pointer;
+}
+
+.wikiView .activity .name {
+    font-weight:bold;
+}
+
+.wikiView .activity .step {
+    font-style: italic;
+}
+
+.wikiView .activity .desc {
+    color: #666;
+}
+
+/**
+    Layouts
+  */
+
+.wikiView table.layout {
+    border-collapse: collapse;
+    border: 0 none;
+	font-size: 12px;
+	color: #000;
+}
+
+.wikiView table.layout td.layout {
+    vertical-align: top;
+    border: 0 none;
+}
+
+
+body.layout {
+    font-size:1px;
+    color: #fff;
+}
+
+body.wikiView table.layout {
+    border: 1px dashed #ccc;
+}
+
+body.wikiView table.layout td.layout {
+    border: 1px dashed #ccc;
+}
+
+/* 2colA */
+.wikiView table.lo_2colA {
+    width: 95%;
+}
+
+.wikiView table.lo_2colA td.layout {
+    padding: 8px;
+}
+
+.wikiView table.lo_2colA td.column0 {
+    width: 60%;
+    background-color: #fff;
+}
+
+.wikiView table.lo_2colA td.column1 {
+    background-color: #eee;
+}
+
+
+
+/**
+    Buttons
+ */
+ .wikiView span.pbutton {
+ 	position: relative;
+ 	line-height: 30px;
+ 	display: inline-block;
+ }
+ 
+ .wikiView span.pbutton2 {
+ 	position: relative;
+ 	line-height: 28px;
+ 	display: inline-block;
+ }
+ 
+.wikiView a.launch {
+    position: relative;
+    background-image: url(../pix/kb/workBtns.gif);
+    background-position: right top;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    padding: 7px 5px 8px 33px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #000;
+}
+
+.wikiView a.launch.safari {
+    padding-bottom: 8px;
+}
+
+.wikiView a.launch:hover {
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.wikiView a.launch div.icon {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+.wikiView a.launch div.cap {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 31px;
+    height: 29px;
+    background-image: url(../pix/kb/workBtnsCap.gif);
+    background-repeat: no-repeat;
+}
+
+.wikiView a.submit1 {
+    position: relative;
+    background-image: url(../pix/kb/workBtns.gif);
+    background-position: right -39px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    padding: 7px 6px 7px 7px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.wikiView a.submit1 div.cap {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 6px;
+    height: 27px;
+    background-image: url(../pix/kb/workBtnsCap.gif);
+    background-position: 0px -29px;
+    background-repeat: no-repeat;
+}
+
+.wikiView a.submit2,
+.wikiView a.copy {
+    position: relative;
+    background-image: url(../pix/kb/workBtns.gif);
+    background-position: right -76px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    padding: 7px 6px 7px 7px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #000;
+}
+
+.wikiView a.submit0 {
+    position: relative;
+    background-image: url(../pix/kb/workBtns.gif);
+    background-position: right -113px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    padding: 7px 6px 7px 7px;
+    line-height: 28px;
+    font-size: 12px;
+    color: #999;
+}
+
+.wikiView a.copy  {
+    padding-left: 24px;
+}
+
+.wikiView a.submit2 div.cap,
+.wikiView a.copy div.cap {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 6px;
+    height: 27px;
+    background-image: url(../pix/kb/workBtnsCap.gif);
+    background-position: 0px -56px;
+    background-repeat: no-repeat;
+}
+
+.wikiView a.submit0 div.cap {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 6px;
+    height: 27px;
+    background-image: url(../pix/kb/workBtnsCap.gif);
+    background-position: 0px -83px;
+    background-repeat: no-repeat;
+}
+
+.wikiView a.submit1.safari,
+.wikiView a.submit2.safari,
+.wikiView a.submit0.safari,
+.wikiView a.copy.safari {
+    padding-bottom: 7px;
+}
+
+.wikiView a.submit1:hover,
+.wikiView a.submit2:hover,
+.wikiView a.copy:hover{
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.wikiView a.submit0:hover {
+	background-color: transparent;
+	}
+
+.wikiView div.plan {
+    background-color: #E0ECF6;
+    padding: 4px;
+    margin: 1px 20px 0px 2px;
+}
+
+.wikiView input.plan {
+    vertical-align: middle;
+}
+
+.wikiView label.plan {
+    font-style: italic;
+}
+
+.wikiView label.plan .step {
+    font-weight: bold;
+}
+
+.wikiView label.plan .desc {
+    font-size: 11px;
+    padding-left: 8px;
+    color: #666;
+}
+
+.wikiView a.copy div.icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.wikiView button.iten_emac {
+    position:relative;
+    border: 1px solid #3A7950;
+    background-color: #ffc;
+    font-size: 10px;
+    -moz-user-select: none ! important;
+    padding: 3px  0px 0px 0px;
+    margin: 6px 0px 0px 0px;
+}
+
+.wikiView button.iten_emac2 {
+    position:relative;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    font-size: 10px;
+    -moz-user-select: none ! important;
+}
+
+.wikiView button.iten_emac div.badge {
+    position: absolute;
+    background-image: url(../pix/kb/wysiwygMacros.gif);
+    height: 13px;
+    font-size:1px;
+    width: 44px;
+    top: -12px;
+    left: 0px;
+}
+
+* html .wikiView button.iten_emac div.badge {
+    top: -8px;
+}
+
+/*
+.wikiView .iten_emac {
+    border: 1px solid #3A7950;
+    background-color: #ffc;
+    padding: 0px 4px 1px 4px;
+    font-size: 10px;
+    background-image: url(../pix/kb/wysiwygMacros.gif);
+    background-repeat: no-repeat;
+    padding-left: 48px;
+}
+*/
+
+.wikiView .em_attach { background-position: 2px 2px; }
+.wikiView .em_attachEdit { background-position: 2px -38px; }
+.wikiView .em_launch { background-position: 2px -78px; }
+.wikiView .em_launchSub { background-position: 2px -118px; }
+.wikiView .em_copy { background-position: 2px -158px; }
+.wikiView .em_submit { background-position: 2px -198px; }
+.wikiView .em_media { background-position: 2px -238px; }
+.wikiView .em_activity { background-position: 2px -278px; }
+.wikiView .em_plan { background-position: 2px -318px; }
+.wikiView .em_kb { background-position: 2px -358px; }
+.wikiView .em_form { background-position: 2px -398px; }
+.wikiView .em_include { background-position: 2px -438px; }
+.wikiView .em_flows { background-position: 2px -478px; }
+.wikiView .em_input { background-position: 2px -518px; }
+.wikiView .em_loop { background-position: 2px -558px; }
+.wikiView .em_role { background-position: 2px -598px; }
+.wikiView .em_dueDate { background-position: 2px -638px; }
+.wikiView .em_startDate { background-position: 2px -678px; }
+.wikiView .em_output { background-position: 2px -718px; }
+.wikiView .em_entity { background-position: 2px -758px; }
+.wikiView .em_pathLabel { background-position: 2px -798px; }
+
+div.wikiHelp {
+    width: 10px;
+    height: 12px;
+    background-position: 0px 0px !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float:right;
+    margin-top: 2px;
+    background-image: url(../pix/panel/bntHelp.gif);
+}
+iframe.wikiEd {
+    border: 1px solid #999;
+    padding-right: 4px;
+    position: absolute;
+    top: 42px;
+    left: 3px;
+}
+
+* html iframe.wikiEd {
+    top: 44px;
+    padding-right: 2px;
+}
+
+
+iframe.dndDrop {
+    border-color: #f90;
+}
+
+/*
+    Properties
+ */
+
+div.wysPropDiag {
+    padding: 4px;
+}
+
+.wysProps td {
+    padding: 4px;
+}
+
+.wysProps input.text {
+    width: 30em;
+}
+
+.wysProps td.label {
+    color: #666;
+    font-weight: bold;
+}
+
+div.wysPropDiag button {
+    border: 1px solid #6BA673;
+    background-color: #E8F1E9;
+    padding: 2px;
+    margin: 2px;
+    cursor: pointer;
+    width: 75px;
+    height: 23px;
+    color: #6BA673;
+}
+
+div.flows {
+	border: 1px solid #DDE6F9;
+	width: 170px;
+}
+
+div.flows div.head {
+	padding: 2px 2px 2px 6px;
+	background-color: #DDE6F9;
+}

@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!--
+
+Stylesheet: process-map(1.0) to flow(1.0) transform
+
+    Author: ggongaware@itensil.com
+
+-->
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:iw="http://itensil.com/workflow">
+
+    <xsl:output method="xml" indent="yes"/>
+
+    <!-- Root Template -->
+	<xsl:template match="/">
+
+        <!-- <process-map/> to <flow/> -->
+        <flow version="1.0">
+
+            <iw:data src="rules.xml"/>
+	        <iw:type icon="task1"/>
+
+            <!-- <sequence/> to <steps/> -->
+            <steps>
+                <!-- extract start(s) and sort default to top -->
+                <xsl:for-each select="process-map/sequence/terminator[@mode='start']">
+                    <xsl:sort select="@default" order="descending"/>
+                    <xsl:apply-templates select="." mode="start"/>
+                </xsl:for-each>
+                <!-- filter stray paths from process-map save bug -->
+                <xsl:apply-templates select="process-map/sequence/*[not(self::path)]"/>
+            </steps>
+
+            <!-- <notes/> to <notes/> -->
+            <notes>
+                <xsl:apply-templates select="process-map/notes/*"/>
+            </notes>
+
+            <xsl:if test="process-map/meta">
+                <xsl:copy-of select="process-map/meta"/>
+            </xsl:if>
+
+        </flow>
+    </xsl:template>
+
+    <!-- <activity/> to <activity/> -->
+    <xsl:template match="activity">
+        <!-- Display HACK: map label to id -->
+        <activity id="{label}" style="{@style}" apptype="{@rspsType}" role="">
+            <xsl:call-template name="label-desc"/>
+            <xsl:apply-templates/>
+            <iw:article>Default Workzone:[submit[!Continue]]</iw:article>
+        </activity>
+    </xsl:template>
+
+    <!-- <switch/> to <switch/> -->
+    <xsl:template match="switch">
+        <switch id="{label}" style="{@style}" apptype="{@rspsType}">
+            <xsl:attribute name="mode">
+                <xsl:choose>
+                    <xsl:when test="@rspsType='gtAllo'">
+                        <xsl:text>alloc</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:text>xor</xsl:text></xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:call-template name="label-desc"/>
+            <xsl:apply-templates/>
+        </switch>
+    </xsl:template>
+
+    <!-- <terminator mode="start"/> to <start/> -->
+    <xsl:template match="terminator" mode="start">
+        <start id="{label}" style="{@style}" apptype="{@rspsType}">
+            <xsl:call-template name="label-desc"/>
+            <xsl:apply-templates/>
+        </start>
+    </xsl:template>
+
+    <!-- <terminator mode="end"/> to <end/> -->
+    <xsl:template match="terminator">
+        <xsl:if test="@mode='end'">
+            <end id="{label}" style="{@style}" apptype="{@rspsType}">
+                <xsl:call-template name="label-desc"/>
+                <xsl:apply-templates/>
+            </end>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- <trigger/> to <timer/> -->
+    <xsl:template match="trigger">
+        <timer id="{label}" style="{@style}" apptype="{@rspsType}">
+            <xsl:choose>
+                <xsl:when test="@rspsType='inInt' or @rspsType='inAbso'">
+                    <xsl:attribute name="mode"><xsl:text>until</xsl:text></xsl:attribute>
+                    <until/>
+                </xsl:when>
+                <xsl:when test="@rspsType='inRecur'">
+                    <xsl:attribute name="mode"><xsl:text>repeat</xsl:text></xsl:attribute>
+                    <repeat/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="mode"><xsl:text>wait</xsl:text></xsl:attribute>
+                    <wait/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:call-template name="label-desc"/>
+            <xsl:apply-templates/>
+        </timer>
+    </xsl:template>
+
+    <!-- <note/> to <note/> -->
+    <xsl:template match="note">
+        <note id="{@id}" style="{@style}"><xsl:value-of select="."/></note>
+    </xsl:template>
+
+    <!-- <case><condition/><path/></case> to <path><condition/></path> -->
+    <xsl:template match="case">
+        <path id="{path/@id}" to="{/process-map/sequence/*[@id = current()/path/@to]/label}" points="{path/@points}" startDir="{path/@startDir}" endDir="{path/@endDir}">
+            <condition><xsl:value-of select="condition"/></condition>
+            <label style="{path/label/@style}"><xsl:value-of select="path/label"/></label>
+        </path>
+    </xsl:template>
+
+    <!-- <path/> to <path/> -->
+    <xsl:template match="path">
+        <path id="{@id}" to="{/process-map/sequence/*[@id = current()/@to]/label}" points="{@points}" startDir="{@startDir}" endDir="{@endDir}">
+            <label style="{@style}"><xsl:value-of select="label"/></label>
+        </path>
+    </xsl:template>
+
+    <xsl:template name="label-desc">
+        <!--<label><xsl:value-of select="label"/></label>-->
+        <label/>
+        <description><xsl:value-of select="description"/></description>
+    </xsl:template>
+
+    <xsl:template match="delegate">
+        <!-- skip this -->
+    </xsl:template>
+
+    <xsl:template match="join">
+        <!-- skip this -->
+    </xsl:template>
+
+    <xsl:template match="text()"></xsl:template>
+
+</xsl:stylesheet>

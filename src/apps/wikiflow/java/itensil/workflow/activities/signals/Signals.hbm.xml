@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="itensil.workflow.activities.signals">
+
+    <class name="SignalImpl" lazy="false" node="alert" table="iten_wf_activity_alert">
+        <id name="id" node="@id" length="20">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+		<discriminator>
+      		<column name="discriminator"/>
+    	</discriminator>        
+        <many-to-one name="activity" class="itensil.workflow.activities.state.Activity" embed-xml="false" node="@activity" not-null="false" not-found="ignore">
+            <column name="activityId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+        <property name="assignId" node="@assignId" length="20">
+            <column name="assignId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="stepId" node="@stepId"/>
+        <property name="role" node="@role"/>
+        <property name="note" node="@note"/>
+        <property name="timeStamp" node="@timeStamp"/>
+        <property name="mailed" node="@mailed"/>
+        <property name="read" node="@read" column="`read`"/>
+        <property name="signalSubmitId" node="@signalSubmitId"/>
+        <property name="signalAssignedId" node="@signalAssignedId"/>
+        <property name="signalLink" node="@signalLink"/>
+        <property name="signalMessage" node="@signalMessage"/>
+        <property name="custom1" node="@custom1"/>
+        <property name="custom2" node="@custom2"/>
+        <property name="custom3" node="@custom3"/>
+        <property name="custom4" node="@custom4"/>
+		<subclass name="AlertSignalImpl" discriminator-value="ACTIVITY_ALERT"/>
+    </class>
+
+    <!-- mailed=0(to be sent - active signal), mailed=1(sent - active signal), mailed=2(required action completed), mail=3(de-activated by mechanism) -->
+    <!-- read=0(not read, read=1(has been read) -->
+    <query name="Signal.getActiveSignalsById"> 
+    	<![CDATA[
+        	FROM SignalImpl alt
+            LEFT OUTER JOIN FETCH alt.activity act
+        	WHERE ( alt.assignId = :assignId
+        	OR alt.signalAssignedId = :assignId )
+        	AND alt.mailed <= 1 
+        	ORDER BY alt.timeStamp DESC,  act.flow DESC
+    	]]>
+    </query>
+
+    <query name="Signal.AA.countActiveByAssignedIdSignalTypeMailed"> 
+    	<![CDATA[
+	        SELECT COUNT(*) 
+        	FROM AlertSignalImpl alt
+        	WHERE alt.assignId = :assignId
+        	AND alt.mailed <= :mailedLtOrEq 
+    	]]>
+    </query>
+
+    <query name="Signal.ALL.countActiveByAssignedIdMailed"> 
+    	<![CDATA[
+	        SELECT COUNT(*) 
+        	FROM SignalImpl alt
+        	WHERE ( alt.assignId = :assignId
+        	OR alt.signalAssignedId = :assignId )
+        	AND alt.mailed <= :mailedLtOrEq 
+    	]]>
+    </query>
+
+
+<!--        	AND alt.discriminator = :discriminator  -->
+
+
+<!--
+    <query name="Signal.getUserIdActiveAlerts">
+        FROM SignalImpl alt
+            LEFT OUTER JOIN FETCH alt.activity act
+        WHERE alt.assignId = :assignId 
+        AND alt.mailed != 3 
+        AND alt.read != 1
+        ORDER BY alt.timeStamp ASC,  act.flow DESC
+    </query>
+-->
+    <query name="Signal.getAllUnMailedAlerts">
+        FROM SignalImpl alt
+            LEFT JOIN FETCH alt.activity act
+        WHERE alt.mailed = 0
+        ORDER BY alt.assignId DESC, act.flow DESC, alt.timeStamp ASC
+    </query>
+    
+   	<query name="Signal.countPending">
+        SELECT COUNT(*) 
+        FROM SignalImpl alt
+        WHERE alt.assignId = :assignId 
+	        AND alt.mailed = 0 
+	        AND alt.read = 0
+    </query>
+
+</hibernate-mapping>

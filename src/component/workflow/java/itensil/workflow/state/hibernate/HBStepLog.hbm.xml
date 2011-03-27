@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.workflow.state.hibernate">
+
+    <class name="HBStepLog" table="wf_log">
+
+        <id name="id">
+            <generator class="native"/>
+        </id>
+
+        <property name="flowId" index="ix_wflog_flow"/>
+        <property name="tokenId" index="ix_wflog_token"/>
+        <property name="txId"/>
+        <property name="stepId"/>
+        <property name="subStateInt" column="subState"/>
+        <property name="timeStamp"/>
+        <property name="expireTime"/>
+
+    </class>
+    <query name="StepLog.lastLogTx">
+        FROM HBStepLog stl
+        WHERE stl.flowId = :flowId
+            AND stl.tokenId = :tokenId
+            AND stl.txId = :txId
+            ORDER BY stl.id ASC
+    </query>
+    <query name="StepLog.nextToLastLogTx"><![CDATA[
+        FROM HBStepLog stl
+        WHERE stl.flowId = :flowId
+            AND stl.tokenId = :tokenId
+            AND stl.id < :lastId
+            ORDER BY stl.id DESC
+    ]]></query>
+
+</hibernate-mapping>

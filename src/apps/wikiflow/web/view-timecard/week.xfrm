@@ -1,0 +1,318 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+	<xf:model id="fmodel">
+		<xf:instance id="ins">
+            <timecard>
+				
+				<day date="2007-01-07" name="Sun" work="0"/>
+				<day date="2007-01-08" name="Mon" work="1"/>
+				<day date="2007-01-09" name="Tue" work="1"/>
+				<day date="2007-01-10" name="Wed" work="1"/>
+				<day date="2007-01-11" name="Thu" work="1"/>
+				<day date="2007-01-12" name="Fri" work="1"/>
+				<day date="2007-01-13" name="Sat" work="0"/>
+				
+				<role-log id="" contractId="2323" billable="1" project="DDJSS001" role="Data Entry" userId="AAAAAAAAAAAAAAAAAAAAA">
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="1.5" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+				</role-log>
+				<role-log id="" contractId="2323" billable="1" project="DDJSS001" role="Web Designer" userId="AAAAAAAAAAAAAAAAAAAAA">
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="1.5" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+				</role-log>
+				
+			</timecard>
+        </xf:instance>
+
+		<xf:instance id="conts">
+			<contracts xmlns="">
+				<contract id="2323" client="WalMart" name="News wire" />
+				<contract id="2323" client="WalMart" name="Circular" />
+			</contracts>
+		</xf:instance>
+		
+		<xf:instance id="opts">
+			<options xmlns="">
+				<project>DDJSS001</project>
+				<project>WLL921</project>
+				<role>General</role>
+				<role>Data Entry</role>
+				<role>Web Designer</role>
+			</options>
+		</xf:instance>
+
+		<xf:instance id="pal">
+			<pal xmlns="">
+				<role-log id="" contractId="" billable="1" project="" role="" userId="">
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+					<time id="" hours="0" activityId="" />
+				</role-log>
+			</pal>
+		</xf:instance>
+		
+		<xf:bind nodeset="role-log/@contractId" constraint=". != ''"/>
+		<xf:bind type="xsd:float" nodeset="role-log/time/@hours"/>
+		<xf:bind nodeset="role-log/@role|role-log/@project" relevant="../@contractId != ''"/>
+
+		<xf:submission id="submission" replace="none" method="post" action="../tcard/saveWeek">
+		</xf:submission>
+		
+	</xf:model>
+<style type="text/css">
+
+table.tcard {
+	border-collapse:collapse;
+	border: 1px solid #999;
+	width: 680px;
+}
+
+div.tcardSubmit {
+	text-align:right;
+	margin-top:8px;
+	width: 680px;
+}
+
+table.tcard  th {
+	border: 1px solid #999;
+	text-align:left;
+	background-color:#ccc;
+	padding: 4px;
+	cursor:default;
+}
+
+table.tcard th.work {
+	background-color:#ffc;
+}
+
+table.tcard th.nowork {
+	background-color:#cca;
+}
+
+table.tcard td {
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	border-top: 1px solid #fff;
+	padding: 4px;
+}
+
+table.tcard td.add {
+	border: 1px solid #999;
+	text-align:right;
+	padding:6px;
+}
+
+table.tcard td.add div {
+	font-weight:bold;
+	color:#669;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+table.tcard tr.bill td {
+	background-color: #efd;
+}
+
+table.tcard td.bill {
+	background-color: #efd;
+}
+
+table.tcard tr.nobill td {
+	background-color: #def;
+}
+
+table.tcard td.nobill {
+	background-color: #def;
+}
+
+table.tcard tr.bill td.work,
+table.tcard tr.nobill td.work,
+table.tcard td.work input.xftext {
+	background-color:#ffc;
+}
+table.tcard td.work input.xftext {
+    border: 1px solid #ffc;
+}
+
+table.tcard tr.bill td.nowork,
+table.tcard tr.nobill td.nowork,
+table.tcard td.nowork input.xftext {
+	background-color:#cc9;
+}
+
+table.tcard td.nowork input.xftext {
+    border: 1px solid #cc9;
+}
+
+table.tcard input.xftext {
+	font-size:12px;
+}
+
+table.tcard td.tot {
+	font-weight:bold;
+	text-align:center;
+	cursor:default;
+}
+
+table.tcard td.del {
+	cursor:pointer;
+	font-weight:bold;
+	color:#669;
+}
+
+table.tcard  div.xfctrl {
+	padding:0;
+	background-color: transparent;
+}
+
+table.tcard div.disab {
+	display: none;
+}
+
+</style>
+	
+	<table class="tcard">
+		<tbody>
+			<tr>
+				<th class="role">Client/Contract</th>
+				<th class="role">Project</th>
+				<th class="role">Role</th>
+				<xf:repeat nodeset="day">
+					<th>
+						<ix:attr name="class" value="if(@work = 1, 'work', 'nowork')"/>
+						<xf:output ref="@name"/>
+					</th>
+				</xf:repeat>
+				<th class="tot">Total</th>
+				<th></th>
+			</tr>
+			<xf:repeat nodeset="role-log[@billable=1]">
+				<tr class="bill">
+					<td class="role">
+						<xf:select1 ref="@contractId">
+							<xf:label />
+							<xf:itemset nodeset="instance('conts')/contract">
+								<xf:label><xf:output value="concat(@client, ' - ', @name)"/></xf:label>
+								<xf:value ref="@id"/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<td class="role">
+						<xf:select1 ref="@project">
+							<xf:label />
+							<xf:itemset nodeset="instance('opts')/project">
+								<xf:label ref="."/>
+								<xf:value ref="."/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<td class="role">
+						<xf:select1 ref="@role">
+							<xf:label />
+							<xf:itemset nodeset="instance('opts')/role">
+								<xf:label ref="."/>
+								<xf:value ref="."/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<xf:repeat nodeset="time">
+						<exf:variable name="pos" value="position()"/>
+						<td>
+							<ix:attr name="class" value="if(/timecard/day[$pos]/@work = 1, 'work', 'nowork')"/>
+							<xf:input ref="@hours" style="width:2em">
+								<xf:label />
+							</xf:input>
+						</td>
+					</xf:repeat>
+					<exf:variable name="toth" value="sum(time/@hours)"/>
+					<td class="tot"><xf:output value="$toth"/></td>
+					<td class="del" title="Delete a zero hour row."><span>x<xf:destroy ev:event="click" ref="."/><ix:attr
+						name="style" value="if($toth = 0,'','display:none') "/></span></td>
+				</tr>
+			</xf:repeat>
+			<tr>
+				<td class="add bill" colspan="12">
+					<div>Add Billable<xf:action ev:event="click">
+						<xf:duplicate ref="." origin="instance('pal')/role-log"/>
+					</xf:action></div>
+				</td>
+			</tr>
+			<xf:repeat nodeset="role-log[@billable=0]">
+				<tr class="nobill">
+					<td class="role">
+						<xf:select1 ref="@contractId">
+							<xf:label />
+							<xf:itemset nodeset="instance('conts')/contract">
+								<xf:label><xf:output value="concat(@client, ' - ', @name)"/></xf:label>
+								<xf:value ref="@id"/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<td class="role">
+						<xf:select1 ref="@project">
+							<xf:label />
+							<xf:itemset nodeset="instance('opts')/project">
+								<xf:label ref="."/>
+								<xf:value ref="."/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<td class="role">
+						<xf:select1 ref="@role">
+							<xf:label />
+							<xf:itemset nodeset="instance('opts')/role">
+								<xf:label ref="."/>
+								<xf:value ref="."/>
+							</xf:itemset>
+						</xf:select1>
+					</td>
+					<xf:repeat nodeset="time">
+						<exf:variable name="pos" value="position()"/>
+						<td>
+							<ix:attr name="class" value="if(/timecard/day[$pos]/@work = 1, 'work', 'nowork')"/>
+							<xf:input ref="@hours" style="width:2em">
+								<xf:label />
+							</xf:input>
+						</td>
+					</xf:repeat>
+					<exf:variable name="toth" value="sum(time/@hours)"/>
+					<td class="tot"><xf:output value="$toth"/></td>
+					<td class="del" title="Delete a zero hour row."><span>x<xf:destroy ev:event="click" ref="."/><ix:attr
+						name="style" value="if($toth = 0,'','display:none') "/></span></td>
+				</tr>
+			</xf:repeat>
+			<tr>
+				<td class="add nobill" colspan="12">
+					<div>Add Non-Billable<xf:action ev:event="click">
+							<xf:duplicate ref="." origin="instance('pal')/role-log"/>
+							<xf:setvalue ref="role-log[last()]/@billable" value="0"/>
+						</xf:action></div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="tcardSubmit">
+	<xf:submit submission="submission">
+        <xf:label>Save</xf:label>
+    </xf:submit>
+	</div>
+</form>

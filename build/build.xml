@@ -1,0 +1,54 @@
+<!--
+
+Build Script for WikiFlow
+
+
+Software Copyright 2004-2007 by Itensil, Inc.,
+All rights reserved.
+
+This software is the confidential and proprietary information
+of Itensil, Inc. ("Confidential Information").  You
+shall not disclose such Confidential Information and shall use
+it only in accordance with the terms of the license agreement
+you entered into with Itensil.
+
+-->
+<project name="Build Wikiflow" basedir=".." default="build">
+	
+	<property name="App" value="src/apps/wikiflow"/>
+	
+	<target name="clean" description="Clean output directories">
+		<ant antfile="${App}/build.xml" target="cleanAll" inheritAll="false"/>
+	</target>
+	
+	<target name="build" description="Build application">
+		<ant antfile="${App}/build.xml" target="build" inheritAll="false"/>
+	</target>
+		
+	<target name="dist" description="Build application and create distributable item">
+		<ant antfile="${App}/build.xml" target="jboss.war" inheritAll="false"/>
+		<mkdir dir="dist"/>
+		<copy todir="dist">
+			<fileset dir="${App}/dist"/>
+		</copy>
+	</target>
+
+	<target name="test" description="Run Unit Tests">
+		<ant antfile="${App}/build.xml" target="test" inheritAll="false"/>
+	</target>
+	
+	<target name=".svn.clone">
+		<mkdir dir="../wikiflow-svn"/>
+		<copy todir="../wikiflow-svn">
+			<fileset dir="." defaultexcludes="true">
+				<exclude name="**/.built/**"/>
+				<exclude name="**/.settings/**"/>
+				<exclude name="**/dist/**"/>
+				<exclude name="src/apps/wikiflow/web/WEB-INF/classes/**"/>
+				<exclude name="src/apps/wikiflow/web/WEB-INF/lib/**"/>
+				<exclude name="src/apps/wikiflow/web/WEB-INF/sys-repo/**"/>
+			</fileset>
+		</copy>
+	</target>
+	
+</project>

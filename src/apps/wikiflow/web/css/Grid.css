@@ -1,0 +1,67 @@
+
+table.i_grid {
+    font-size: 11px;
+}
+
+table.i_grid td {
+    vertical-align: top;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #9BACCC;
+}
+
+
+table.i_grid td.odd {
+    background-color: #FFFFFF;
+}
+
+table.i_grid td.even {
+    background-color: #F6F6F6;
+}
+
+
+table.i_grid div.i_g {
+   padding: 1px 5px 1px 5px;
+}
+
+table.i_grid div.readonly {
+    padding: 1px 20px 1px 20px;
+    font-style: italic;
+    color: #999;
+}
+
+table.i_grid div.treeCellZero {
+    padding: 0px 0px 0px 0px;
+}
+
+table.i_grid th {
+    background-color: #DDE6F9;
+    text-align: left;
+    padding: 1px 1px 1px 4px;
+    border-right: 1px solid #9BACCC;
+    border-bottom: 1px solid #9BACCC;
+}
+
+table.i_grid th.filter {
+	padding: 0px 0px 1px 1px;
+}
+
+div.i_grid div.tree div.label {
+    border-color: #EEFFEE;
+}
+
+div.i_grid div.tree div.icon {
+    background-color: #EEFFEE;
+}
+
+div.i_grid {
+    background-color: #EEFFEE;
+}
+
+input.i_gridEdit {
+    position: absolute;
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: 11px;
+    display: block;
+    border: 1px solid #fff;
+    padding: 0px 0px 0px 4px;
+}

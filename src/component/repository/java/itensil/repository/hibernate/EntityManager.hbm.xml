@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.repository.hibernate">
+
+    <class name="Mount" lazy="false" table="iten_repo_mount">
+        <composite-id>
+            <key-property name="userSpaceId">
+                <column name="userSpaceId" sql-type="varchar(20) binary"/>
+            </key-property>
+            <key-many-to-one name="repoEntity" class="RepositoryEntity" column="repoId" />
+        </composite-id>
+        <property name="primary" column="isPrimary" />
+    </class>
+
+    <query name="RepoMan.getRepoByMount">
+        FROM RepositoryEntity repo
+        WHERE repo.mount = :mount
+    </query>
+
+    <query name="RepoMan.resetPrimaryMount">
+        UPDATE Mount mnt
+        SET mnt.primary = 0
+        WHERE mnt.userSpaceId = :userSpaceId
+    </query>
+
+    <query name="RepoMan.getPrimaryRepository" cacheable="true">
+        FROM RepositoryEntity repo
+            LEFT JOIN FETCH repo.mounts mnt
+        WHERE mnt.userSpaceId = :userSpaceId
+            AND mnt.primary = 1
+    </query>
+
+    <query name="RepoMan.getRepositories" cacheable="true">
+        FROM RepositoryEntity repo
+            LEFT JOIN FETCH repo.mounts mnt
+        WHERE mnt.userSpaceId = :userSpaceId
+        ORDER BY mnt.primary DESC
+    </query>
+
+    <query name="RepoMan.getUserRepository" cacheable="true">
+        FROM RepositoryEntity repo
+            LEFT JOIN FETCH repo.mounts mnt
+        WHERE mnt.userSpaceId = :userSpaceId
+            AND repo.mount = :mount
+    </query>
+
+    <query name="RepoMan.getUserRepoByNode">
+     	FROM NodeEntity node
+     		LEFT JOIN FETCH node.repoEntity
+        	WHERE node.nodeId = :nodeId
+    </query>
+
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<form xmlns:xf="http://www.w3.org/2002/xforms"
+	    xmlns:ev="http://www.w3.org/2001/xml-events"
+	    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	    xmlns="http://www.w3.org/2002/06/xhtml2"
+	    xmlns:exf="http://www.exforms.org/exf/1-0"
+	    xmlns:ix="http://itensil.com/ns/xforms">
+
+ <xf:model>
+
+   <xf:instance>
+    <data xmlns="">
+	   <mytext>default</mytext>
+	   <mypick/>
+	   <mydate/>
+	   <mybigtext/>
+	</data>
+   </xf:instance>
+   <xf:bind type="xs:date" nodeset="mydate"/>
+
+   <xf:submission id="submission" action="data.xml" replace="none" method="put">
+        <xf:action ev:event="xforms-submit-done">
+            <xf:message level="modal">Saved</xf:message>
+        </xf:action>
+        <xf:action ev:event="xforms-submit-error">
+            <xf:message level="modal">Problem saving...</xf:message>
+        </xf:action>
+    </xf:submission>
+
+ </xf:model>
+
+
+
+ <h1>Entry Form</h1>
+
+ <xf:input ref="mytext">
+   <xf:label>Text value</xf:label>
+   <xf:hint>Enter some text.</xf:hint>
+ </xf:input>
+
+ <xf:select1 ref="mypick" style="width:4em">
+   <xf:label>Pick one:</xf:label>
+   <xf:hint>Make a choice.</xf:hint>
+
+   <xf:item><xf:label>Yes</xf:label><xf:value>Yes</xf:value></xf:item>
+   <xf:item><xf:label>No</xf:label><xf:value>No</xf:value></xf:item>
+ </xf:select1>
+
+ <xf:input ref="mydate" style="width:12em">
+   <xf:label>Date value</xf:label>
+   <xf:hint>Enter a date.</xf:hint>
+ </xf:input>
+ 
+ <xf:textarea ref="mybigtext">
+ 	<xf:label>Big Text</xf:label>
+ </xf:textarea>
+
+ <xf:submit submission="submission">
+    <xf:label>Save</xf:label>
+ </xf:submit>
+
+
+</form>

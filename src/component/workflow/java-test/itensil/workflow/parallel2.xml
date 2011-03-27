@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml"/>
+	<iw:type icon="task1"/>
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start  here.</description>
+			<path id="p1" to="pre" startDir="E" endDir="W" points="94,55-165,55"><label/></path></start>
+		<end id="End" apptype="" style="left:965px;top:615px">
+			<label/>
+			<description/>
+		</end>
+	<activity role="" id="pre" style="left:165px;top:25px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="p2" startDir="E" endDir="W" to="trackA" points="275,55-340,55"><label/></path><path id="path" startDir="S" endDir="W" points="225,85-225,155-340,155" to="trackB"><label/></path></activity><activity role="" id="trackA" style="left:340px;top:30px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="p3" startDir="E" endDir="W" to="join1" points="450,55-535,55"><label/></path></activity><activity role="" id="trackB" style="left:340px;top:125px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 2" startDir="E" endDir="W" points="450,160-525,160" to="Switch 3"><label/></path></activity><activity role="" id="join1" style="left:535px;top:25px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="p4" startDir="E" endDir="N" to="pre2" points="645,55-840,55-840,240-240,240-240,250"><label/></path></activity><activity role="" id="pre2" style="left:185px;top:250px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 4" startDir="S" endDir="W" points="240,310-240,385-265,385" to="track2A"><label/></path><path id="path 5" startDir="S" endDir="W" points="220,310-220,475-265,475" to="track2B"><label/></path></activity><activity role="" id="track2A" style="left:265px;top:360px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 7" startDir="E" endDir="W" points="375,385-435,385" to="Switch"><label/></path></activity><activity role="" id="track2B" style="left:265px;top:440px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 9" startDir="E" endDir="S" points="375,475-385,475-385,475-800,475-800,420" to="join2"><label/></path></activity><switch mode="XOR" id="Switch" style="left:435px;top:345px"><label/><description/><path id="path 8" startDir="N" endDir="E" points="495,345-495,265-295,265" to="pre2"><condition>loop=1</condition><label style="left:395px;top:275px">loop</label></path><path id="path 18" startDir="E" endDir="W" points="555,385-585,385" to="track2A2"><condition/><label/></path></switch><activity role="" id="join2" style="left:735px;top:360px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 10" startDir="E" endDir="N" points="845,395-855,395-855,545-215,545-215,555" to="pre3"><label/></path></activity><activity role="" id="track3A" style="left:340px;top:555px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 13" startDir="E" endDir="W" points="450,590-460,590-460,625-560,625" to="join3"><label/></path></activity><activity role="" id="pre3" style="left:160px;top:555px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 11" startDir="E" endDir="W" points="270,585-340,585" to="track3A"><label/></path><path id="path 12" startDir="E" endDir="W" points="270,600-310,600-310,665-340,665" to="track3B"><label/></path></activity><activity role="" id="track3B" style="left:340px;top:645px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 15" startDir="E" endDir="W" points="450,680-460,680-460,645-560,645" to="join3"><label/></path></activity><activity role="" id="join3" style="left:560px;top:605px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 16" startDir="E" endDir="W" points="670,640-750,640" to="Switch 2"><label/></path></activity>
+<switch mode="XOR" id="Switch 2" style="left:750px;top:600px"><label/><description/>
+<path id="path 14" startDir="S" endDir="S" points="810,680-810,690-800,690-800,690-615,690-615,665" to="join3"><condition>loop=1</condition><label style="left:710px;top:690px">loop</label></path>
+<path id="path 17" startDir="E" endDir="W" points="870,640-965,640" to="End"><condition/><label/></path>
+</switch>
+<activity role="" id="track2A2" style="left:585px;top:355px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 19" startDir="E" endDir="W" to="join2" points="695,385-735,385"><label/></path></activity><switch mode="XOR" id="Switch 3" style="left:525px;top:120px"><label/><description/><path id="path 6" startDir="S" endDir="S" points="585,200-585,215-385,215-385,185" to="trackB"><condition>loop=1</condition><label style="left:485px;top:200px">loop</label></path><path id="path 3" startDir="N" endDir="S" points="585,120-585,85" to="join1"><condition/><label style="left:595px;top:105px"/></path></switch></steps>
+	<notes>
+	<note id="Note" style="left:520px;top:275px">Sub loop 2</note><note id="Note 2" style="left:550px;top:565px">Post loop</note><note id="Note 3" style="left:640px;top:100px">Internal loop join</note></notes>
+</flow>

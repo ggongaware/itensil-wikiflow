@@ -1,0 +1,50 @@
+<flow version="1.0">
+
+    <steps>
+        <start id="s1" apptype="">
+            <label/>
+            <description/>
+            <path id="p1" to="a1"><label/></path>
+        </start>
+        <activity id="a1" apptype="">
+            <label/>
+            <description/>
+            <path id="p2" to="w1"><label/></path>
+        </activity>
+        <switch id="w1" mode="XOR" apptype="">
+            <label/>
+            <description/>
+            <path id="p3" to="a1">
+                <condition>loop</condition>
+                <label/>
+            </path>
+            <path id="p3a" to="t2">
+                <condition>path2</condition>
+                <label/>
+            </path>
+            <path id="p4" to="t1">
+                <!-- last condition always 'otherwise' for XOR -->
+                <condition/>
+                <label/>
+            </path>
+        </switch>
+        <timer id="t1" mode="wait" apptype="">
+            <label/>
+            <description/>
+            <path id="p5" to="e1"><label/></path>
+            <wait days="0" hours="1" minutes="5"/>
+        </timer>
+        <timer id="t2" mode="until" apptype="">
+        	<path id="p6" to="e1"><label/></path>
+            <until type="condition"><condition>fire</condition></until>
+        </timer>
+        <end id="e1" apptype="">
+            <label/>
+            <description/>
+        </end> 
+    </steps>
+
+    <notes>
+    </notes>
+
+</flow>

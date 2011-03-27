@@ -1,0 +1,394 @@
+
+div.xideSrcStat {
+    position: relative;
+    height: 16px;
+    top: 0px;
+    left: 0px;
+    padding-left: 4px;
+    color: #999;
+}
+
+textarea.xideSrc {
+    position: relative;
+    top: 0px;
+    left: 4px;
+    font-size: 11px;
+    border: 1px solid #999;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.xideSrcBtn {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-left: 3px;
+}
+
+div.xideSrcBtn button, button.xide {
+    font-size: 11px;
+    border: 1px solid #999;
+    background-color: #ddd;
+    margin: 2px 10px 2px 1px;
+    cursor: pointer;
+}
+
+form.xideProp {
+    margin: 4px;
+}
+
+div.xideProp {
+    clear: left;
+    margin: 2px 0px 0px 0px;
+    padding: 3px 0px 3px 4px;
+    background-color: #DDEEFF;
+    overflow: hidden;
+}
+
+form.xideProp label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 120px;
+}
+
+form.xideProp textarea {
+    width: 350px;
+    height: 45px;
+    border: 1px solid #999;
+    font-size: 11px;
+}
+
+form.xideProp label.xidePropTxt {
+    font-weight: bold;
+}
+
+form.xideProp textarea.xidePropTxt {
+    width: 400px;
+    height: 100px;
+}
+
+div.xidePreview {
+    padding: 10px;
+}
+
+
+.xidePreview h1,.xidePreview h2,.xidePreview h3,.xidePreview h4,.xidePreview h5,.xidePreview h6 {
+    font-weight: bold;
+    text-decoration: none;
+    color: #343E45;
+    margin: 4px 4px 4px 0px;
+}
+
+.xidePreview h1 { font-size: 22px; }
+.xidePreview h2 { font-size: 18px; }
+.xidePreview h3 { font-size: 16px; }
+.xidePreview h4 { font-size: 14px; }
+.xidePreview h5 { font-size: 12px; }
+.xidePreview h6 { font-size: 11px; }
+
+.xidePreview div.xfctrl {
+    clear: left;
+    margin: 2px 0px 0px 0px;
+    padding: 5px 6px 7px 4px;
+    background-color: #f3f3f3;
+    overflow: hidden;
+}
+
+.xidePreview fieldset.array {
+	border-color: #999;
+}
+
+.xidePreview .arrayAdd {
+	text-decoration: underline;
+	color: #090;
+	cursor: pointer;
+}
+
+.xidePreview .arrayRem  {
+	color: #900;
+	cursor: pointer;
+	padding: 0px 2px 0px 2px;
+}
+
+.xidePreview .selArr {
+	padding:0;
+	clear:both;
+}
+
+.xidePreview legend {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.xidePreview fieldset {
+    padding: 4px;
+    border: 1px solid #666;
+}
+
+.xidePreview label {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.xidePreview div.xfctrl input {
+    margin-top: 3px;
+    width: 15em;
+    font-size: 12px;
+    border: 1px solid #999;
+}
+
+
+.xidePreview div.xfctrl textarea {
+    margin-top: 3px;
+    font-size: 12px;
+    border: 1px solid #999;
+}
+
+.xidePreview tr.item input {
+    width: auto;
+    border: thin none;
+}
+
+
+.xidePreview td input.xftext {
+    margin: 0px;
+}
+
+.xidePreview td div.xfctrl {
+    margin: 0px;
+    padding: 1px 0px 1px 0px;
+}
+
+.xidePreview div.xfctrl label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 120px;
+}
+
+.xidePreview tr.item label {
+    width: auto;
+    padding: 0px;
+    float: none;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.xidePreview .invalid input {
+    background-color: #fcc;
+}
+
+.xidePreview .invalid label {
+    color: #900;
+}
+
+.xidePreview button label {
+    padding: 0px;
+    float: none;
+    margin: 0px;
+    font-size: 12px;
+    font-weight: normal;
+    width: auto;
+}
+
+.xidePreview button {
+    border: 1px solid #6672AA;
+    background-color: #DAE7FF;
+    padding: 2px;
+    cursor: pointer;
+    width: 75px;
+    height: 23px;
+    color: #6672AA;
+}
+
+
+div.diagXf div.xfctrl {
+    clear: left;
+    margin: 0px 0px 0px 0px;
+    padding: 3px 0px 3px 4px;
+}
+
+div.diagXf select {
+    font-size: 12px;
+}
+
+div.diagXf label {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+div.diagXf div.xfctrl input {
+    width: 15em;
+    font-size: 12px;
+}
+
+div.diagXf table input {
+    width: auto;
+}
+
+div.diagXf div.xfctrl label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 120px;
+}
+
+div.diagXf table label {
+    width: auto;
+    padding: 0px;
+    float: none;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+div.diagXf .invalid input {
+    background-color: #fcc;
+}
+
+div.diagXf .invalid label {
+    color: #900;
+}
+
+div.diagXf button label {
+    padding: 0px;
+    float: none;
+    margin: 0px;
+    font-size: 12px;
+    font-weight: normal;
+    width: auto;
+}
+
+div.diagXf button {
+    border: 1px solid #6BA673;
+    background-color: #E8F1E9;
+    padding: 2px;
+    cursor: pointer;
+    width: 75px;
+    height: 23px;
+    color: #6BA673;
+}
+
+div.diagXf table {
+    border: thin none;
+    width: auto;
+}
+
+div.diagXf table td {
+    border: thin none;
+}
+
+
+div.diagXf hr {
+    border-top: solid 1px #999;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin-right: 6px;
+    height: 1px;
+}
+
+div.xideHiLit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 1px;
+    line-height: 1px;
+}
+
+
+div.xideHiLit div.lineH {
+	position: absolute;
+	height: 2px;
+	background-color: #f60;
+	background-image: url(../pix/AntsH.gif);
+}
+
+div.xideHiLit div.lineV {
+	position: absolute;
+	width: 2px;
+	background-color: #f60;
+	background-image: url(../pix/AntsV.gif);
+}
+
+
+div.xideMsgMast {
+    color: #333;
+    border: 1px solid #fff;
+    position: absolute;
+    padding: 0px 4px 0px 4px;
+    margin-top: 2px;
+    font-weight: normal;
+    white-space: pre;
+}
+
+div.diagXpEdit {
+	padding: 4px;
+}
+
+table.xpEdit {
+	border-collapse: collapse;
+	border: 1px solid #666;
+	font-family: tahoma, arial, helvetica, sans-serif;
+}
+
+.xpEdit td {
+    border: 1px solid #666;
+}
+
+.xpEdit .btn {
+    font-size: 11px;
+}
+
+.xpEdit .res {
+    font-size: 11px;
+}
+
+.xpEdit div.btn {
+    padding: 0px 2px 1px 4px;
+    text-decoration: none;
+    color: #000;
+    behavior: url(../css2/ieHover.htc);
+    cursor: pointer;
+}
+
+.xpEdit div.btn:hover, .xpEdit div.btn_hover {
+    color: #fff;
+    background-color: #99c;    
+}
+
+
+.xpEdit textarea {
+    margin: 0px;
+    border: 2px solid #fff;
+    font-size: 11px;
+    font-family: monospace;
+    width: 40em;
+    height: 8em;
+}
+
+
+.tree div.fldIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #f90;
+    background-color: #fc0;
+}
+
+.tree div.docIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #99f;
+    background-color: #ccf;
+}
+
+.tree div.defIco {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin: 1px;
+    border: 1px solid #99f;
+    background-color: #ccf;
+}

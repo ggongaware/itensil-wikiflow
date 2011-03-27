@@ -1,0 +1,151 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+<xf:model id="fmodel">
+   	<xf:instance id="ins">
+   		<data xmlns=""/>
+   	</xf:instance>
+   	
+   	<xf:instance id="opt">
+   		<options xmlns="">
+   		</options>
+   	</xf:instance>
+   	
+   	 <xf:submission id="submission" replace="none" method="put">
+	   	<xf:action ev:event="xforms-submit-done">
+	        <xf:message level="ephemeral">Attributes saved.</xf:message>
+		</xf:action>
+		<xf:action ev:event="xforms-submit-error">
+			<xf:message level="modal">Problem saving...</xf:message>
+		</xf:action>
+	</xf:submission>
+		
+</xf:model>
+
+<ix:template name="default">
+	<xf:input ref=".">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:input>
+</ix:template>
+
+<ix:template name="text_full">
+	<xf:textarea ref="." style="width:25em;height:7em">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:textarea>
+</ix:template>
+
+<ix:template name="number">
+	<xf:input ref="." style="width:10em">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:input>
+</ix:template>
+
+<ix:template name="date">
+	<xf:input ref="." style="width:9em">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:input>
+</ix:template>
+
+<ix:template name="email">
+	<xf:input ref=".">
+		<xf:label><xf:output value="$label"/></xf:label>
+		<span class="attrlink"><script ev:event="click">
+			window.open("mailto:" + model.getValue(".",contextNode), "_self");
+		</script>send</span>
+	</xf:input>
+</ix:template>
+
+<ix:template name="http">
+	<xf:input ref="." style="width:22em">
+		<xf:label><xf:output value="$label"/></xf:label>
+		<span class="attrlink"><script ev:event="click">
+			window.open(model.getValue(".",contextNode), "_blank");
+		</script>Go</span>
+	</xf:input>
+</ix:template>
+
+<ix:template name="check">
+	<xf:select ref=".">
+		<xf:label/>
+		<xf:item><xf:label><xf:output value="$label"/></xf:label><xf:value>1</xf:value></xf:item>
+	</xf:select>
+</ix:template>
+
+<ix:template name="select1">
+	<xf:select1 ref=".">
+		<xf:label><xf:output value="$label"/></xf:label>
+		<xf:item><xf:label>-Select-</xf:label><xf:value/></xf:item>
+		<xf:itemset nodeset="instance('opt')/itemset[@name = $itemset]/item">
+			<xf:label ref="@label"/>
+			<xf:value ref="@value"/>
+		</xf:itemset>
+	</xf:select1>
+</ix:template>
+
+<ix:template name="select1_full">
+	<xf:select1 ref="." appearance="full">
+		<xf:label><xf:output value="$label"/></xf:label>
+		<xf:itemset nodeset="instance('opt')/itemset[@name = $itemset]/item">
+			<xf:label ref="@label"/>
+			<xf:value ref="@value"/>
+		</xf:itemset>
+	</xf:select1>
+</ix:template>
+
+<ix:template name="select">
+	<xf:select ref=".">
+		<xf:label><xf:output value="$label"/></xf:label>
+		<xf:itemset nodeset="instance('opt')/itemset[@name = $itemset]/item">
+			<xf:label ref="@label"/>
+			<xf:value ref="@value"/>
+		</xf:itemset>
+	</xf:select>
+</ix:template>
+
+<ix:template name="out_default">
+	<div class="xfctrl">
+		<label><xf:output value="$label"/></label>
+		<xf:output ref="."/>
+	</div>
+</ix:template>
+
+<ix:template name="out_decorate">
+	<xf:input ref=".">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:input>
+</ix:template>
+
+<ix:template name="out_email" class="attr_out">
+	<div class="xfctrl">
+		<label><xf:output value="$label"/></label>
+		<span class="link"><xf:output ref="."/><script ev:event="click">
+			window.open("mailto:" + model.getValue(".",contextNode), "_self");
+		</script></span>
+	</div>
+</ix:template>
+
+<ix:template name="out_http" class="attr_out">
+	<div class="xfctrl">
+		<label><xf:output value="$label"/></label>
+		<span class="link"><xf:output ref="."/><script ev:event="click">
+			window.open(model.getValue(".",contextNode), "_blank");
+		</script></span>
+	</div>
+</ix:template>
+
+<ix:template name="out_check" class="attr_out">
+	<div class="xfctrl">
+		<label><xf:output value="$label"/></label>
+		<xf:output value="if(.=1,'Yes','No')"/>
+	</div>
+</ix:template>
+
+<ix:template name="save">
+	<p><xf:submit submission="submission" class="diagBtn dbSave"/></p>
+</ix:template>
+
+</form>

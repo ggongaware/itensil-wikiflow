@@ -1,0 +1,40 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <data/>
+        </xf:instance>
+
+    </xf:model>
+
+    <div style="padding:6px;width:250px">
+		This activity is missing its content folder.
+		<div style="padding:6px"><span style="color:#009;cursor:pointer;text-decoration:underline"><xf:action ev:event="click">
+			<script>
+				var doc = ActivityTree.xb.loadURI(
+		    		ActivityTree.serviceUri + "rebuildFolder?id=" + model.context);
+    			if (!App.checkError(doc)) {
+    				var id = model.context;
+    				if (Xml.getLocalName(doc.documentElement) == "activity") {
+    					id = doc.documentElement.getAttribute("id");
+    				}
+    				location.href = "../act/page?activity=" + id;
+    			}
+			</script>
+		</xf:action>Re-create content folder &gt;</span></div>
+		<div style="padding:4px"><span style="color:#009;cursor:pointer;text-decoration:underline"><xf:action ev:event="click">
+		<script>
+			ActivityTree.removeById(model.context);
+			location.href = "../home";
+		</script>
+		</xf:action>Delete Activity &gt;</span></div>
+		
+    </div>
+
+</form>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml"/>
+	<iw:type icon="task1"/>
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start  here.</description>
+			<path id="p1" to="End" startDir="E" endDir="W" points="94,55-405,55"><label/></path></start>
+		<end id="End" apptype="" style="left:405px;top:30px" size="">
+			<label/>
+			<description/>
+		</end>
+	</steps>
+	<notes>
+	</notes>
+</flow>

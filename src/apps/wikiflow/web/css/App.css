@@ -1,0 +1,1010 @@
+/* Menus and buttons */
+
+.mbIco {
+    width: 13px;
+    height: 12px;
+    font-size: 12px;
+    line-height: 8px;
+    padding: 0px;
+    background-repeat: no-repeat;
+}
+
+.mb_remIco { background-image: url(../pix/menuIco.gif); background-position: 1px 2px }
+.mb_ediIco { background-image: url(../pix/menuIco.gif); background-position: 1px -22px }
+.mb_newIco { background-image: url(../pix/menuIco.gif); background-position: 1px -46px }
+.mb_optIco { background-image: url(../pix/menuIco.gif); background-position: 1px -70px }
+.mb_viewIco { background-image: url(../pix/menuIco.gif); background-position: 1px -94px }
+.mb_copyIco { background-image: url(../pix/menuIco.gif); background-position: 1px -118px }
+.mb_movIco { background-image: url(../pix/menuIco.gif); background-position: 1px -142px }
+.mb_savIco { background-image: url(../pix/menuIco.gif); background-position: 1px -166px }
+.mb_refIco { background-image: url(../pix/menuIco.gif); background-position: 1px -190px }
+.mb_permIco { background-image: url(../pix/menuIco.gif); background-position: 1px -214px }
+.mb_outIco { background-image: url(../pix/menuIco.gif); background-position: 1px -242px }
+
+.mb_workIco { background-image: url(../pix/menuIco.gif); background-position: -23px 0px }
+.mb_histIco { background-image: url(../pix/menuIco.gif); background-position: -23px -22px }
+.mb_usrIco { background-image: url(../pix/menuIco.gif); background-position: -23px -46px }
+.mb_foldIco { background-image: url(../pix/menuIco.gif); background-position: -23px -70px }
+.mb_addIco { background-image: url(../pix/menuIco.gif); background-position: -23px -94px }
+.mb_condIco { background-image: url(../pix/menuIco.gif); background-position: -23px -118px }
+.mb_bakIco { background-image: url(../pix/menuIco.gif); background-position: -23px -142px }
+.mb_desIco { background-image: url(../pix/menuIco.gif); background-position: -23px -166px }
+.mb_launIco { background-image: url(../pix/menuIco.gif); background-position: -23px -190px }
+.mb_inpuIco { background-image: url(../pix/menuIco.gif); background-position: -23px -214px }
+
+/* Trees */
+.fileTree div.icon,
+.fileTree div.label {
+    cursor: pointer;
+}
+
+/* Mode tabs */
+div.modes {
+    position:absolute;
+    top: 36px;
+    left: 3px;
+}
+
+div.modes .md {
+    background-color: #D0DCF6;
+    position:absolute;
+    top: 0px;
+    text-align:center;
+    line-height: 16px;
+    width: 87px;
+    height: 17px;
+    left: 0px;
+    font-size: 12px;
+    color: #336;
+    border-right: 1px solid #ABB7D1;
+    cursor: pointer;
+}
+
+div.modes .stat{ left: 89px; }
+
+div.modes .edit { left: 178px; }
+
+div.modes .act {
+    background-color: #ABB7D1;
+    color: #006;
+    font-weight: bold;
+    top: -1px;
+    height: 18px;
+    border-right: 1px solid #79859F;
+}
+
+div.modes .crumb {
+	position:absolute;
+	left: 282px;
+	top: 1px;
+	width: 250px;
+	height: 13px;
+	overflow: hidden;
+}
+
+
+div.modes .crumbAct {
+	position:absolute;
+	left: 530px;
+	top: 3px;
+	width: 350px;
+	overflow: hidden;
+	color: #666;
+	height: 13px;
+	font-weight: normal;
+}
+
+div.modes .actVar {
+	font-weight: bold;
+	color: #000;
+}
+
+
+
+.tree .desc,
+.dndDummy .desc  {
+    color: #999;
+    font-size: 10px;
+    padding: 1px 0px 0px 3px;
+}
+
+div.subMsg {
+    position:relative;
+    margin:16px;
+    border:2px solid #666;
+    background-color: #ff9;
+    padding:10px;
+}
+
+.subMsg .head {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.subMsg .undo {
+    padding: 0px 12px 0px 12px;
+    color: #f60;
+    font-weight: normal;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.subMsg .link {
+    color: #009;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Activities */
+
+div.minorTreeBox {
+    margin: 0px 0px 0px 6px;
+    position: relative;
+    zoom:1;
+}
+
+div.activityTree .name {
+    color: #006;
+    font-weight: bold;
+}
+
+div.activityTree .actItem .label {
+	padding-bottom: 8px;
+	width: 80px;
+}
+
+div.activityTree .actDue {
+	position: absolute;
+	font-size: 10px;
+	padding: 0px;
+	bottom: 2px;
+	width: 85px;
+	left: 140px;
+	color: #666;
+} 
+
+div.activityTree .actItem .actLabel {
+	position: absolute;
+	width: 240px;
+	top: 5px;
+	overflow: hidden;
+}
+
+div.activityTree .actParInd {
+	position: absolute;
+	width: 13px;
+    height: 12px;
+    font-size: 12px;
+    line-height: 8px;
+    left: 240px;
+    top: 6px;
+    padding: 0px;
+    background-repeat: no-repeat;
+ 	background-image: url(../pix/menuIco.gif); 
+ 	background-position: -23px -242px;
+ 	cursor: pointer;
+}
+
+.dndDummy .actParInd {
+	display: none;
+}
+
+div.activityTree .actItem .icon {
+	top: 4px;
+}
+
+div.activityTree .treeSel .name {
+    color: #00D;
+}
+
+div.activityTree .freeStep div.icon {
+	display: none;
+}
+
+div.activityTree .freeStep div.label {
+	left: 18px;
+	text-decoration: underline;
+	padding-bottom: 2px;
+	width: 110px;
+}
+
+table.activityGrid {
+    width: 98%;
+    border-bottom: 1px solid #9BACCC;
+}
+
+/* IE6 compromise */
+* html table.activityGrid {
+    width: 95%;
+}
+
+table.activityGrid td {
+    border-top: 0 none;
+    padding-top: 1px;
+    background-color: #fff;
+    border-right: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+table.activityGrid td.even {
+    background-color: #fff;
+    border-right: 1px solid #f1f1f1;
+}
+
+table.activityGrid td.last,
+table.activityGrid tr.alt td.last {
+	border-right: 1px solid #9BACCC;	
+}
+
+table.activityGrid div.step,
+table.activityGrid div.due,
+table.activityGrid div.user {
+    line-height: 13px;
+    overflow: hidden;
+}
+
+table.activityGrid div.first {
+	padding: 0;
+}
+
+table.activityGrid div.step div.first,
+table.activityGrid div.step div.multi {
+	color: #009;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+table.activityGrid div.multi, 
+table.activity td.step div.multi {
+	margin-top: 2px;
+	padding: 2px 0px 0px 0px;
+	border-top: 1px dashed #9BACCC;
+}
+
+table.activityGrid tr.alt td {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+
+table.activityGrid tr.actRow td {
+	border-top: 1px solid #9BACCC;
+	background-color: #fff;
+	border-bottom: 1px solid #fff;
+	border-right: 1px solid #9BACCC;
+}
+
+table.activityGrid tr.today td {
+    background-color: #ffc;
+}
+	
+
+table.activityGrid tr.past td {
+    background-color: #fdd;
+}
+
+table.activityGrid th {
+    background-color: #fff;
+    border-right: 0 none;
+    border-top: 0 none;
+}
+
+.diagContent table.activityGrid th {
+	background: none;
+}
+
+.diagContent div.minorTreeBox {
+	margin-top: 6px;
+}
+
+table.todo th {
+	 border-bottom: 0 none;
+}
+
+table.activityGrid td.first {
+    border-left: 1px solid #9BACCC;
+}
+
+table.activityGrid .projNum {
+	text-align: right;
+}
+
+div.minorHead  {
+    font-family: Gill Sans,Gill Sans MT,Arial,Helvetica,Sans-Serif;
+    font-size: 18px;
+    line-height: 24px;
+    color: #666;
+    font-weight: bold;
+    margin: 0px 8px 1px 6px;
+    padding: 4px 0px 0px 0px;
+    border-bottom: 1px solid #B9CAEA;
+}
+
+div.minorDesc {
+	color: #666;
+	font-size:10px;
+	margin: 2px 8px 6px 6px;
+}
+
+div.minorBtn {
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 10px;
+    color: #006;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin: 10px 12px 0px 0px;
+    padding: 2px 0px 0px 14px;
+}
+
+div.minorBtn .mbIco {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 14px;
+}
+
+/* Team */
+
+div.launchRoles {
+    margin: 4px 4px 8px 85px;
+}
+
+div.launchRoles td,
+div.launchRoles th {
+    color: #444;
+}
+
+div.launchRoles table.roles,
+table.roles {
+    width: 86%;
+    border-bottom: 1px solid #9BACCC;
+    border-collapse: separate;
+}
+div.launchRoles table.roles  td,
+table.roles td {
+    padding: 4px;
+    border-right: 1px solid #9BACCC;
+}
+div.launchRoles table.roles th,
+table.roles th {
+    padding: 1px 1px 1px 4px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #9BACCC;
+}
+
+table.roles td.first {
+    border-left: 1px solid #9BACCC;
+}
+
+table.roles tr.alt td {
+    background-color: #f1f1f1;
+}
+
+.roles .role {
+    font-weight: bold;
+}
+
+.roles .assign {
+    text-decoration: underline;
+    color: #006;
+    cursor: pointer;
+}
+
+/* User/Community Settings */
+
+div.settings {
+    margin: 20px;
+}
+
+.settings fieldset {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.settings legend {
+    font-weight: bold;
+    color: #999;
+}
+
+div.projFoot  {
+	width: 170px;
+	}
+	
+.settings .link {
+    color: #009;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.settings .linkrow {
+	margin: 8px;
+}
+
+.settings table {
+	border-collapse: collapse;
+	border: 1px solid #999;
+}
+
+.settings table td,
+.settings table th {
+	text-align:left;
+	border: 1px solid #999;
+	padding: 4px;
+}
+
+div.userDiag {
+    padding: 4px;
+}
+
+.userTree .click {
+    text-decoration: underline;
+    color: #009;
+}
+
+div.userSubDiag {
+    position: relative;
+}
+
+div.addGroup {
+    padding: 4px;
+}
+
+div.addGroup span {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #009;
+}
+
+table.userGrid {
+    border-bottom: 1px solid #9BACCC;
+}
+
+table.userGrid td {
+    border-top: 0 none;
+    padding-top: 1px;
+    background-color: transparent;
+    border-right: 1px solid #9BACCC;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+table.userGrid td.even,
+table.userGrid td.odd {
+    background-color: transparent;
+}
+
+table.userGrid tr.alt td {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #DDE6F9;
+}
+
+table.userGrid th {
+    border-top: 0 none;
+    border-right: 0 none;
+}
+
+table.userGrid td.first {
+    border-left: 1px solid #9BACCC;
+}
+
+div.flowTree {
+	padding: 8px 8px 8px 0px;
+}
+
+.flowTree div.fldIco {
+    background-image: none;
+}
+
+.flowTree div.label {
+    color: #006;
+    text-decoration:underline;
+    padding: 1px 0px 5px 2px;
+}
+
+.flowTree .empty div.label {
+	color: #666;
+	text-decoration: none;
+}
+
+.flowTree div.kids,
+.flowTree div.kidsLast {
+    padding-left: 0px; /* set indent of inner clauses */
+}
+
+/* Suppress the dotten lines for tree hierarchy */
+.flowTree div.trRowRoot,
+.flowTree div.trRow,
+.flowTree div.trRowLast,
+.flowTree div.trRowRootLast,
+.flowTree div.openRoot,
+.flowTree div.openRootLast,
+.flowTree div.openLast,
+.flowTree div.kids,
+.flowTree div.kidsLast {
+    background-image: none;
+}
+
+/* Wiki tweaks */
+.wiki2nd {
+	margin: 10px;
+	padding: 4px;
+	background-color: #ffd;
+}
+
+.searchActi {
+	background-image: url(../pix/kb/searchActiBg.gif);
+	background-repeat: no-repeat;
+}
+
+/* Xform tweaks */
+
+.xfctrl div.actEmpty,
+.xfctrl div.filEmpty {
+	font-size: 10px;
+	color: #666;
+	padding-top:4px;
+	zoom:1;
+	cursor: pointer;
+}
+
+.xfctrl div.grpVal {
+	padding-top:2px;
+	zoom:1;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.xfctrl div.dndDrop {
+	background-color: #ff6;
+}
+
+.xfctrl table.activity,
+.activityGrid table.activity  {
+  	border-collapse: collapse;
+  	border: 2px solid #ccc;
+  	background-color: #ffc;
+    cursor: pointer;
+}
+
+.activityGrid div.projInfo {
+	height:55px;
+	width: 120px;
+	margin:0px;
+}
+
+.activityGrid div.projInfo table.activity {
+	margin:0px;
+}
+
+.activityGrid table.activity div {
+	padding: 0px;
+}
+
+.xfctrl table.activity td,
+.activityGrid table.activity td {
+	border: 1px solid #ccc;
+	padding : 2px;
+	font-size: 11px;
+	background-color:transparent;
+}
+
+
+.activityGrid tr.paraSep td {
+	background-position: 0px -2px;
+	font-size: 1px;
+	background-image: url(../pix/flow/outSepPar.gif);
+}
+
+.xfctrl table.dndDrop {
+	border-color: #090;
+}
+
+.dndDummy div.file .name,
+.xfctrl div.file .name,
+.activityGrid div.file .name,
+.entityGrid div.file .name {
+	font-size: 11px;
+	color: #009;
+	text-decoration: underline;
+}
+
+.dndDummy div.file span.icon,
+.xfctrl div.file span.icon,
+.activityGrid div.file span.icon,
+.entityGrid div.file span.icon {
+	padding-right: 12px;
+	margin-right: 1px;
+	font-size: 14px;
+}
+
+.xfctrl div.file,
+.activityGrid div.file,
+.entityGrid div.file {
+	cursor: pointer;
+	float: left;
+	zoom:1;
+}
+
+.dndDummy div.file {
+	width: 120px;
+}
+
+/* Status Grid */
+
+.statTree div.para {
+	height: 12px;
+}
+
+.statTree div.label {
+	width: 240px;
+}
+
+.statTree div.paraSep div.icon {
+	height: 1px;
+	font-size: 1px;
+}
+	
+.statTree div.paraSep div.label {
+	line-height: 1px;
+	font-size: 1px;
+}
+
+.statusGrid th.startEnd {
+	white-space: pre;
+}
+
+.statusGrid div.assignEmpty {
+	font-size: 10px;
+	color: #999;
+}
+
+.statusGrid .roleName {
+	padding: 0;
+	font-size: 10px;
+	color: #666;
+}
+
+.statusGrid div.dndDrop {
+	background-color: #ff6;
+}
+
+/* Top Nav */
+a.tnav, a.tnav2 {
+	text-decoration: none;
+	font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: 11px;
+	color: #000;
+	padding-bottom: 1px;
+}
+
+a.tnav:hover, 
+a.onTnav {
+	background-color: #999;
+	color:#fff;
+}
+
+div.tnav {
+	color: #999;
+}
+
+div.mnTNavLab {
+	position:relative;
+	}
+
+div.mnTNavLab div.labTxt {
+	margin-left: 20px;
+	}
+	
+div.mnTNavLab div.icon {
+	position:absolute;
+	top: 0px;
+	}
+	
+/* Project styles */
+
+.projCount {
+	font-size: 10px;
+	color: #666;
+	padding: 4px;
+}
+
+#proj {
+	margin: 8px 16px 8px 16px;
+	position: relative;
+}
+
+#projTitle {
+	position: relative;
+	margin: 0px 16px 2px 16px;
+	color: #666;
+	border-bottom: 1px solid #B9CAEA;
+	padding-bottom: 4px;
+}
+
+#projTitle .name {
+	font-family: Gill Sans,Gill Sans MT,Arial,Helvetica,Sans-Serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#projTitle .description {
+	margin-right: 8px;
+}
+
+#projTitle span.editBtn {
+    font-size: 10px;
+    color: #006;
+    cursor: pointer;
+    position: relative;
+    padding: 2px 0px 0px 14px;
+}
+
+span.editBtn .mbIco {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 14px;
+}
+
+table tr.flowRow td {
+	padding: 5px 1px 5px 1px;
+	cursor: pointer;
+	vertical-align: top;
+	border-bottom: 1px solid #eee;
+}
+
+tr.flowRow div.desc {
+	font-size: 10px;
+	color: #999;
+}
+
+div.hmDash {
+	background-image: url(../pix/homeBg.gif);
+	background-repeat: repeat-y;
+	height: 98px;
+	overflow:hidden;
+}
+
+div.hmDash div.quick {
+	padding: 8px 8px 8px 20px;
+	font-size: 12px;
+	border-bottom: 1px solid #fff;
+	white-space: nowrap;
+}
+
+div.hmDash div.btns {
+	padding-left: 45px;
+	white-space: nowrap;
+}
+
+div.hmLaunch {
+	background-image: url(../pix/homeBtns.gif);
+	width: 50px;
+	height: 43px;
+	margin-left: 20px;
+}
+
+div.hmDesign {
+	background-image: url(../pix/homeBtns.gif);
+	background-position: -50px 0px;
+	width: 50px;
+	height: 43px;
+	margin-left: 20px;
+}
+
+div.hmProject {
+	background-image: url(../pix/homeBtns.gif);
+	background-position: -100px 0px;
+	width: 50px;
+	height: 43px;
+	margin-left: 12px;
+}
+
+div.hmHelp {
+	background-image: url(../pix/homeBtns.gif);
+	background-position: -150px 0px;
+	width: 50px;
+	height: 43px;
+	margin-left: 15px;
+}
+
+div.hmMeet {
+	background-image: url(../pix/homeBtns.gif);
+	background-position: -200px 0px;
+	width: 50px;
+	height: 43px;
+	margin-left: 12px;
+}
+
+div.hmDash div.hmBtn {
+	margin: 8px 45px 8px 0px;
+	float: left;
+	cursor:pointer;
+}
+
+div.hmDash div.hmLabel {
+	font-size: 10px;
+	color: #009;
+}
+
+div.hmProj {
+	margin: 8px 8px 8px 8px;
+}
+
+div.hmProj div.title {
+	font-weight: bold;
+	padding-bottom: 4px;
+	font-size: 12px;
+	border-bottom: 1px solid #B9CAEA;
+}
+
+div.hmProj div.row {
+	position: relative;
+	margin: 8px 8px 8px 8px;
+	border-bottom: 1px solid #ccc;
+}
+
+div.hmProj span.projName {
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+	color: #009;
+}
+
+div.hmProj span.projDesc {
+	font-size: 10px;
+	color: #666;
+}
+
+div.hmProj div.actRows {
+	/* margin: 2px 8px 2px 8px; */
+	}
+
+div.hmProj li.act {
+	position: relative;
+	/* margin: 6px 0px 6px 0px; */
+	margin-bottom: 2px;
+	padding-bottom: 2px;
+	}
+
+div.hmProj div.name {
+	width: 220px;
+	}
+
+div.hmProj div.desc {
+	font-size: 10px;
+	color: #666;
+	}
+	
+div.hmProj div.update {
+	color: #39d;
+	position: absolute;
+	left: 230px;
+	top: 0px;
+	font-size: 10px;
+}
+
+div.togCtrl {
+	padding: 2px 2px 2px 2px;
+	background-color: #d0dcf6;
+	font-size: 11px;
+	position: relative;
+	cursor: pointer;
+}
+
+div.togCtrl .label {
+	padding-left: 16px;
+}
+
+div.togStat {
+	position: absolute;
+    line-height: 11px;
+    top: 3px;
+    left: 2px;
+    width: 11px;
+    height: 11px;
+    background-image: url(../pix/trTog.gif);
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+div.togCtrl .close {
+	background-position: 0px -11px;
+}
+	
+div.togDiv {
+	padding: 4px;
+	border: 1px solid #d0dcf6;
+}
+
+table.diagBtnRow td {
+	padding: 4px;
+}
+
+input.diagBtn,
+button.diagBtn,
+div.diagXf button.diagBtn,
+div.form button.diagBtn  {
+	background-color: transparent;
+	border: 0;
+	background-image: url(../pix/diagBtns.gif);
+	width: 125px;
+	height: 26px;
+	font-size: 1px;
+	display: block;
+	cursor: pointer;
+	margin: 6px 4px 0px 4px;
+}
+
+.dbSave { background-position: 0px 0px; }
+.dbReuseProc { background-position: 0px -27px; }
+.dbNewProc { background-position: 0px -54px; }
+.dbSaveDef { background-position: 0px -81px; }
+.dbSaveAct { background-position: 0px -108px; }
+.dbLaunch { background-position: 0px -135px; }
+.dbSend { background-position: 0px -162px; }
+.dbCreate { background-position: 0px -189px; }
+.dbUpload { background-position: 0px -216px; }
+.dbView { background-position: 0px -243px; }
+.dbGo { background-position: 0px -270px; }
+.dbOk { background-position: 0px -297px; }
+.dbCancel { background-position: 0px -324px; }
+.dbDone { background-position: 0px -351px; }
+.dbPublish { background-position: 0px -378px; }
+.dbNext { background-position: 0px -405px; }
+.dbPrev { background-position: 0px -432px; }
+.dbFinish { background-position: 0px -459px; }
+
+.dndDummy div.meetMem {
+	width: 100px;
+	overflow: hidden;
+}
+
+div.meetMem {
+	border: 1px solid #ccc;
+	line-height: 18px;
+	margin: 1px 1px 1px 0px;
+	padding: 0px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+div.xfctrl div.meetMem {
+	display:inline;
+}
+
+div.meetMem b {
+	padding: 3px 3px 3px 3px;
+	margin: 0px 1px 0px 0px;
+}
+
+div.xfctrl div.meetMem  b {
+	padding: 1px 2px 1px 1px;
+}
+
+div.meetMem {
+	border: 1px solid #ccc;
+	line-height: 14px;
+	margin: 0px 1px 0px 0px;
+	padding: 0px;
+	font-size: 10px;
+}
+
+div.meetMem b {
+	padding: 1px 3px 2px 3px;
+	margin: 0px 1px 0px 0px;
+}
+
+
+.mtMem0 b { background-color: #5b7; color: #fff; }
+.mtMem1 b { background-color: #b6d; color: #fff; }
+.mtMem2 b { background-color: #b77; color: #fff; }
+.mtMem3 b { background-color: #2ce; color: #fff; }
+.mtMem4 b { background-color: #ea1; color: #fff; }
+.mtMem5 b { background-color: #ae9; color: #fff; }
+.mtMem6 b { background-color: #666; color: #fff; }
+.mtMem7 b { background-color: #23c; color: #fff; }
+.mtMem8 b { background-color: #aa3; color: #fff; }

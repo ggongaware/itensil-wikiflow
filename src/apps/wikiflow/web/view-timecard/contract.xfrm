@@ -1,0 +1,244 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+<xf:model id="fmodel">
+
+	<xf:instance id="ins">
+		<contract id="123" xmlns="">
+			<clientName/>
+	        <name/>
+	        <team/>
+	        <estMonths/>
+	        <status/>
+	        <billTerms/>
+	        <billOverages/>
+	        <moneyBudget/>
+	        <hoursBudget/>
+	        <openDate/>
+	        <closeDate/>
+			<manager/>
+			
+			<projects>
+				<project>Main</project>
+				<project>DDJSS001</project>
+				<project>WLL921</project>
+			</projects>
+			
+			<role id="122" rate="25">General</role>
+			<role id="132" rate="30">Data Entry</role>
+			<role id="142" rate="66">Web Designer</role>
+		</contract>
+	</xf:instance>
+	
+	<xf:instance id="pal">
+		<pal xmlns="">
+			<role id="" rate="0"/>
+			<project/>
+		</pal>
+	</xf:instance>
+	
+	
+	<xf:instance id="clients">
+		<list xmlns="">
+			<node uri="WalMart" collection="1"/>
+			<node uri="Target" collection="1"/>
+		</list>
+	</xf:instance>
+	
+	<xf:bind type="ix:currencyUSD" nodeset="role/@rate" constraint=". != ''"/>
+	<xf:bind type="ix:currencyUSD" nodeset="moneyBudget"/>
+	
+	<xf:bind type="xsd:float" nodeset="estMonths"/>
+	<xf:bind type="xsd:float" nodeset="hoursBudget"/>
+	
+	<xf:bind nodeset="name" constraint=". != ''"/>
+	<xf:bind nodeset="projects/project" constraint=". != ''"/>
+	<xf:bind nodeset="role" readonly="position()=1" constraint=". != ''"/>
+	
+	<xf:submission id="submission" replace="none" method="post" action="../tcard/saveContract">
+	</xf:submission>
+	
+</xf:model>
+
+<style>
+span.add {
+	font-weight:bold;
+	color:#009;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+div.num input.xftext {
+	width: 5em;
+}
+
+table.contract td fieldset.contract div.xfctrl {
+    margin: 2px 0px 0px 0px;
+	padding: 5px 6px 7px 4px;
+}
+
+table.matrix {
+	border-collapse:collapse;
+	border: 1px solid #999;
+	width: 300px;
+}
+
+table.matrix td {
+	padding:4px;
+}
+
+table.matrix div.xfctrl {
+	background-color: transparent;
+}
+
+table.matrix th {
+	border: 1px solid #999;
+	text-align:left;
+	background-color:#ccc;
+	padding: 4px;
+	cursor:default;
+}
+
+table.matrix td.del span {
+	cursor:pointer;
+	font-weight:bold;
+	color:#339;
+}
+
+table.contract tr.contract fieldset {
+	border: 1px solid #99c;
+}
+table.contract tr.contract legend {
+	color: #669;
+}
+</style>
+
+<table class="contract">
+	<tr class="contract">
+	<td style="vertical-align:top;width:520px">
+	<xf:group class="contract">
+		<xf:label>Identity</xf:label>
+		<xf:select1 ref="clientName">
+			<xf:label>Client</xf:label>
+			<xf:itemset nodeset="instance('clients')/node[@collection=1]">
+				<xf:label ref="@uri" />
+				<xf:value ref="@uri" />
+			</xf:itemset>
+			<span class="add" style="float:right">New Client<script ev:event="click">
+					var cl = prompt('Client name');
+					if (cl) {
+						alert('Make client ' + cl);
+					} 
+				</script>
+			</span>
+		</xf:select1>
+		<xf:input ref="name">
+			<xf:label>Contract Name</xf:label>
+		</xf:input>
+		<xf:input ref="team">
+			<xf:label>Team</xf:label>
+		</xf:input>
+		<xf:input ref="manager">
+			<xf:label>Client Manager</xf:label>
+		</xf:input>
+	</xf:group>
+	<br/>
+	<xf:group class="contract">
+		<xf:label>Status/Terms</xf:label>
+		<xf:select1 ref="status">
+			<xf:label>Status</xf:label>
+			<xf:item><xf:value>backlog</xf:value><xf:label>backlog</xf:label></xf:item>
+			<xf:item><xf:value>scheduled</xf:value><xf:label>scheduled</xf:label></xf:item>
+			<xf:item><xf:value>in process</xf:value><xf:label>in process</xf:label></xf:item>
+			<xf:item><xf:value>ongoing</xf:value><xf:label>ongoing</xf:label></xf:item>
+			<xf:item><xf:value>complete</xf:value><xf:label>complete</xf:label></xf:item>
+		</xf:select1>
+		<xf:input ref="moneyBudget" class="num">
+			<xf:label>Project Value</xf:label>
+			<xf:hint>Total project value in $$</xf:hint>
+		</xf:input>
+		<xf:input ref="hoursBudget" class="num">
+			<xf:label>Hour Budget</xf:label>
+			<xf:hint>Total hours budgeted</xf:hint>
+		</xf:input>
+		<xf:select1 ref="billOverages">
+			<xf:label>Bill Overages?</xf:label>
+			<xf:item><xf:value>1</xf:value><xf:label>yes</xf:label></xf:item>
+			<xf:item><xf:value>0</xf:value><xf:label>no</xf:label></xf:item>
+		</xf:select1>
+		<xf:textarea ref="billTerms" style="width:31em;height:12em">
+			<xf:label>Rev-Rec Terms</xf:label>
+			<xf:hint>Billing and revenue recognition terms</xf:hint>
+		</xf:textarea>
+	</xf:group>	
+	</td>
+	<td style="vertical-align:top;width:300px">
+	<xf:group ref="projects" style="padding:8px;">
+		<xf:label>Projects</xf:label>
+		<table class="matrix">
+		<tr>
+			<th>Project</th>
+			<th></th>
+		</tr>
+		<xf:repeat nodeset="project">
+			<tr>
+				<td>
+				<xf:input ref=".">
+					<xf:label/>
+				</xf:input>
+				</td>
+				<td class="del"><span>x<xf:destroy ev:event="click" ref="."/>
+				<ix:attr name="style" value="if(position()=1,'display:none','')"/></span></td>
+			</tr>
+		</xf:repeat>
+		</table>
+		<div style="text-align:right">
+		<span class="add">Add Project<xf:action ev:event="click">
+			<xf:duplicate ref="." origin="instance('pal')/project"/>
+		</xf:action></span>
+		</div>
+	</xf:group>
+	<br/>
+	<xf:group style="padding:8px;">
+		<xf:label>Roles</xf:label>
+		<table class="matrix">
+		<tr>
+			<th>Role Name</th>
+			<th>Hourly Rate</th>
+			<th></th>
+		</tr>
+		<xf:repeat nodeset="role">
+			<tr>
+				<td>
+				<xf:input ref=".">
+					<xf:label/>
+				</xf:input>
+				</td>
+				<td>
+				<xf:input ref="@rate" class="num">
+					<xf:label/>
+				</xf:input>
+				</td>
+				<td class="del"><span>x<xf:destroy ev:event="click" ref="."/>
+				<ix:attr name="style" value="if(position()=1,'display:none','')"/></span></td>
+			</tr>
+		</xf:repeat>
+		</table>
+		<div style="text-align:right">
+		<span class="add">Add Role<xf:action ev:event="click">
+			<xf:duplicate ref="." origin="instance('pal')/role"/>
+		</xf:action></span></div>
+	</xf:group>
+	</td>	
+	</tr>
+</table>
+<div style="margin:8px">
+<xf:submit submission="submission">
+       <xf:label>Save</xf:label>
+</xf:submit>
+</div>
+</form>

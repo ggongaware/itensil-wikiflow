@@ -1,0 +1,51 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="session_factory_name">jndi/ItensilHB</property>
+        <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="connection.datasource">java:comp/env/jdbc/ItensilDS</property>
+        
+        <property name="jdbc.batch_size">10</property>
+
+        <property name="show_sql">false</property>
+
+        <property name="cache.use_query_cache">true</property>
+        <property name="transaction.flush_before_completion">true</property>
+		
+		<property name="current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+		
+		<property name="transaction.factory_class">
+             org.hibernate.transaction.JDBCTransactionFactory
+        </property>
+        
+
+        <property name="cache.provider_class">
+             org.hibernate.cache.EhCacheProvider
+        </property>
+        
+        <mapping resource="itensil/config/hibernate/Config.hbm.xml"/>
+
+        <mapping resource="itensil/workflow/activities/state/Activity.hbm.xml"/>
+        <mapping resource="itensil/workflow/activities/state/Flow.hbm.xml"/>
+        <mapping resource="itensil/workflow/activities/signals/Signals.hbm.xml"/>
+        <mapping resource="itensil/workflow/activities/timer/Timer.hbm.xml"/>
+        
+        <!-- Timecard mappings -->
+		<mapping resource="itensil/timecard/hibernate/Timecard.hbm.xml"/>
+
+        <!-- repository mappings -->
+        <mapping resource="itensil/repository/hibernate/Repository.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/EntityManager.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/NodeEntity.hbm.xml"/>
+        <mapping resource="itensil/repository/hibernate/VersionEntity.hbm.xml"/>
+
+        <!-- security mappings -->
+        <mapping resource="itensil/security/hibernate/UserSpace.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>

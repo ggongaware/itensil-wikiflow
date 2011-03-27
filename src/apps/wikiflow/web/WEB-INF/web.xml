@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+
+    <!-- Filters -->
+    <filter>
+        <filter-name>ConfigFilter</filter-name>
+        <filter-class>itensil.config.web.ConfigFilter</filter-class>
+    </filter>
+    
+    <filter>
+
+        <filter-name>SignonFilter</filter-name>
+        <filter-class>itensil.security.web.SignOnFilter</filter-class>
+        <init-param>
+            <param-name>form-protect-pattern</param-name>
+            <param-value>
+                /shell/*
+                /mod/*
+                /trak/*
+                /uspace/*
+                /home/*
+                /act/*
+                /kb/*
+                /proj/*
+                /rss/*
+                /entity/*
+                /view-usr/*
+                /_comadmin/*
+                /index/*
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>basic-protect-pattern</param-name>
+            <param-value>
+                /fil/*
+                /filx/*
+                /dav/*
+                /docs/*
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>anonymous-pattern</param-name>
+            <param-value>/pub/*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>require-ssl</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>realm-name</param-name>
+            <param-value>Itensil</param-value>
+        </init-param>
+        <init-param>
+            <param-name>form-login-page</param-name>
+            <param-value>/signon/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>form-error-page</param-name>
+            <param-value>/signon/index.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logged-out-page</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>zone</param-name>
+            <param-value>repo-web</param-value>
+        </init-param>
+    </filter>
+    
+    
+    <filter>
+        <filter-name>SignalManagerFilter_DoBefore</filter-name>
+        <filter-class>itensil.workflow.activities.signals.SignalManagerFilter_DoBefore</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>SignalManagerFilter_DoAfter</filter-name>
+        <filter-class>itensil.workflow.activities.signals.SignalManagerFilter_DoAfter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>GZIPStatic</filter-name>
+        <filter-class>itensil.web.GZIPStaticFilter</filter-class>
+    </filter>
+
+	<filter-mapping>
+        <filter-name>ConfigFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SignonFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+        <filter-name>SignalManagerFilter_DoBefore</filter-name>
+        <url-pattern>/home/*</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+        <filter-name>SignalManagerFilter_DoAfter</filter-name>
+        <url-pattern>/act/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GZIPStatic</filter-name>
+        <url-pattern>/js/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Servlets -->
+    <servlet>
+    	<servlet-name>Config</servlet-name>
+    	<servlet-class>itensil.config.web.ConfigServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+    	<servlet-name>Shell</servlet-name>
+    	<servlet-class>itensil.repository.web.ShellServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>Webdav</servlet-name>
+    	<servlet-class>itensil.repository.web.WebdavServlet</servlet-class>
+  	</servlet>
+
+    <servlet>
+    	<servlet-name>UserSpace</servlet-name>
+    	<servlet-class>itensil.security.web.UserSpaceServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>ActServ</servlet-name>
+    	<servlet-class>itensil.workflow.activities.web.ActivityServlet</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>WFModel</servlet-name>
+    	<servlet-class>itensil.workflow.activities.web.ModelingServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+    	<servlet-name>KbServ</servlet-name>
+    	<servlet-class>itensil.kb.web.KbServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+    	<servlet-name>Timecard</servlet-name>
+    	<servlet-class>itensil.timecard.web.TimecardServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+    	<servlet-name>ProjServ</servlet-name>
+    	<servlet-class>itensil.workflow.activities.web.ProjectServlet</servlet-class>
+    </servlet>
+    
+   	<servlet>
+    	<servlet-name>EntityServ</servlet-name>
+    	<servlet-class>itensil.entities.web.EntityServlet</servlet-class>
+    </servlet>
+
+   	<servlet>
+    	<servlet-name>IndexServ</servlet-name>
+    	<servlet-class>itensil.index.web.IndexServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+    	<servlet-name>DocServ</servlet-name>
+    	<servlet-class>itensil.document.web.DocumentServlet</servlet-class>
+    </servlet>
+    
+    
+    <servlet>
+    	<servlet-name>ComAdmin</servlet-name>
+    	<servlet-class>itensil.security.web.CommunityAdmin</servlet-class>
+    </servlet>
+
+    <servlet>
+    	<servlet-name>Messaging</servlet-name>
+    	<servlet-class>itensil.workflow.activities.web.NotificationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+    	<servlet-name>MailHoster</servlet-name>
+    	<servlet-class>itensil.mail.web.MailHoster</servlet-class>
+
+        <!-- START default Mail Service -->
+        <init-param>
+            <param-name>name</param-name>
+            <param-value>default</param-value>
+        </init-param>
+        <init-param>
+            <param-name>bouncer</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>delivery</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>properties</param-name>
+            <param-value>
+## Alert Identity
+alert.from.email: alert@itensil.net
+alert.from.name: Alert
+
+## Outbound
+#mail.transport.protocol: smtp
+#mail.smtp.host: --myhost.com
+#mail.smtp.port: 25
+
+## SMTP user. Required only if SMTP server requires authentication
+mail.smtp.auth: true
+
+## Mail server authentication
+mail.user: ---
+mail.password: ---
+
+
+## Inbound
+#mail.store.protocol: pop3
+#mail.pop3.host: --myhost.com
+#mail.pop3.port: 110
+
+## bounce path address
+mail.smtp.from: mail@itensil.net
+
+## SMTP localhost. Required only if SMTP  requires a full hostname
+mail.smtp.localhost: itensil.net
+
+## Timing
+mail.pop3.connectiontimeout: 10000
+mail.pop3.timeout: 300000
+mail.smtp.connectiontimeout: 10000
+mail.smtp.timeout: 300000
+
+mail.send.batch: 10
+mail.send.pause: 3
+mail.check.pause: 60
+            </param-value>
+        </init-param>
+        <!-- END default Mail Service -->
+
+        <load-on-startup>2</load-on-startup>
+  	</servlet>
+
+    <servlet>
+    	<servlet-name>SignalService</servlet-name>
+    	<servlet-class>itensil.workflow.activities.web.SignalServlet</servlet-class>
+        <load-on-startup>3</load-on-startup>
+  	</servlet>
+
+    <servlet-mapping>
+    	<servlet-name>Shell</servlet-name>
+    	<url-pattern>/shell/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Webdav</servlet-name>
+    	<url-pattern>/fil</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Webdav</servlet-name>
+    	<url-pattern>/fil/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Webdav</servlet-name>
+    	<url-pattern>/filx/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Webdav</servlet-name>
+    	<url-pattern>/dav/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>UserSpace</servlet-name>
+    	<url-pattern>/uspace/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>ActServ</servlet-name>
+    	<url-pattern>/act/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>ProjServ</servlet-name>
+    	<url-pattern>/proj/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>WFModel</servlet-name>
+    	<url-pattern>/mod/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>KbServ</servlet-name>
+    	<url-pattern>/kb/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>EntityServ</servlet-name>
+    	<url-pattern>/entity/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>IndexServ</servlet-name>
+    	<url-pattern>/index/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>DocServ</servlet-name>
+    	<url-pattern>/docs/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Timecard</servlet-name>
+    	<url-pattern>/tcard/*</url-pattern>
+  	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>ComAdmin</servlet-name>
+    	<url-pattern>/_comadmin/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>Messaging</servlet-name>
+    	<url-pattern>/rss/*</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>MailHoster</servlet-name>
+    	<url-pattern>/MailHoster.info</url-pattern>
+  	</servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>SignalService</servlet-name>
+    	<url-pattern>/SignalService.info</url-pattern>
+  	</servlet-mapping>
+
+    <!-- Mime -->
+    <mime-mapping>
+    	<extension>avi</extension>
+    	<mime-type>video/avi</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>doc</extension>
+    	<mime-type>application/msword</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>docx</extension>
+    	<mime-type>application/msword</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>eml</extension>
+    	<mime-type>application/msoutlook</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>entity</extension>
+    	<mime-type>application/itensil-entity+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>htc</extension>
+    	<mime-type>text/x-component</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>htmlet</extension>
+    	<mime-type>text/htmlet</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>kb</extension>
+    	<mime-type>application/knowledgebase+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>lnk</extension>
+    	<mime-type>application/octet-stream</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>mov</extension>
+    	<mime-type>video/quicktime</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>mp3</extension>
+    	<mime-type>audio/mpeg</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>mpg</extension>
+    	<mime-type>video/mpeg</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>msg</extension>
+    	<mime-type>application/msoutlook</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>pdf</extension>
+    	<mime-type>application/pdf</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>ppt</extension>
+    	<mime-type>application/vnd.ms-powerpoint</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>pptx</extension>
+    	<mime-type>application/vnd.ms-powerpoint</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>rule</extension>
+    	<mime-type>application/itensil-rules+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>swf</extension>
+    	<mime-type>application/x-shockwave-flash</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>txt</extension>
+    	<mime-type>text/plain</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>wav</extension>
+    	<mime-type>audio/x-wav</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>wma</extension>
+    	<mime-type>audio/x-ms-wma</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>wmv</extension>
+    	<mime-type>video/x-ms-wmv</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>flow</extension>
+    	<mime-type>application/itensil-flow+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>xls</extension>
+    	<mime-type>application/vnd.ms-excel</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>xlsx</extension>
+    	<mime-type>application/vnd.ms-excel</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>xml</extension>
+    	<mime-type>text/xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>xfrm</extension>
+    	<mime-type>application/xhtml+xforms</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>xrpt</extension>
+    	<mime-type>application/itensil-report+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+    	<extension>zip</extension>
+    	<mime-type>application/x-zip-compressed</mime-type>
+    </mime-mapping>
+    
+   	<error-page>
+        <exception-type>itensil.repository.NotFoundException</exception-type>
+        <location>/view-usr/error-404.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>itensil.repository.AccessDeniedException</exception-type>
+        <location>/view-usr/error-404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/view-usr/error-404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/view-usr/error-404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>409</error-code>
+        <location>/view-usr/error-404.jsp</location>
+    </error-page>
+
+    <resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>jdbc/ItensilDS</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+    </resource-ref>
+
+</web-app>

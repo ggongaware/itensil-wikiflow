@@ -1,0 +1,41 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+    	<xf:instance id="ins">
+            <data/>
+        </xf:instance>
+	</xf:model>
+
+	<div style="padding:2px 8px 10px 8px;width:300px">
+		<div style="border:1px solid #ccc;padding:4px;margin:6px 2px 2px 2px;font-size:12px">
+		<b>Reuse a process:</b> Follow a standard practice or customize a process you’ve designed or select from the process library.
+		</div>
+		<xf:trigger class="diagBtn dbReuseProc">
+	    	<xf:action ev:event="DOMActivate">
+		    	<script>
+		    		var rect = getBounds(uiParent);
+		    		App.snavMenuProcLan.show(rect.x + 5, rect.y + rect.h + 1);
+		    	</script>
+		    </xf:action>
+
+	    </xf:trigger>
+	    
+	    <div style="border:1px solid #ccc;padding:4px;margin:20px 2px 2px 2px;font-size:12px">
+			<b>Start with a new process:</b> Begin with a single step and expand to meet your needs.
+		</div>
+	    <xf:trigger class="diagBtn dbNewProc">
+	    	<xf:action ev:event="DOMActivate">
+		    	<script>
+		    		ActivityTree.activityLaunch("", "New Process", "/system/sysproc/Starter");
+		    	</script>
+		    </xf:action>
+	    </xf:trigger>
+	</div>
+	
+
+</form>

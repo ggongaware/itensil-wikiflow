@@ -1,0 +1,52 @@
+<flow version="1.0" xmlns:ju="junit">
+
+	<ju:root attr1="root1-att1">root1</ju:root>
+	<ju:root attr1="root2-att1">root2</ju:root>
+
+    <steps>
+        <start id="s1" apptype="">
+            <label/>
+            <description/>
+            <path id="p1" to="a1"><label/></path>
+            <ju:start ref="nots1"/>
+            <ju:start ref="s1"/>
+        </start>
+        <activity id="a1" apptype="">
+            <label/>
+            <description/>
+            <path id="p2" to="w1"><label/></path>
+            <ju:act ref="a1">
+            	<ju:sub-act>sub1</ju:sub-act>
+            	<ju:sub-act>sub2</ju:sub-act>
+            	<ju:sub-act>sub3</ju:sub-act>
+            </ju:act>
+        </activity>
+        <switch id="w1" mode="XOR" apptype="">
+            <label/>
+            <description/>
+            <path id="p3" to="a1">
+                <condition>loop</condition>
+                <label/>
+            </path>
+            <path id="p4" to="t1">
+                <!-- last condition always otherwise for XOR -->
+                <condition/>
+                <label/>
+            </path>
+        </switch>
+        <timer id="t1" mode="wait" apptype="">
+            <label/>
+            <description/>
+            <path id="p5" to="e1"><label/></path>
+            <wait days="0" hours="1" minutes="5"/>
+        </timer>
+        <end id="e1" apptype="">
+            <label/>
+            <description/>
+        </end>
+    </steps>
+
+    <notes>
+    </notes>
+
+</flow>

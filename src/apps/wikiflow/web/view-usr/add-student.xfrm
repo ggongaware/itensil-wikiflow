@@ -1,0 +1,59 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:ir="http://itensil.com/repository"
+    xmlns:d="DAV:">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <invite>
+                <name/>
+                <email/>
+                <password/>
+                <guest>1</guest>
+            </invite>
+        </xf:instance>
+
+        <xf:bind nodeset="name" constraint=". != ''"/>
+        <xf:bind nodeset="email" constraint=". != ''"/>
+        <xf:bind nodeset="password" constraint=". != ''"/>
+
+        <xf:submission id="submission" replace="none" method="post" action="../uspace/invite">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:6px;width:350px">
+
+        <xf:input ref="name">
+          <xf:label>Student Name:</xf:label>
+        </xf:input>
+		<hr size="1"/>
+        <xf:input ref="email">
+            <xf:label>Student ID:</xf:label>
+            <xf:hint>This ID is used as a login.</xf:hint>
+        </xf:input>
+      
+      	<xf:input ref="password">
+            <xf:label>PIN:</xf:label>
+            <xf:hint>The PIN is used a password.</xf:hint>
+        </xf:input>
+      
+        <xf:submit submission="submission" class="diagBtn dbOk"/>
+
+    </div>
+    
+    
+    
+
+</form>

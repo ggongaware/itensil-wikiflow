@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.repository.hibernate">
+
+    <class name="VersionEntity" lazy="false" table="iten_repo_version">
+
+        <cache usage="read-write"/>
+
+        <id name="id">
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="nodeEntity" class="NodeEntity">
+            <column name="nodeId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+        
+        <property name="number" column="vNumber"/>
+        <property name="label" column="vLabel"/>
+        
+        <!-- node-properties -->
+        <property name="davContentType"/>
+		<property name="davContentLang"/>
+		<property name="davContentLen"/>
+		<property name="davEtag"/>
+		<property name="davLastMod"/>
+		<property name="irModifier"/>
+		<property name="irDescription"/>
+		<property name="irKeywords"/>
+		<property name="irTags"/>
+		<property name="irStyle"/>
+		<property name="cust1Ns"/>
+		<property name="cust1Val"/>
+		<property name="cust2Ns"/>
+		<property name="cust2Val"/>
+		<property name="cust3Ns"/>
+		<property name="cust3Val"/>
+		<property name="cust4Ns"/>
+		<property name="cust4Val"/>
+		
+		<property name="ieRecordId"/>
+		<property name="ieBrowse0"/>
+		<property name="ieBrowse1"/>
+		<property name="ieBrowse2"/>
+		<property name="ieBrowse3"/>
+		<property name="ieBrowse4"/>
+		<property name="ieBrowse5"/>
+		<property name="ieBrowse6"/>
+		<property name="ieBrowse7"/>
+		<property name="ieBrowse8"/>
+		<property name="ieBrowse9"/>
+		<property name="ieBrowseA"/>
+		<property name="ieBrowseB"/>
+		<!-- /node-properties -->
+
+        <set name="contentEntities" inverse="true">
+            <key column="versionId"/>
+            <one-to-many class="ContentEntity"/>
+        </set>
+
+    </class>
+
+    <class name="ContentEntity" lazy="false" table="iten_repo_content">
+    
+    	<cache usage="read-write"/>
+    	
+        <composite-id>
+            <key-many-to-one name="versionEntity" class="VersionEntity" column="versionId" />
+        </composite-id>
+        <property name="length" column="cLength"/>
+        <property name="bytes" type="itensil.io.BinaryBlobType">
+            <column name="content" sql-type="LONGBLOB"/>
+        </property>
+    </class>
+    
+   	<query name="Repo.deleteContent">
+		DELETE ContentEntity cont WHERE cont.versionEntity = :ver
+	</query>
+    
+    <!-- TODO: move this to dedicated entities hbm.xml -->
+    <query name="Entity.allRecords">
+        FROM VersionEntity ver
+        WHERE ver.nodeEntity.parentNode = :recsNode
+            AND ver.ieRecordId > 0
+            AND ver.nodeEntity.deleted = 0
+            ORDER BY ver.ieRecordId DESC
+    </query>
+    
+    <query name="Entity.recsById">
+        FROM VersionEntity ver
+        WHERE ver.nodeEntity.parentNode = :recsNode
+            AND ver.ieRecordId IN (:recIds)
+            AND ver.nodeEntity.deleted = 0
+            ORDER BY ver.ieRecordId DESC
+    </query>
+
+</hibernate-mapping>

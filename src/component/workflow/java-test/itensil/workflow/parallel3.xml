@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml"/>
+	<iw:type icon="task1"/>
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start  here.</description>
+			<path id="p1" to="trackB" startDir="E" endDir="W" points="94,55-104,55-104,235-200,235"><label/></path><path id="path" startDir="E" endDir="W" points="94,55-195,55" to="trackA"><label/></path></start>
+		<end id="End" apptype="" style="left:820px;top:30px">
+			<label/>
+			<description/>
+		</end>
+	<activity role="" id="trackB" style="left:200px;top:210px">
+						<label/>
+						<description/>
+						<iw:article layout="2colA">Default loop workzone.
+++++
+[submit[!Loop|loop=1]] [submit[No Loop|loop=0]] 
+</iw:article>
+						<path id="lpA" startDir="E" endDir="W" points="310,235-335,235" to="Loop Switch"><label/></path>
+					</activity><switch mode="XOR" id="Loop Switch" style="left:335px;top:195px">
+						<label/>
+						<description/>
+						<path id="lpB" startDir="E" endDir="W" points="455,235-540,235" to="trackB3">
+							<condition>loop=0</condition>
+							<label style="left:470px;top:245px">No Loop</label>
+						</path>
+						<path id="lpC" startDir="S" endDir="S" points="395,275-395,305-250,305-250,270" to="trackB">
+							<condition>loop=1</condition>
+							<label style="left:120px;top:95px">Loop</label>
+						</path>
+					<path id="path 4" startDir="N" endDir="W" points="395,195-395,145-480,145" to="trackB2"><condition/><label style="left:440px;top:155px">Other</label></path></switch><activity role="" id="trackB3" style="left:540px;top:210px">
+						<label/>
+						<description/>
+					<iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article>
+					<path id="path 6" startDir="E" endDir="S" points="650,245-700,245-700,100-700,100-700,90" to="join1"><label/></path></activity><activity role="" id="join1" style="left:640px;top:30px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 2" startDir="E" endDir="W" to="End" points="750,55-820,55"><label/></path></activity><activity role="" id="trackA" style="left:195px;top:30px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 3" startDir="E" endDir="W" to="join1" points="305,55-640,55"><label/></path></activity><activity role="" id="trackB2" style="left:480px;top:120px"><label/><description/>
+                    <iw:article layout="2colA">Default workzone.
+++++
+[submit[!Continue]] 
+</iw:article><path id="path 5" startDir="E" endDir="W" points="590,145-615,145-615,70-640,70" to="join1"><label/></path></activity></steps>
+	<notes>
+	</notes>
+</flow>

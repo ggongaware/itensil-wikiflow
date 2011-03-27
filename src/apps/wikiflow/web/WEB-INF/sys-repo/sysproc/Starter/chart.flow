@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns:iw="http://itensil.com/workflow" version="1.0">
+	<iw:data src="rules.xml"/>
+	<iw:type icon="task4"/>
+	<steps>
+		<start id="Start" apptype="" style="left:45px;top:30px">
+			<label>Start</label>
+			<description>Items start  here.</description>
+			<path id="p1" to="Instructions" startDir="E" endDir="W" points="94,55-155,55"><label/></path></start>
+		<end id="End" apptype="" style="left:350px;top:30px">
+			<label/>
+			<description/>
+		</end>
+	<activity role="" id="Instructions" style="left:155px;top:30px" size=""><label/><description>Create and launch your process</description>
+                    <iw:article layout="" modifyBy="fycRVw0BAF3mChMBS$fk" modifyTime="2007-08-23T17:47:30Z">
+}}}shaded:
+''Click [kb[/system/Help/Help.kb|Create and launch a new Process|Create and launch a new Process|1]] to display these instructions in a popup window. ''
+}}}
+''Instructions for creating a new process:''
+#Click the Design tab above the To Do List panel (upper left, below the logo.) 
+#Draw your new process in the Flowchart or Build from outline. 
+#Disconnect the path from Start into the Instructions step and connect it to the first step in your new process.
+#In the Files panel, open the activities folder, drag and drop any new files in the Process template folder into the folder named for the activity you are now editing. (select the Copy option after you drop the file.)
+#Save the Flowchart. (select the Save Default option)
+#Click the Run tab above the Palette panel
+#Rollback the Process one step (use Advanced Options in To Do List activity menu) and click the Continue button in the workzone. 
+#Begin to perform the Process Activity. 
+
+Your new Process is now available in the Launch menu to reuse on demand.
+</iw:article></activity></steps>
+	<notes>
+	</notes>
+</flow>

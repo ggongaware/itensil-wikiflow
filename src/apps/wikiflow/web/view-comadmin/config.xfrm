@@ -1,0 +1,40 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+		<xf:instance id="ins">
+			<config-property>
+				<component></component>
+				<properties></properties>
+			</config-property>
+		</xf:instance>
+		
+		<xf:submission id="submission" replace="none" method="post" action="../_comadmin/setConfigProp">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+		
+	</xf:model>
+	
+	
+	<div style="padding:6px;width:500px">
+		<xf:group>
+			<xf:label ref="component"/>
+	        <xf:textarea ref="properties" style="width:39em;height:25em;">
+	        	<xf:label/>
+	        </xf:textarea>
+	  	</xf:group>
+
+		<xf:submit submission="submission" class="diagBtn dbSave"/>
+	</div>
+	
+	
+</form>

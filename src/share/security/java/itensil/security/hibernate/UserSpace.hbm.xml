@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.security.hibernate">
+
+    <class name="AppComponentMap" lazy="false" table="iten_app_component_map">
+        <id name="mapId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <property name="appId" />
+        <property name="appProcessId"/>
+
+        <property name="itenOwnerId"/>
+        <property name="itenComponentType"/>
+        <property name="itenComponentName"/>
+        <property name="itenComponentId"/>
+
+    </class>
+
+
+
+    <class name="UserSpaceEntity" lazy="false" table="iten_userspace">
+        <id name="userSpaceId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+
+        <property name="name"/>
+        <property name="baseUrl"/>
+
+        <property name="brand"/>
+
+        <property name="featuresStr"/>
+
+        <property name="createTime" />
+
+         
+
+        <property name="disabled"/>
+
+        
+
+        <property name="alertEmailer"/>
+
+        
+  
+
+        <map name="userSpaceUsers" lazy="true" inverse="true" cascade="delete">
+
+            <key column="userSpaceId"/>
+
+            <map-key-many-to-many column="userId" class="UserEntity"/>
+
+            <one-to-many class="USpaceUserEntity"/>
+
+        </map>
+
+        <set name="groupEntities" inverse="true" lazy="true">
+            <key column="userSpaceId"/>
+            <one-to-many class="GroupEntity"/>
+        </set>
+
+        
+    </class>
+
+    <class name="UserEntity" lazy="false" table="iten_user">
+        <id name="userId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <property name="userName" unique="true"/>
+        <property name="simpleName"/>
+
+        <property name="email"/>
+
+        <property name="createTime"/>
+        <property name="flagStr"/>
+
+        <property name="remoteKey"/>
+
+        <property name="lastLogin"/>
+
+        <property name="loginCount"/>
+        <property name="passwordHash" type="binary" />
+        <property name="token"/>
+        <property name="localeStr" column="locale" />
+        <property name="timezoneStr" column="timezone" />
+        <property name="deleted"/>
+
+       
+
+        <map name="groupUserEntities" table="iten_group_user" lazy="true" inverse="true" cascade="delete">
+
+            <key column="userId"/>
+
+            <map-key-many-to-many column="groupId" class="GroupEntity"/>
+
+            <one-to-many class="GroupUserEntity" not-found="ignore"/>
+
+        </map>
+
+
+		<map name="userSpaceUsers" table="iten_uspace_user" lazy="true" inverse="true" cascade="delete">
+
+            <key column="userId"/>
+
+            <map-key-many-to-many column="userSpaceId" class="UserSpaceEntity"/>
+
+            <one-to-many class="USpaceUserEntity"/>
+
+        </map>
+
+    </class>
+
+    
+
+    <class name="USpaceUserEntity" lazy="false" table="iten_uspace_user">
+
+    	<composite-id>
+
+            <key-many-to-one name="userEntity" class="UserEntity" column="userId" />
+
+            <key-many-to-one name="userSpaceEntity" class="UserSpaceEntity" column="userSpaceId"/>
+
+        </composite-id>
+
+        <property name="roleStr" />
+
+        <property name="createTime" />
+
+        
+
+        <property name="custom1"/>
+
+        <property name="custom2"/>
+
+        <property name="custom3"/>
+
+        <property name="custom4"/>
+
+        
+	</class>
+
+	
+    <class name="GroupEntity" lazy="false" table="iten_group">
+        <id name="groupId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <properties name="upsace_group">
+            <property name="groupName"/>
+            <many-to-one name="userSpaceEntity" class="UserSpaceEntity" column="userSpaceId" not-found="ignore"/>
+        </properties>
+
+
+        <property name="simpleName"/>
+
+        <property name="groupType"/>
+
+        <property name="remoteKey"/>
+
+        <property name="parentGroupId" column="parentId"/>
+
+
+
+        <property name="custom1"/>
+
+        <property name="custom2"/>
+
+        <property name="custom3"/>
+
+        <property name="custom4"/>
+
+        
+
+        <map name="groupUserEntities" table="iten_group_user" lazy="true" inverse="true" cascade="delete">
+
+            <key column="groupId"/>
+
+            <map-key-many-to-many column="userId" class="UserEntity"/>
+
+            <one-to-many class="GroupUserEntity" not-found="ignore"/>
+
+        </map>
+
+    </class>
+
+    
+
+    <class name="GroupUserEntity" lazy="false" table="iten_group_user">
+
+    	<composite-id>
+
+    		<key-many-to-one name="groupEntity" class="GroupEntity" column="groupId"/>
+
+            <key-many-to-one name="userEntity" class="UserEntity" column="userId" />
+
+        </composite-id>
+
+        <property name="roleStr" />
+
+        <property name="joinTime" />
+
+	</class>
+    
+
+    <query name="USpace.anyUserByName">
+        FROM UserEntity usr
+        WHERE usr.userName = :name
+    </query>
+
+    <query name="USpace.userById">
+        FROM UserEntity usr
+
+        	LEFT JOIN FETCH usr.userSpaceUsers uus
+        WHERE usr.userId = :id
+            AND uus.userSpaceEntity = :uspace
+    </query>
+
+    <query name="USpace.userByName">
+        FROM UserEntity usr
+
+        	LEFT JOIN FETCH usr.userSpaceUsers uus
+        WHERE usr.userName = :name
+            AND uus.userSpaceEntity = :uspace
+            AND usr.deleted = false
+    </query>
+
+    <query name="USpace.groupById">
+        FROM GroupEntity grp
+        WHERE grp.groupId = :id
+            AND grp.userSpaceEntity = :uspace
+    </query>
+
+    <query name="USpace.groupByName">
+        FROM GroupEntity grp
+        WHERE grp.groupName = :name
+            AND grp.userSpaceEntity = :uspace
+    </query>
+    
+    <query name="USpace.getUSpaces">
+        FROM UserSpaceEntity usp
+        WHERE usp.name != 'system'
+
+        ORDER BY usp.name
+    </query>
+
+    
+
+   	<query name="USpace.byHost">
+
+        FROM UserSpaceEntity usp
+
+        WHERE usp.baseUrl LIKE :host
+	</query>
+
+	
+
+	<query name="USpace.usersByRole">
+
+		FROM UserEntity usr
+
+			INNER JOIN FETCH usr.userSpaceUsers uus
+
+			WHERE uus.userSpaceEntity = :uspace
+
+				AND uus.roleStr LIKE :role
+
+	</query>
+
+	
+
+	<query name="USpace.subGroups">
+
+        FROM GroupEntity grp
+
+        WHERE grp.parentGroupId = :parentId
+
+        ORDER BY grp.groupName ASC
+
+    </query>
+
+    
+
+	<query name="USpace.groupUsersByRole">
+
+        FROM GroupUserEntity gusr
+
+        	INNER JOIN FETCH gusr.userEntity usr
+
+        WHERE gusr.groupEntity = :grp
+
+        	AND gusr.roleStr LIKE :role
+
+    </query>
+
+    
+
+    
+
+    <query name="USpace.groupsByType">
+
+        FROM GroupEntity grp
+
+        WHERE grp.groupType = :gtype
+
+        	AND grp.userSpaceEntity = :uspace
+
+        ORDER BY ISNULL(grp.parentGroupId) DESC, grp.groupName ASC
+
+    </query>
+
+    
+
+    <query name="USpace.groupByRemote">
+
+        FROM GroupEntity grp
+
+        WHERE grp.remoteKey = :rkey
+
+            AND grp.userSpaceEntity = :uspace
+
+    </query>
+
+	
+    <query name="SignOn.userByName">
+        FROM UserEntity usr
+
+        	LEFT JOIN FETCH usr.userSpaceUsers uus
+        WHERE usr.userName = :name
+            AND usr.deleted = false
+    </query>
+
+    <query name="SignOn.userByToken">
+        FROM UserEntity usr
+
+        	LEFT JOIN FETCH usr.userSpaceUsers uus
+        WHERE usr.token = :token
+            AND usr.deleted = false
+    </query>
+
+
+    <query name="AppCmp.byAppIdProcessId">
+
+        FROM AppComponentMap AppCmp
+
+        WHERE AppCmp.appId = :appId
+            AND AppCmp.appProcessId = :appProcessId
+
+    </query>
+
+
+
+</hibernate-mapping>

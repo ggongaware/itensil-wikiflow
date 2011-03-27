@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.repository.hibernate">
+
+    <class name="RepositoryEntity" lazy="false" table="iten_repo">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="mount" unique="true" length="32"/>
+
+        <set name="mounts" inverse="true" lazy="extra" cascade="delete">
+            <key column="repoId"/>
+            <one-to-many class="Mount"/>
+        </set>
+
+        <set name="nodeEntities" inverse="true" lazy="extra">
+            <key column="repoId"/>
+            <one-to-many class="NodeEntity"/>
+        </set>
+
+    </class>
+
+    <query name="Repo.getNode">
+        FROM NodeEntity node
+        WHERE node.nodeId = :id
+            AND node.repoEntity = :repo
+            AND node.deleted = 0
+    </query>
+
+    <query name="Repo.getNodeByUri">
+        FROM NodeEntity node
+        WHERE node.repoEntity = :repo
+            AND node.localUri = :uri
+            AND node.deleted = 0
+    </query>
+
+    <query name="Repo.removeCollection">
+        UPDATE NodeEntity node
+        SET node.localUri = CONCAT(node.localUri, :deleteStamp),
+            node.deleted = :deleted
+        WHERE node.repoEntity = :repo
+            AND node.localUri LIKE :uriPat
+            AND node.deleted = 0
+    </query>
+    
+    <query name="Repo.recentlyModifiedNodes">
+    	FROM NodeEntity node
+    		JOIN FETCH node.defaultVersionEnt
+        WHERE node.repoEntity = :repo
+            AND node.localUri LIKE :uriPat
+            AND node.deleted = 0
+            AND node.defaultVersionEnt.davLastMod IS NOT NULL
+       	ORDER BY node.defaultVersionEnt.davLastMod DESC
+    </query>
+
+    <query name="Repo.moveCollection">
+        UPDATE NodeEntity node
+        SET node.localUri = CONCAT(:dstUri, SUBSTRING(node.localUri, :subUriLen + 1, LENGTH(node.localUri) - :subUriLen)),
+            node.repoEntity = :dstRepo
+        WHERE node.repoEntity = :repo
+            AND node.localUri LIKE :uriPat
+            AND node.deleted = 0
+    </query>
+
+</hibernate-mapping>

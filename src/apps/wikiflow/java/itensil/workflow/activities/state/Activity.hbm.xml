@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="itensil.workflow.activities.state">
+
+    <!-- MySQL Based -->
+
+    <class name="Activity" lazy="false" node="activity" table="iten_wf_activity">
+        <id name="id" node="@id">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="assigned"/>
+        </id>
+
+        <many-to-one name="parent" class="Activity" embed-xml="false" node="@parent" not-null="false">
+            <column name="parentId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+
+        <many-to-one name="flow" class="FlowState" embed-xml="false" node="@flow" not-null="false">
+            <column name="flowId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+        
+        <property name="userSpaceId" node="@userSpaceId" length="20">
+            <column name="userSpaceId" sql-type="varchar(20) binary"/>
+        </property>
+        
+		<property name="variationId" node="@variationId" length="20">
+            <column name="variationId" sql-type="varchar(20) binary"/>
+        </property>
+        
+        <property name="contextGroupId" node="@contextGroup" length="20">
+            <column name="contextGroupId" sql-type="varchar(20) binary"/>
+        </property>
+        
+        <property name="name" node="@name"/>
+        <property name="description" node="@description"/>
+        <property name="submitId" node="@submitId" length="20">
+            <column name="submitId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="timeStamp" node="@timeStamp"/>
+        <property name="priority" node="@priority"/>
+        <property name="startDate" node="@startDate"/>
+        <property name="dueDate" node="@dueDate"/>
+        <property name="duration" node="@duration"/>
+
+        <property name="cust0Val"/>
+		<property name="cust1Val"/>
+		<property name="cust2Val"/>
+		<property name="cust3Val"/>
+		<property name="cust4Val"/>
+		<property name="cust5Val"/>
+		<property name="cust6Val"/>
+		<property name="cust7Val"/>
+		<property name="cust8Val"/>
+		<property name="cust9Val"/>
+		<property name="custAVal"/>
+		<property name="custBVal"/>
+
+		<map name="states" node="." embed-xml="false" lazy="false" inverse="true" cascade="delete">
+            <key not-null="true">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </key>
+            <map-key type="string" column="stStepId" node="@stepId" />
+            <one-to-many class="ActivityStepState" node="state" embed-xml="false"/>
+		</map>
+
+        <map name="roles" node="." embed-xml="false" lazy="extra" inverse="true" cascade="delete">
+			<key not-null="true">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </key>
+            <map-key type="string" column="role" node="@role" />
+            <one-to-many class="ActivityRole" node="role" />
+		</map>
+
+        <map name="plans" node="." embed-xml="false" lazy="extra" inverse="true" cascade="delete">
+			<key not-null="true">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </key>
+            <map-key type="string" column="stepId" node="@stepId" />
+            <one-to-many class="ActivityPlan" node="plan" />
+		</map>
+
+        <set name="children" node="." embed-xml="false" lazy="extra" inverse="true" cascade="delete">
+            <key not-null="false" column="parentId"/>
+            <one-to-many class="Activity" node="activity" embed-xml="false"/>
+		</set>
+
+		<set name="projects" table="iten_wf_project_activities">
+		    <key column="activityId"/>
+		    <element column="id" type="string"/>
+		</set> 
+    </class>
+    
+    
+    <class name="ActivityStepState" lazy="false" node="state" table="iten_wf_activity_state">
+    	<id name="id" node="@id" length="20">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        
+        <properties name="activity_state" unique="true">
+            <many-to-one name="activity" class="Activity" embed-xml="false" node="@activity" not-null="true">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </many-to-one>
+            <property name="stepId" column="stStepId" node="@stepId"/>
+        </properties>
+        
+        <property name="txId" column="stTxId" node="@txId" length="20"/>
+        <property name="subStateInt" column="stSubState" node="@subState"/>
+        <property name="timeStamp" column="stTimeStamp" node="@timeStamp"/>
+        <property name="expireTime" column="stExpireTime" node="@expireTime"/>
+        <property name="userStatus" column="stUserStatus" node="@userStatus"/>
+
+        <property name="subActivityId" node="@subActivityId" length="20">
+            <column name="subActivityId" sql-type="varchar(20) binary"/>
+        </property>
+		<property name="progress" node="@progress"/>
+		
+        <property name="assignId" node="@assignId" length="20">
+            <column name="stAssignId" sql-type="varchar(20) binary"/>
+        </property>
+        
+        <component name="currentPlan" class="ActivityCurrentPlan" node="current">
+            <parent name="state"/>
+            <property name="priority" column="cpPriority" node="@priority"/>
+            <property name="startDate" column="cpStartDate" node="@startDate"/>
+            <property name="dueDate" column="cpDueDate" node="@dueDate"/>
+            <property name="duration" column="cpDuration" node="@duration"/>
+        </component>
+        
+	</class>
+	
+    <class name="ActivityPlan" lazy="false" node="plan" table="iten_wf_activity_plan">
+        <id name="id" node="@id" length="20">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <properties name="activity_plan" unique="true">
+            <many-to-one name="activity" class="Activity" embed-xml="false" node="@activity" not-null="false">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </many-to-one>
+            <property name="stepId" node="@stepId"/>
+        </properties>
+        <property name="assignId" node="@assignId">
+            <column name="assignId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="priority" node="@priority"/>
+        <property name="startDate" node="@startDate"/>
+        <property name="dueDate" node="@dueDate"/>
+        <property name="duration" node="@duration"/>
+        <property name="skip" node="@skip"/>
+    </class>
+
+    <class name="ActivityRole" lazy="false" node="role" table="iten_wf_activity_role">
+        <id name="id" node="@id" length="20">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+        <properties name="activity_role" unique="true">
+            <many-to-one name="activity" class="Activity" embed-xml="false" node="@activity" not-null="false">
+                <column name="activityId" sql-type="varchar(20) binary"/>
+            </many-to-one>
+            <property name="role" node="@role"/>
+        </properties>
+        <property name="assignId" node="@assignId" length="20">
+            <column name="assignId" sql-type="varchar(20) binary"/>
+        </property>
+    </class>
+    
+   <class name="itensil.entities.hibernate.EntityActivity" lazy="false" table="iten_wf_entity_activity">
+   		<composite-id>
+    		<key-many-to-one name="activity" class="Activity" column="activityId"/>
+            <key-property name="entityId"/>
+            <key-property name="name"/>
+            <key-property name="recordId"/>
+        </composite-id>
+       	<property name="createTime"/>
+   </class>
+
+    <query name="Activity.getAssignActivities">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE sta.assignId = :assignId
+            AND sta.subStateInt != :filtSubState
+            AND act.userSpaceId = :userSpaceId
+        ORDER BY ISNULL(sta.currentPlan.dueDate) ASC, sta.currentPlan.dueDate ASC, sta.currentPlan.priority DESC,
+            ISNULL(act.dueDate) ASC, act.dueDate ASC, act.priority DESC,
+            sta.timeStamp ASC
+    </query>
+    
+    <!-- Hibernate bug, won't return entities
+    <sql-query name="Activity.getAssignActivities">
+	    <return alias="act" class="Activity"/>
+	    <return-join alias="sta" property="act.states"/>
+	    SELECT {act.*}, {sta.*}
+	    FROM iten_wf_activity act
+	    LEFT JOIN iten_wf_activity_state sta
+	        ON act.id = sta.activityId
+	    WHERE sta.stAssignId = :assignId
+	    	AND sta.stSubState != :filtSubState
+	    	AND act.userSpaceId = :userSpaceId
+	    ORDER BY (sta.cpDueDate IS NULL) ASC, sta.cpDueDate ASC, sta.cpPriority DESC,
+            (act.dueDate IS NULL) ASC, act.dueDate ASC, act.priority DESC,
+            sta.stTimeStamp ASC
+	</sql-query>
+	 -->
+	 
+    <query name="Activity.getSubmitActivities">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE act.submitId = :submitId
+            AND sta.subStateInt != :filtSubState
+            AND act.userSpaceId = :userSpaceId
+        ORDER BY ISNULL(sta.currentPlan.dueDate) ASC, sta.currentPlan.dueDate ASC, sta.currentPlan.priority DESC,
+            ISNULL(act.dueDate) ASC, act.dueDate ASC, act.priority DESC,
+            sta.timeStamp ASC
+    </query>
+
+	<query name="Activity.getActiveChildren">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE act.parent = :parent
+        	AND sta.subStateInt != 3
+        ORDER BY ISNULL(sta.currentPlan.dueDate) ASC, sta.currentPlan.dueDate ASC, sta.currentPlan.priority DESC,
+            ISNULL(act.dueDate) ASC, act.dueDate ASC, act.priority DESC,
+            sta.timeStamp ASC
+	</query>
+	
+	<query name="Activity.getAssignedProjects">
+		SELECT DISTINCT nod
+	    FROM NodeEntity nod, Activity act 
+	    	LEFT JOIN act.roles rol
+	    	JOIN act.projects proj
+	    WHERE nod.nodeId = proj
+	    	AND (act.submitId = :userId OR rol.assignId = :userId)
+	    	AND act.userSpaceId = :userSpaceId
+	    	AND nod.deleted = 0
+	    ORDER BY nod.localUri
+	</query>
+	
+	<query name="Activity.getAssignedMeetings">
+		SELECT DISTINCT nod
+	    FROM NodeEntity nod, Activity act 
+	    	LEFT JOIN act.plans plan
+	    	LEFT JOIN act.states sta
+	    WHERE nod.nodeId = act.id
+	    	AND (act.submitId = :userId OR plan.assignId = :userId OR sta.assignId = :userId)
+	    	AND act.userSpaceId = :userSpaceId
+	    	AND nod.localUri LIKE 'meeting/%'
+	    	AND nod.deleted = 0
+	    ORDER BY nod.localUri
+	</query>
+	
+	<query name="Activity.activeProjectActivities" cacheable="true">
+		SELECT DISTINCT act
+		FROM Activity act JOIN act.projects proj, FlowStepLog stl 
+		WHERE act = stl.token
+			AND proj = :projId
+		ORDER BY stl.timeStamp DESC
+    </query>
+	
+    <query name="Activity.getFlowAssignActivities">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE sta.assignId = :assignId
+            AND act.flow = :flow
+            AND sta.subStateInt != :filtSubState
+            AND act.userSpaceId = :userSpaceId
+        ORDER BY ISNULL(sta.currentPlan.dueDate) ASC, sta.currentPlan.dueDate ASC, sta.currentPlan.priority DESC,
+            ISNULL(act.dueDate) ASC, act.dueDate ASC, act.priority DESC,
+            sta.timeStamp ASC
+    </query>
+
+    <query name="Activity.getFlowSubmitActivities">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE act.submitId = :submitId
+            AND act.flow = :flow
+            AND sta.subStateInt != :filtSubState
+            AND act.userSpaceId = :userSpaceId
+        ORDER BY ISNULL(sta.currentPlan.dueDate) ASC, sta.currentPlan.priority DESC,
+            ISNULL(act.dueDate) ASC, act.dueDate ASC, act.priority DESC,
+            sta.timeStamp ASC
+    </query>
+    
+    <query name="Activity.getProjectActivities">
+    	FROM Activity act
+    		LEFT JOIN FETCH act.states sta
+    		JOIN act.projects proj
+    	WHERE proj = :projId
+    	ORDER BY 
+        act.dueDate ASC, 
+        sta.currentPlan.dueDate ASC, 
+        ISNULL(act.dueDate) ASC, 
+        ISNULL(sta.currentPlan.dueDate) ASC, 
+        act.priority DESC,
+        sta.currentPlan.priority DESC,
+        sta.timeStamp ASC    </query>
+
+	<query name="Activity.changeIdState">
+		UPDATE ActivityStepState asta
+			SET asta.activity.id = :nid
+			WHERE asta.activity.id = :oid
+	</query>
+	
+	<query name="Activity.changeIdPlan">
+		UPDATE ActivityPlan apl
+			SET apl.activity.id = :nid
+			WHERE apl.activity.id = :oid
+	</query>
+	
+	<query name="Activity.changeIdRole">
+		UPDATE ActivityRole arol
+			SET arol.activity.id = :nid
+			WHERE arol.activity.id = :oid
+	</query>
+	
+	<query name="Activity.changeIdAlert">
+		UPDATE ActivityRole arol
+			SET arol.activity.id = :nid
+			WHERE arol.activity.id = :oid
+	</query>
+	
+	<query name="Activity.changeIdTimer">
+		UPDATE ActivityTimer atim
+			SET atim.activity.id = :nid
+			WHERE atim.activity.id = :oid
+	</query>
+	
+	<query name="Activity.changeId">
+		UPDATE Activity act
+			SET act.id = :nid
+			WHERE act.id = :oid
+	</query>
+			
+	<query name="Activity.getFlowActivity">
+        FROM Activity act
+        WHERE act.flow = :flow
+    </query>
+    
+    <query name="Activity.getFlowActivities">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE act.flow = :flow
+            AND (sta.subStateInt != :filtSubState OR sta.subStateInt IS NULL)
+            AND act.userSpaceId = :userSpaceId
+            AND (act.variationId is NULL or act.variationId = '')
+    </query>
+    
+    <query name="Activity.getFlowActivitiesVar">
+        FROM Activity act
+            LEFT JOIN FETCH act.states sta
+        WHERE act.flow = :flow
+            AND (sta.subStateInt != :filtSubState OR sta.subStateInt IS NULL)
+            AND act.userSpaceId = :userSpaceId
+            AND act.variationId = :variation
+    </query>
+
+	<query name="Activity.clearSubActStates">
+		UPDATE ActivityStepState asta
+			SET asta.subActivityId = ''
+			WHERE asta.subActivityId = :subActId
+	</query>
+	
+	<query name="Entity.recsByActivity">
+		SELECT ver
+        FROM VersionEntity ver, EntityActivity ent
+        WHERE ver.nodeEntity.parentNode = :recsNode
+       	 	AND ver.ieRecordId = ent.recordId
+       	 	AND ent.activity = :act
+            AND ent.name = :relName
+            AND ver.nodeEntity.deleted = 0
+            ORDER BY ent.createTime DESC
+    </query>
+	
+	<query name="Entity.activitiesByRec">
+		FROM EntityActivity ent
+			LEFT JOIN FETCH ent.activity act
+		WHERE ent.entityId = :entityId
+			AND ent.recordId = :recordId
+			AND act.id IS NOT NULL
+	</query>
+	
+	<query name="Entity.allRecsActivity">
+        FROM EntityActivity ent
+        WHERE ent.activity = :act
+            ORDER BY ent.entityId ASC, ent.createTime DESC
+    </query>
+
+</hibernate-mapping>

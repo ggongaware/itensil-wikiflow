@@ -1,0 +1,1229 @@
+/**
+ * Process Map
+ */
+.groupSel {
+    position: absolute;
+    border: 1px dashed black;
+}
+
+
+
+.pmPthV {
+    font-size:1px;
+	position: absolute;
+	border: thin none;
+	width: 4px;
+	background-image: url(../pix/flow/pathVset.gif);
+	background-repeat: repeat-y;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.pmPthV_grp { background-position: -4px 0px; }
+.pmPthV_drp { background-position: -8px 0px; }
+.pmPthV_tra { background-position: -8px 0px; }
+.pmPthVnot, .pmPthVnot_grp { background-position: -12px 0px; }
+
+
+.pmPthH {
+	position: absolute;
+	border: thin none;
+	font-size:1px;
+	height: 4px;
+	background-image: url(../pix/flow/pathHset.gif);
+	background-repeat: repeat-x;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.pmPthH_grp { background-position: 0px -4px; }
+.pmPthH_drp { background-position: 0px -8px; }
+.pmPthH_tra { background-position: 0px -8px; }
+.pmPthHnot, .pmPthHnot_grp { background-position: 0px -12px; }
+
+.pmPathLabel {
+    position: absolute;
+    height: 12px;
+    width: 100px;
+    white-space: nowrap;
+    color: #999;
+    font-family: arial,sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.pmPathLabel_grp {
+    position: absolute;
+      height: 12px;
+    width: 100px;
+    white-space: nowrap;
+    color: #09f;
+    font-family: arial,sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.pmSteps, .pmSteps .text {
+    font-family: arial,sans-serif;
+    font-size: 10px;
+}
+
+/* activity */
+.pmAct,
+.pmAct_grp,
+.pmAct_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    width: 112px;
+    height: 63px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmAct .pBox,
+.pmAct_grp .pBox,
+.pmAct_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 107px;
+    height: 58px;
+}
+
+.pmAct .pBox { display: none; }
+.pmAct_grp .pBox { border: 2px solid #09e; }
+.pmAct_drp .pBox { border: 2px solid #f90; }
+
+
+.pmAct .txtLabel,
+.pmAct_grp .txtLabel,
+.pmAct_drp .txtLabel {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 98px;
+	height: 29px;
+	line-height: 13px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #000;
+}
+
+.pmAct .txtRole,
+.pmAct_grp .txtRole,
+.pmAct_drp .txtRole {
+    position: absolute;
+    top: 35px;
+    left: 4px;
+    width: 78px;
+	height: 24px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #666;
+}
+
+.pmAct .txtCount,
+.pmAct_grp .txtCount,
+.pmAct_drp .txtCount {
+    position: absolute;
+    top: 40px;
+    left: 85px;
+    width: 23px;
+	height: 24px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #000;
+}
+
+
+/* activity medium */
+.pmActM,
+.pmActM_grp,
+.pmActM_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -304px;
+    width: 137px;
+    height: 79px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmActM .pBox,
+.pmActM_grp .pBox,
+.pmActM_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 133px;
+    height: 75px;
+}
+
+.pmActM .pBox { display: none; }
+.pmActM_grp .pBox { border: 2px solid #09e; }
+.pmActM_drp .pBox { border: 2px solid #f90; }
+
+
+.pmActM .txtLabel,
+.pmActM_grp .txtLabel,
+.pmActM_drp .txtLabel {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 128px;
+	height: 42px;
+	line-height: 13px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #000;
+}
+
+.pmActM .txtRole,
+.pmActM_grp .txtRole,
+.pmActM_drp .txtRole {
+    position: absolute;
+    top: 48px;
+    left: 4px;
+    width: 100px;
+	height: 24px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #666;
+}
+
+/* activity large */
+.pmActL,
+.pmActL_grp,
+.pmActL_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -385px;
+    width: 167px;
+    height: 90px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmActL .pBox,
+.pmActL_grp .pBox,
+.pmActL_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 162px;
+    height: 85px;
+}
+
+.pmActL .pBox { display: none; }
+.pmActL_grp .pBox { border: 2px solid #09e; }
+.pmActL_drp .pBox { border: 2px solid #f90; }
+
+
+.pmActL .txtLabel,
+.pmActL_grp .txtLabel,
+.pmActL_drp .txtLabel {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 156px;
+	height: 48px;
+	line-height: 12px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #000;
+}
+
+.pmActL .txtRole,
+.pmActL_grp .txtRole,
+.pmActL_drp .txtRole {
+    position: absolute;
+    top: 55px;
+    left: 4px;
+    width: 115px;
+	height: 33px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 11px;
+    font-family: arial, helvetica, sans-serif;
+    color: #666;
+}
+
+
+/* activity */
+.pmSub,
+.pmSub_grp,
+.pmSub_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -146px;
+    width: 112px;
+    height: 53px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmSub .pBox,
+.pmSub_grp .pBox,
+.pmSub_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 107px;
+    height: 47px;
+}
+
+.pmSub .pBox { display: none; }
+.pmSub_grp .pBox { border: 2px solid #09e; }
+.pmSub_drp .pBox { border: 2px solid #f90; }
+
+
+.pmSub .text,
+.pmSub_grp .text,
+.pmSub_drp .text {
+    position: absolute;
+    top: 9px;
+    left: 35px;
+    width: 70px;
+	height: 29px;
+	line-height: 13px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #000;
+}
+
+.pmSub .txtRole,
+.pmSub_grp .txtRole,
+.pmSub_drp .txtRole {
+	display:none;
+}
+
+
+
+/* Switch */
+.pmSwitch,
+.pmSwitch_grp,
+.pmSwitch_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -63px;
+    border: thin none;
+    width: 120px;
+    height: 83px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmSwitch .text,
+.pmSwitch_grp .text,
+.pmSwitch_drp .text {
+    position: relative;
+    color: #fff;
+    top: 23px;
+    left: 20px;
+	width: 80px;
+	height: 36px;
+    text-align: center;
+	overflow: hidden;
+}
+
+.pmSwitch .pBox,
+.pmSwitch_grp .pBox,
+.pmSwitch_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 120px;
+    height: 80px;
+}
+
+.pmSwitch .pBox { display: none; }
+.pmSwitch_grp .pBox { border: 1px solid #09e; }
+.pmSwitch_drp .pBox { border: 1px solid #f90; }
+
+/* Start */
+.pmStart,
+.pmStart_grp,
+.pmStart_drp {
+    position: absolute;
+    background-image: url(../pix/flow/events.gif);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmStart .pBox,
+.pmStart_grp .pBox,
+.pmStart_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.pmStart .pBox { display: none; }
+.pmStart_grp .pBox { border: 1px solid #09e; }
+.pmStart_drp .pBox { border: 1px solid #f90; }
+
+.pmStart .deco,
+.pmStart_grp .deco,
+.pmStart_drp .deco {
+    position: absolute;
+    left: 17px;
+    top: 17px;
+}
+
+.pmStart .text,
+.pmStart_grp .text,
+.pmStart_drp .text {
+    position: absolute;
+    top: 55px;
+    left: -6px;
+	width: 65px;
+	height: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: #009;
+    overflow: hidden;
+}
+
+
+.pmEnd,
+.pmEnd_grp,
+.pmEnd_drp {
+    position: absolute;
+    background-image: url(../pix/flow/events.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -110px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmEnd .pBox,
+.pmEnd_grp .pBox,
+.pmEnd_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.pmEnd .pBox { display: none; }
+.pmEnd_grp .pBox { border: 1px solid #09e; }
+.pmEnd_drp .pBox { border: 1px solid #f90; }
+
+.pmEnd .deco,
+.pmEnd_grp .deco,
+.pmEnd_drp .deco {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+}
+
+.pmEnd .text,
+.pmEnd_grp .text,
+.pmEnd_drp .text {
+    position: absolute;
+    top: 55px;
+    left: -6px;
+	width: 65px;
+	height: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: #009;
+    overflow: hidden;
+}
+
+
+.pmTimer,
+.pmTimer_grp,
+.pmTimer_drp {
+    position: absolute;
+    background-image: url(../pix/flow/events.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -165px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmTimer .pBox,
+.pmTimer_grp .pBox,
+.pmTimer_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.pmTimer .pBox { display: none; }
+.pmTimer_grp .pBox { border: 1px solid #09e; }
+.pmTimer_drp .pBox { border: 1px solid #f90; }
+
+.pmTimer .text,
+.pmTimer_grp .text,
+.pmTimer_drp .text {
+    position: absolute;
+    top: 55px;
+    left: -6px;
+	width: 65px;
+	height: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: #009;
+    overflow: hidden;
+}
+
+
+
+.pmGroup,
+.pmGroup_grp,
+.pmGroup_drp {
+    position: absolute;
+    background-image: url(../pix/flow/steps.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -230px;
+    width: 100px;
+    height: 73px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmGroup .pBox,
+.pmGroup_grp .pBox,
+.pmGroup_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 97px;
+    height: 68px;
+}
+
+.pmGroup .pBox { display: none; }
+.pmGroup_grp .pBox { border: 2px solid #09e; }
+.pmGroup_drp .pBox { border: 2px solid #f90; }
+
+
+.pmGroup .text,
+.pmGroup_grp .text,
+.pmGroup_drp .text {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    width: 80px;
+	height: 36px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: arial, helvetica, sans-serif;
+    color: #060;
+}
+
+
+.pmEnter,
+.pmEnter_grp,
+.pmEnter_drp {
+    position: absolute;
+    background-image: url(../pix/flow/events.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -275px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmEnter .pBox,
+.pmEnter_grp .pBox,
+.pmEnter_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.pmEnter .pBox { display: none; }
+.pmEnter_grp .pBox { border: 1px solid #09e; }
+.pmEnter_drp .pBox { border: 1px solid #f90; }
+
+.pmEnter .deco,
+.pmEnter_grp .deco,
+.pmEnter_drp .deco {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+}
+
+.pmEnter .text,
+.pmEnter_grp .text,
+.pmEnter_drp .text {
+    position: absolute;
+    top: 55px;
+    left: -6px;
+	width: 65px;
+	height: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: #009;
+    overflow: hidden;
+}
+
+
+.pmExit,
+.pmExit_grp,
+.pmExit_drp {
+    position: absolute;
+    background-image: url(../pix/flow/events.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -333px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size:1px;
+}
+
+.pmExit .pBox,
+.pmExit_grp .pBox,
+.pmExit_drp .pBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.pmExit .pBox { display: none; }
+.pmExit_grp .pBox { border: 1px solid #09e; }
+.pmExit_drp .pBox { border: 1px solid #f90; }
+
+.pmExit .deco,
+.pmExit_grp .deco,
+.pmExit_drp .deco {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+}
+
+.pmExit .text,
+.pmExit_grp .text,
+.pmExit_drp .text {
+    position: absolute;
+    top: 55px;
+    left: -6px;
+	width: 65px;
+	height: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: #009;
+    overflow: hidden;
+}
+
+
+
+
+/* Path Hooks */
+.pmHookN, .pmHookE, .pmHookS, .pmHookW {
+    background-image: url(../pix/flow/arr_set.gif);
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: 0px -160px;
+	border: thin none;
+	height: 10px;
+	width: 10px;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 2;
+	font-size:1px;
+}
+
+.pmHookN_grp, .pmHookE_grp, .pmHookS_grp, .pmHookW_grp, .pmHovHook,
+.pmHookNnot_grp, .pmHookEnot_grp, .pmHookSnot_grp, .pmHookWnot_grp {
+    background-image: url(../pix/flow/arr_set.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -170px;
+    position: absolute;
+	border: thin none;
+	height: 10px;
+	width: 10px;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 2;
+	font-size:1px;
+}
+
+
+.pmHookNnot, .pmHookEnot, .pmHookSnot, .pmHookWnot {
+    background-image: url(../pix/flow/arr_set.gif);
+    background-repeat: no-repeat;
+    background-position: 0px -190px;
+    position: absolute;
+	border: thin none;
+	height: 10px;
+	width: 10px;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 2;
+	font-size:1px;
+}
+
+.pmArr {
+	background-image: url(../pix/flow/arr_set.gif);
+    background-repeat: no-repeat;
+    position: absolute;
+	border: thin none;
+	height: 10px;
+	width: 10px;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 2;
+	font-size:1px;
+}
+
+.pmArrN 	{ background-position: 0px 0px; }
+.pmArrN_grp, .pmArrNnot_grp  { background-position: 0px -10px; }
+.pmArrN_tra { background-position: 0px -20px; }
+.pmArrNnot{ background-position: 0px -30px; }
+
+.pmArrE 	{ background-position: 0px -40px; }
+.pmArrE_grp, .pmArrEnot_grp  { background-position: 0px -50px; }
+.pmArrE_tra { background-position: 0px -60px; }
+.pmArrEnot{ background-position: 0px -70px; }
+
+.pmArrS 	{ background-position: 0px -80px; }
+.pmArrS_grp, .pmArrSnot_grp { background-position: 0px -90px; }
+.pmArrS_tra { background-position: 0px -100px; }
+.pmArrSnot { background-position: 0px -110px; }
+
+.pmArrW 	{ background-position: 0px -120px; }
+.pmArrW_grp, .pmArrWnot_grp { background-position: 0px -130px; }
+.pmArrW_tra { background-position: 0px -140px; }
+.pmArrWnot { background-position: 0px -150px; }
+
+
+.pmNil {
+    border: thin none;
+    width:0px;
+    height:0px;
+}
+
+.pmNote .corner {
+	position: absolute;
+	background-image: url(../pix/flow/noteCrnr_set.gif);
+	background-repeat: no-repeat;
+	top: -1px;
+	right: -2px;
+	width: 11px;
+	height: 10px;
+	font-size:1px;
+}
+
+.pmNote_grp .corner {
+	position: absolute;
+	background-image: url(../pix/flow/noteCrnr_set.gif);
+	background-repeat: no-repeat;
+    background-position: 0px -10px;
+	top: -1px;
+	right: -2px;
+	width: 11px;
+	height: 10px;
+	font-size:1px;
+}
+
+.pmNote {
+	position: absolute;
+	width: 120px;
+	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #996633;
+	background-color: #FFFF99;
+	color: #996633;
+	cursor: pointer;
+	font-size:1px;
+}
+
+.pmNote_grp {
+	position: absolute;
+	width: 120px;
+	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #0099FF;
+	background-color: #FFFF99;
+	color: #0099FF;
+	cursor: pointer;
+	font-size:1px;
+}
+
+.pmNote .text, .pmNote_grp .text {
+    font-family: arial, sans-serif;
+    font-size: 10px;
+    margin: 0px;
+    zoom:1;
+}
+
+
+.pmInner {
+  position:relative; top:0px; left:0px; width:0; height:0;
+}
+
+.pmCanvas .text {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.pmCanvas {
+    position: absolute;
+    overflow:auto;
+}
+
+.pmRead .pmHookN,
+.pmRead .pmHookE,
+.pmRead .pmHookS,
+.pmRead .pmHookW {
+    display: none;
+}
+
+.pmEdit {
+    background-image:url(../pix/flow/grid.gif);
+}
+.pmRead button.xfctrl {
+	display: none;
+}
+
+/* Palette Tree */
+div.palLabel {
+    padding: 2px 0px 2px 20px;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1px;
+    cursor: default;
+}
+
+.palette div.fldIco {
+    background-image: none;
+}
+
+.palette div.label {
+    font-weight: bold;
+    line-height: 16px;
+}
+
+.palette div.trRow,
+.palette div.trRowLast,
+.palette div.icon {
+	cursor: pointer;
+	}
+
+.palette div.kids,
+.palette div.kidsLast {
+    padding-left: 0px; /* set indent of inner clauses */
+}
+
+/* Suppress the dotten lines for tree hierarchy */
+.palette div.trRowRoot,
+.palette div.openRoot,
+.palette div.trRowRootLast,
+.palette div.openRootLast,
+.palette div.trRow,
+.palette div.trRowLast,
+.palette div.openLast,
+.palette div.kids,
+.palette div.kidsLast {
+    background-image: none;
+}
+
+div.flowHead {
+    background-color: #eee;
+    padding-left: 16px;
+    height: 18px;
+    border-bottom: 1px solid #ccc;
+}
+
+div.flowHead button .mbIco {
+    position: absolute;
+    top: 0px;
+    left: 2px;
+    height: 14px;
+}
+
+div.flowHead button label {
+    display: block;
+    text-align: left;
+    font-family: verdana, sans-serif;
+    font-size: 10px;
+    line-height: 14px;
+    height: 14px;
+    width: 30px;
+    position: relative;
+    padding: 0px 0px 0px 16px;
+    color: #006;
+    border: 1px solid #006;
+    background-color: #D0DCF6;
+    margin: 1px 0px 0px 0px;
+    cursor: pointer;
+}
+
+div.flowHead button {
+   border: 0;
+   padding: 0;
+   margin: 0;
+   background: none;
+   font-size: 1px;
+}
+
+div.statHead {
+	position: absolute;
+    top: 18px;
+    left: 0px;
+    border: 1px solid #999;
+    padding-left: 0px;
+}
+
+.pmEdit div.token {
+    display: none;
+}
+
+div.token {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+    border: 1px solid #f90;
+}
+
+div.token div.icon {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+}
+
+.pathIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px 0px }
+.stepIco, .activityStpIco  { background-image: url(../pix/flow/palIcons.gif) !important; background-position: 0px -16px }
+.decisIco, .switchStpIco { background-image: url(../pix/flow/palIcons.gif) !important; background-position: 0px -32px }
+.endIco, .endStpIco, .startStpIco { background-image: url(../pix/flow/palIcons.gif) !important; background-position: 0px -48px }
+.noteIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -64px }
+.lineIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -128px }
+.timerIco, .timerStpIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -80px }
+.bnBranchIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -96px }
+.bnLoopIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -112px }
+.sGroupIco, .groupStpIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -144px }
+.subIco, .subStpIco { background-image: url(../pix/flow/palIcons.gif); background-position: 0px -160px }
+
+div.focusBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+div.focusV {
+	position: absolute;
+	width: 1px;
+    font-size: 1px;
+    line-height: 1px;
+    background-color: #990099;
+	background-image: url(../pix/AntsV.gif);
+}
+
+div.focusH {
+	position: absolute;
+	height: 1px;
+    font-size: 1px;
+    line-height: 1px;
+    background-color: #990099;
+	background-image: url(../pix/AntsH.gif);
+}
+
+div.actTimLink {
+	color:#009;
+	text-decoration:underline;
+	margin: 4px;
+	cursor: pointer;
+}
+
+/* Attribute Panel*/
+div.attrManager {
+	margin:4px;
+}
+
+div.attrManager .invalid input {
+	background-color: #f99;
+}
+
+table.attrManager {
+	border-collapse: collapse;
+	margin-bottom:4px;
+}
+
+table.attrManager td {
+	padding: 2px 1px 2px 1px;
+	border-bottom: 1px solid #fff;
+}
+
+
+table.attrManager th {
+	text-align:left;
+	color: #666;
+}
+
+table.attrManager tr.projAtt td {
+	background-color: #bfb;
+}
+
+.attrLink {
+	color:#009;
+	cursor: pointer;
+}
+
+div.attrDrag {
+    width: 13px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 8px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.attrName {
+	display:none;
+}
+
+.dndDummy .attrName {
+	display: block;
+	padding-left:16px;
+}
+
+div.diagXf table.attrOpt th {
+	text-align:left;
+	color: #666;
+}
+
+div.diagXf table.attrOpt {
+	margin: 4px;
+	border-collapse: collapse;
+	border: 2px solid #fff;
+}
+
+div.diagXf table.attrOpt td {
+	padding: 1px 4px 1px 4px;
+	border-bottom: 2px solid #fff;
+	border-top: 2px solid #fff;
+}
+
+div.diagXf table.attrOpt input.xftext {
+	border: 1px solid #999;
+	font-size: 11px;
+}
+
+div.diagXf table.attrOpt td.attrDel {
+	border: 2px solid #fff;
+	color: #000;
+}
+
+span.attrlink {
+	color: #009;
+	text-decoration: underline;
+	font-size:10px;
+	cursor: pointer;
+	padding-left: 6px;
+	line-height: 13px;
+}
+
+div.attrDel {
+	cursor: pointer;
+}
+
+
+    
+/* Entity Panel*/
+div.entManager .invalid input {
+	background-color: #f99;
+}
+
+table.entManager {
+	border-collapse: collapse;
+	margin: 4px 0px 4px 2px;
+	border: 1px solid #ccf;
+}
+
+table.entManager td {
+	padding: 2px 1px 3px 1px;
+	border-bottom: 1px solid #ccf;
+	vertical-align: top;
+}
+
+table.entManager th {
+	text-align:left;
+	color: #666;
+	border-bottom: 1px solid #ccf;
+}
+
+table.entManager td.attrDel {
+	font-size: 10px;
+	padding: 5px 12px 2px 4px;
+	color: #000;
+}
+
+.entManager div.xfctrl {
+	padding:1px 0px 1px 0px;
+}
+
+.entManager div.xfctrl  label {
+    padding: 3px 0px 0px 0px;
+    float: left;
+    width: 35px;
+    position:relative;
+}
+
+.entManager div.xfctrl input {
+    font-size: 11px;
+    border: 1px solid #999;
+}
+
+
+.flowHead .crumbClick {
+	color:#009;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.flowHead .sep {
+	padding: 0px 4px 0px 4px;
+}
+
+.flowHead .crumb {
+	font-weight:bold;
+}
+
+div.uniPath {
+	margin-bottom: 1px;
+	font-size: 10px;
+	color: #666;
+}
+
+div.pathSel {
+	margin: 8px;
+}
+
+/* outliner */
+.pmOutTbar {
+	position:relative;
+	height: 20px;
+	padding: 2px 0px 0px 4px;
+	background-color: #f0f0f0;
+}
+
+.pmOutline {
+	position:relative;
+	
+}
+
+* html .pmOutline {
+	height: 0.1%;
+}
+
+iframe.pmOutline {
+    border: 1px solid #999;
+}
+
+div.meetTeam {
+	padding: 8px;
+}
+
+
+div.statReport {
+	margin:8px;
+	position:relative;
+	zoom: 1;
+}
+
+
+div.wzToolbar {
+	top: 18px;
+	position:absolute;
+	background-color:#ddd;
+	height:18px;
+	border:1px solid #999999;
+	left:0px;
+	padding-left: 0px;
+}
+
+
+.wzToolbar input.perc {
+	border:1px solid #9BACCC;
+	text-align: right;
+	padding-right:2px;
+	font-size:10px;
+	line-height:11px;
+	width:22px;
+	margin: 0px 2px 0px 25px;
+}
+
+.wzToolbar .minorBtn {
+	margin: 2px 4px 0px 0px;
+}
+
+.wzToolbar span.percLabel {
+	font-size: 10px;
+	color: #666;
+}
+
+.wzToolbar div.assign {
+	left:260px;
+	position:absolute;
+	top:1px;
+	height: 16px;
+	width: 190px;
+}
+
+.wzToolbar div.todoTo {
+	left:240px;
+	top:3px;
+	position:absolute;
+}
+.wzToolbar div.assign div.meetMem {
+	left:0px;
+	top:0px;
+	width: 160px;
+	position:absolute;
+}
+
+.wzToolbar div.dndDrop {
+	background-color: #ff6;
+}
+	
+.sectSubProc {
+	margin: 4px 16px 4px 16px;
+}
+

@@ -1,0 +1,166 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+<xf:model id="fmodel">
+   	<xf:instance id="ins">
+   		<data xmlns=""/>
+   	</xf:instance>
+   	
+   	 <xf:submission id="submit1" replace="none" method="put">
+	   	<xf:action ev:event="xforms-submit-done">
+	        <xf:message level="ephemeral">Submit done.</xf:message>
+		</xf:action>
+		<xf:action ev:event="xforms-submit-error">
+			<xf:message level="ephemeral">Problem submitting...</xf:message>
+		</xf:action>
+	</xf:submission>
+		
+</xf:model>
+
+<div class="main">
+</div>
+<p>
+<xf:submit submission="submit1">
+	<xf:label>Submit</xf:label>
+</xf:submit>
+</p>
+
+
+
+
+
+
+<ix:template name="template-default">
+<div>
+	<xf:input ref=".">
+		<xf:label/>
+	</xf:input>
+</div>
+</ix:template>
+
+<ix:template name="template-default-array">
+	<xf:group ref="." class="array">
+		<exf:variable name="ns" value="."/>
+		<xf:repeat nodeset="$ns">
+			<exf:variable name="pos" value="position()"/>
+			<xf:input ref=".">
+				<xf:label><xf:output value="concat('Label ',$pos)"/></xf:label>
+				<span class="arrayRem">
+					<ix:attr name="style" value="if($pos > 1,'','display:none')"/>
+					<span title="Remove">X<xf:destroy ref="." ev:event="click"/></span>
+				</span>
+			</xf:input>
+		</xf:repeat>
+		<div class="arrayAdd"><xf:duplicate ref="." ev:event="click" origin="$ns[last()]" after="$ns[last()]"/>Add</div>
+	</xf:group>
+</ix:template>
+
+<ix:template name="template-date">
+<div>
+	<xf:input ref="." style="width:9em">
+		<xf:label><xf:output value="$label"/></xf:label>
+	</xf:input>
+</div>
+</ix:template>
+
+<ix:template name="template-email">
+<div>
+	<xf:input ref=".">
+		<xf:label/>
+		<span class="attrlink"><script ev:event="click">
+			window.open("mailto:" + model.getValue(".",contextNode), "_self");
+		</script>send</span>
+	</xf:input>
+</div>
+</ix:template>
+
+<ix:template name="template-http">
+<div>
+	<xf:input ref="." style="width:22em">
+		<xf:label/>
+		<span class="attrlink"><script ev:event="click">
+			window.open(model.getValue(".",contextNode), "_blank");
+		</script>Go</span>
+	</xf:input>
+</div>
+</ix:template>
+
+<ix:template name="template-number">
+<div>
+	<xf:input ref="." style="width:10em">
+		<xf:label/>
+	</xf:input>
+</div>
+</ix:template>
+
+
+<ix:template name="template-check">
+<div>
+	<xf:select ref=".">
+		<xf:item><xf:label/><xf:value>1</xf:value></xf:item>
+	</xf:select>
+</div>
+</ix:template>
+
+<ix:template name="template-select1">
+<div>
+	<xf:select1 ref=".">
+		<xf:label/>
+		<xf:item><xf:label>-Select-</xf:label><xf:value/></xf:item>
+	</xf:select1>
+</div>
+</ix:template>
+
+<ix:template name="template-select1-array">
+	<xf:group ref="." class="array">
+		<exf:variable name="ns" value="."/>
+		<xf:repeat nodeset="$ns">
+			<exf:variable name="pos" value="position()"/>
+			<xf:select1 ref=".">
+				<xf:label><xf:output value="concat('Label ',$pos)"/></xf:label>
+				<span class="arrayRem selArr">
+					<ix:attr name="style" value="if($pos > 1,'','display:none')"/>
+					<span title="Remove">X<xf:destroy ref="." ev:event="click"/></span>
+				</span>
+				<xf:item><xf:label>-Select-</xf:label><xf:value/></xf:item>
+			</xf:select1>
+		</xf:repeat>
+		<div class="arrayAdd"><xf:duplicate ref="." ev:event="click" origin="$ns[last()]" after="$ns[last()]"/>Add</div>
+	</xf:group>
+</ix:template>
+
+<ix:template name="template-select">
+<div>
+	<xf:select ref=".">
+		<xf:label/>
+		<xf:item><xf:label/><xf:value/></xf:item>
+	</xf:select>
+</div>
+</ix:template>
+
+<ix:template name="template-composite-array">
+<xf:group ref="." class="array">
+		<exf:variable name="ns" value="."/>
+		<table class="array">
+		<xf:repeat nodeset="$ns">
+			<exf:variable name="pos" value="position()"/>
+			<tr><td>
+			<xf:group ref=".">
+				<xf:label><xf:output value="concat('Label ',$pos)"/></xf:label>
+			</xf:group>
+			</td>
+			<td><span title="Remove"><ix:attr name="style" 
+				value="if($pos > 1,'','display:none')"/>X<xf:destroy ref="." ev:event="click"/></span></td>
+			</tr>
+		</xf:repeat>
+		</table>
+		<div class="arrayAdd"><xf:duplicate ref=".." ev:event="click" origin="$ns[last()]" after="$ns[last()]"/>Add</div>
+</xf:group>
+</ix:template>
+
+
+</form>

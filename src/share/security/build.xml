@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<project name="Security" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+    <property file="${root.src}/build.properties"/>
+    <dirname property="Security.home" file="${ant.file}"/>
+    <property name="Security.src" value="${Security.home}/java"/>
+    <property name="Security.build" value="${Security.home}/.built"/>
+    <property name="Security.classbin" value="${Security.build}/classes"/>
+	
+	
+	<patternset id="meta.files">
+		<include name="**/*.xml"/>
+		<include name="**/*.properties"/>
+	</patternset>
+	
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+	<target name="init">
+	    <mkdir dir="${Security.classbin}"/>
+	    <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+	
+	<target name="clean">
+    	<delete dir="${Security.classbin}"/>
+    </target>
+
+	<target name="build" depends="core"/>
+	
+    <target name="core" depends="init">
+
+    	<javac  destdir="${Security.classbin}"
+				debug="${compile.debug}"
+ 				deprecation="${compile.deprecation}"
+ 				target="${compile.target}" source="${compile.sourcever}"
+				optimize="${compile.optimize}">
+			<src path="${Security.src}"/>
+			<exclude name="**/CVS/**"/>
+			<classpath refid="classpath.build"/>
+		</javac>
+    </target>
+
+    <target name="share" depends="core">
+        <fail unless="share.dir" message="share.dir required"/>
+        <copy todir="${share.dir}">
+            <fileset dir="${Security.classbin}"/>
+			<fileset dir="${Security.src}">
+				<patternset refid="meta.files"/>
+			</fileset>
+        </copy>
+    </target>
+
+    <target name="schema" depends="core" description="">
+
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.build"/>
+            <classpath path="${Security.classbin}"/>
+        </taskdef>
+        <schemaupdate properties="hibernate.properties" quiet="no" text="no">
+            <fileset dir="${Security.src}">
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </schemaupdate>
+    </target>
+
+</project>

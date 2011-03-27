@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.repository.hibernate">
+
+    <!-- mysql based -->
+    <class name="NodeEntity" lazy="false" table="iten_repo_node">
+
+        <cache usage="read-write"/>
+
+        <id name="nodeId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+
+        <many-to-one name="parentNode" class="NodeEntity" not-null="false">
+            <column name="parentId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+
+        <properties name="repo_uri" unique="true">
+            <many-to-one name="repoEntity" class="RepositoryEntity" column="repoId"/>
+            <property name="localUri">
+                <column name="uri" sql-type="varchar(255) binary"/>
+            </property>
+        </properties>
+
+        <set name="childEntities" inverse="true" lazy="true" where="deleted = 0" order-by="uri asc">
+            <key not-null="false" column="parentId"/>
+            <one-to-many class="NodeEntity"/>
+        </set>
+
+        <set name="versionEntities" inverse="true" lazy="true" order-by="id desc">
+            <key column="nodeId"/>
+            <one-to-many class="VersionEntity"/>
+        </set>
+        
+        <many-to-one name="defaultVersionEnt" class="VersionEntity" not-null="false"
+        	column="defVersionId"/>
+
+        <map name="permissionEntities" inverse="true" lazy="false">
+            <key not-null="true">
+                <column name="nodeId" sql-type="varchar(20) binary"/>
+            </key>
+            <map-key type="string" column="principalId" />
+            <one-to-many class="PermissionEntity"/>
+        </map>
+
+        <set name="lockEntities" inverse="true" lazy="true">
+            <key column="nodeId"/>
+            <one-to-many class="LockEntity"/>
+        </set>
+
+        <property name="ownerId">
+            <column name="ownerId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="contextGroupId">
+            <column name="contextGroupId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="collection"/>
+        <property name="createTime"/>
+        <property name="deleted">
+            <column name="deleted" default="0"/>
+        </property>
+
+    </class>
+
+    <class name="PermissionEntity" lazy="false" table="iten_repo_permission">
+        <composite-id>
+            <key-many-to-one name="nodeEntity" class="NodeEntity" column="nodeId"/>
+            <key-property name="principalId">
+                <column name="principalId" sql-type="varchar(20) binary"/>
+            </key-property>
+        </composite-id>
+        <property name="group" column="is_group"/>
+        <property name="permission" column="permission"/>
+        <property name="inherit" column="inherit"/>
+        <property name="axisStr" column="axis"/>
+        <property name="role" column="role"/>
+    </class>
+
+    <class name="LockEntity" lazy="false" table="iten_repo_lock">
+
+        <id name="lockId">
+            <column name="id" sql-type="varchar(20) binary"/>
+            <generator class="itensil.uidgen.HBGenerator"/>
+        </id>
+
+        <many-to-one name="nodeEntity" class="NodeEntity" column="nodeId"/>
+
+        <property name="ownerId">
+            <column name="ownerId" sql-type="varchar(20) binary"/>
+        </property>
+
+        <property name="expireTime"/>
+        <property name="ownerInfo"/>
+        <property name="inheritable"/>
+        <property name="exclusive"/>
+
+    </class>
+
+    <query name="Repo.resolveVerNumber">
+        FROM VersionEntity ver
+        WHERE ver.nodeEntity = :node
+            AND ver.number = :number
+    </query>
+
+    <query name="Repo.resolveVerLabel">
+        FROM VersionEntity ver
+        WHERE ver.nodeEntity = :node
+            AND ver.label = :label
+    </query>
+
+</hibernate-mapping>

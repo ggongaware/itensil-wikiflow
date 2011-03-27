@@ -1,0 +1,49 @@
+<flow version="1.0">
+
+    <steps>
+        <start id="s1" apptype="">
+            <label/>
+            <description/>
+            <path id="p1" to="w1"><label/></path>
+        </start>
+        <switch id="w1" mode="ALLOC" apptype="">
+            <label/>
+            <description/>
+            <path id="p3a" to="a2a">
+                <condition>0.25</condition>
+                <label/>
+            </path>
+            <path id="p3b" to="a2b">
+                <condition>0.50</condition>
+                <label/>
+            </path>
+            <path id="p3c" to="a2c">
+                <condition>0.25</condition>
+                <label/>
+            </path>
+        </switch>
+        <activity id="a2a" apptype="">
+            <label/>
+            <description/>
+            <path id="p4a" to="e1"><label/></path>
+        </activity>
+        <activity id="a2b" apptype="">
+            <label/>
+            <description/>
+            <path id="p4b" to="e1"><label/></path>
+        </activity>
+        <activity id="a2c" apptype="">
+            <label/>
+            <description/>
+            <path id="p4c" to="e1"><label/></path>
+        </activity>
+        <end id="e1" apptype="">
+            <label/>
+            <description/>
+        </end>
+    </steps>
+
+    <notes>
+    </notes>
+
+</flow>

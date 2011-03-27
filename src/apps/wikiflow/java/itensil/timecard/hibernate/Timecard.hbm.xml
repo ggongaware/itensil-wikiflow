@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.timecard.hibernate">
+
+	 <class name="ContractEntity" lazy="false" table="iten_tcard_contract">
+	 
+	 	<id name="id">
+            <generator class="native"/>
+        </id>
+        
+        <property name="userSpaceId" index="idx_cont_usi">
+            <column name="userSpaceId" sql-type="varchar(20) binary"/>
+        </property>
+        
+        <property name="clientName" length="50"/>
+        <property name="name" length="50"/>
+        <property name="team" length="50"/>
+        <property name="status" length="25"/>
+        <property name="billTerms">
+        	<column name="billTerms" sql-type="mediumtext"/>
+        </property>
+        
+        <property name="billOverages"/>
+        <property name="moneyBudget"/>
+        <property name="hoursBudget"/>
+        <property name="openDate"/>
+        <property name="closeDate"/>
+        
+        <property name="projects"/>
+        
+        <set name="roles" inverse="true" lazy="true">
+            <key column="contractId"/>
+            <one-to-many class="ContractRoleEntity"/>
+        </set>
+        
+	 </class>
+	 
+	 
+	 <class name="ContractRoleEntity" lazy="false" table="iten_tcard_crole">
+	 	
+	 	<id name="id">
+            <generator class="native"/>
+        </id>
+        
+        <many-to-one name="contract" class="ContractEntity" not-null="true" column="contractId"/>
+        
+        <property name="role" length="50"/>
+        <property name="rate"/>
+        
+	 </class>
+	 
+	 
+	 <class name="RoleLogEntity" lazy="false" table="iten_tcard_rolelog">
+	 
+	 	<id name="id">
+            <generator class="native"/>
+        </id>
+        
+	 	<many-to-one name="contract" class="ContractEntity" not-null="true" column="contractId"/>
+	 	<property name="billable"/>
+	 	<property name="project" length="200"/>
+	 	<property name="role" length="50"/>
+	 	
+	 	<property name="userId" index="idx_cont_rlog_uid">
+            <column name="userId" sql-type="varchar(20) binary"/>
+        </property>
+        
+        <set name="timeLogs" inverse="true" lazy="true">
+            <key column="roleLogId"/>
+            <one-to-many class="TimeLogEntity"/>
+        </set>
+	 	
+	 </class>
+	 
+	 <class name="TimeLogEntity" lazy="false" table="iten_tcard_timelog">
+	 
+	 	<id name="id">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="roleLog" class="RoleLogEntity" not-null="true" column="roleLogId"/>
+        <property name="logDate"/>
+        <property name="hours"/>
+        <property name="activityId">
+            <column name="activityId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="appUserId">
+            <column name="appUserId" sql-type="varchar(20) binary"/>
+        </property>
+        <property name="appDate"/>
+        
+	 </class>
+	 
+	<query name="Timecard.allRoles">
+	 	SELECT DISTINCT rol.role
+        FROM ContractRoleEntity rol
+        WHERE rol.contract.userSpaceId = :usid
+        ORDER BY rol.role
+	</query>
+	 
+	 
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:ir="http://itensil.com/repository"
+    xmlns:d="DAV:">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <data xmlns=""/>
+        </xf:instance>
+
+        <xf:bind nodeset="name" constraint=". != ''"/>
+        <xf:bind nodeset="email" type="ix:email" constraint=". != ''"/>
+
+        <xf:submission id="submission" replace="none" method="post" action="../uspace/setUserMan">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:6px;width:350px">
+
+        <xf:input ref="email">
+         <xf:label>Email:</xf:label>
+          <xf:hint>Also used as the user's login.</xf:hint>
+        </xf:input>
+
+        <xf:input ref="name">
+          <xf:label>Name:</xf:label>
+        </xf:input>
+		
+        <xf:select ref="roles">
+            <xf:label>Community Roles:</xf:label>
+            <xf:item><xf:label>Administrator</xf:label><xf:value>admin</xf:value></xf:item>
+            <xf:item><xf:label>Inviter</xf:label><xf:value>inviter</xf:value></xf:item>
+            <xf:item><xf:label>Guest</xf:label><xf:value>guest</xf:value></xf:item>
+            <xf:item><xf:label>Activiy Log (if guest)</xf:label><xf:value>actlog</xf:value></xf:item>
+            <xf:item><xf:label>Hide Project Menu</xf:label><xf:value>noproj</xf:value></xf:item>
+            <xf:item><xf:label>Hide Process Menu</xf:label><xf:value>noproc</xf:value></xf:item>
+            <xf:item><xf:label>Hide Meeting Menu</xf:label><xf:value>nomeet</xf:value></xf:item>
+            <xf:item><xf:label>Hide Course Menu</xf:label><xf:value>nocourse</xf:value></xf:item>
+            <xf:item><xf:label>HIde Entity/Data Menu</xf:label><xf:value>noentity</xf:value></xf:item>
+        </xf:select>
+
+        <xf:submit submission="submission" class="diagBtn dbSave"/>
+
+    </div>
+
+</form>

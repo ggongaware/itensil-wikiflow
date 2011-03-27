@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="itensil.workflow.activities.timer">
+
+
+	<class name="ActivityTimer" lazy="false" table="iten_wf_activity_timer">
+		
+		<id name="id" length="20">
+         	<column name="id" sql-type="varchar(20) binary"/>
+         	<generator class="itensil.uidgen.HBGenerator"/>
+     	</id>
+     	
+     	<many-to-one name="activity" class="itensil.workflow.activities.state.Activity" not-null="false">
+            <column name="activityId" sql-type="varchar(20) binary"/>
+        </many-to-one>
+        
+        <property name="timerId" />
+        <property name="atTime" />
+        <property name="conditional" />
+        <property name="checkTime" />
+        
+   	</class>
+
+   	<!-- 
+   	Timer.getTimer
+   	 tid
+   	 act
+   	 -->
+   	<query name="Timer.getTimer">
+   		FROM ActivityTimer tim
+   		WHERE tim.activity = :act
+   			AND tim.timerId = :tid
+   	</query>
+   	
+   	<!-- 
+   	Timer.getNextTimer
+   	 -->
+   	<query name="Timer.getNextTimer">
+   		FROM ActivityTimer tim
+		WHERE tim.conditional = 0
+		ORDER BY tim.atTime ASC
+   	</query>
+   	 
+   	<!-- 
+   	Timer.getReadyTimers
+   	 fromTime
+   	 -->
+   	<query name="Timer.getReadyTimers"><![CDATA[
+   		FROM ActivityTimer tim
+   			LEFT JOIN FETCH tim.activity act
+		WHERE tim.conditional = 0
+			AND tim.atTime <= :fromTime
+		ORDER BY act.flow DESC, tim.atTime ASC
+   	]]></query>
+   	
+   	<!-- 
+   	Timer.getCondTimers
+   	 -->
+   	<query name="Timer.getCondTimers">
+   		FROM ActivityTimer tim
+   			LEFT JOIN FETCH tim.activity act
+		WHERE tim.conditional = 1
+		ORDER BY tim.checkTime ASC, act.flow DESC
+   	</query>
+   	
+   	<!-- 
+   	Timer.clearTimers
+   	 flow
+   	 -->
+   	<query name="Timer.clearTimers">
+        DELETE ActivityTimer tim WHERE tim.activity.flow = :flow
+    </query>
+
+</hibernate-mapping>

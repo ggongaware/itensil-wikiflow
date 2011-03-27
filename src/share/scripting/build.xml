@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<project name="Scripting" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+    <property file="${root.src}/build.properties"/>
+    <dirname property="Scripting.home" file="${ant.file}"/>
+    <property name="Scripting.src" value="${Scripting.home}/java"/>
+    <property name="Scripting.build" value="${Scripting.home}/.built"/>
+    <property name="Scripting.classbin" value="${Scripting.build}/classes"/>
+	
+	
+	<patternset id="meta.files">
+		<include name="**/*.xml"/>
+		<include name="**/*.properties"/>
+		<include name="**/*.jsc"/>
+	</patternset>
+	
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+	<target name="init">
+	    <mkdir dir="${Scripting.classbin}"/>
+	    <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+	
+	<target name="clean">
+    	<delete dir="${Scripting.classbin}"/>
+    </target>
+
+	<target name="build" depends="core"/>
+	
+    <target name="core" depends="init">
+
+    	<javac  destdir="${Scripting.classbin}"
+				debug="${compile.debug}"
+ 				deprecation="${compile.deprecation}"
+ 				target="${compile.target}" source="${compile.sourcever}"
+				optimize="${compile.optimize}">
+			<src path="${Scripting.src}"/>
+			<exclude name="**/CVS/**"/>
+			<classpath refid="classpath.build"/>
+		</javac>
+    </target>
+
+    <target name="share" depends="core">
+        <fail unless="share.dir" message="share.dir required"/>
+        <copy todir="${share.dir}">
+            <fileset dir="${Scripting.classbin}"/>
+			<fileset dir="${Scripting.src}">
+				<patternset refid="meta.files"/>
+			</fileset>
+        </copy>
+    </target>
+
+
+</project>

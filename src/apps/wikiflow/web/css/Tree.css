@@ -1,0 +1,208 @@
+.tree {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    position: relative;
+    background-color: #FFF;
+}
+
+.tree div.trRowRoot {
+    position: relative;
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -2000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.openRoot {
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -3000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.trRowRootLast {
+    position: relative;
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px 0px;
+    background-repeat: no-repeat;
+}
+
+
+.tree div.openRootLast {
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -1000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.trRow {
+    position: relative;
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -5000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.open {
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -6000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.trRowLast {
+    position: relative;
+    background-position: 7px -7000px;
+    background-image: url(../pix/trPips.gif);
+    background-repeat: no-repeat;
+
+}
+
+.tree div.openLast {
+    background-image: url(../pix/trPips.gif);
+    background-position: 7px -4000px;
+    background-repeat: no-repeat;
+}
+
+.tree div.kids {
+    padding-left: 18px;
+    background-image: url(../pix/trV.gif);
+    background-position: 7px 0px;
+    background-repeat: repeat-y;
+}
+
+.tree div.kidsLast {
+    padding-left: 18px;
+}
+
+.tree div.tail {
+    padding-left: 18px;
+    background-image: url(../pix/trV.gif);
+    background-position: 7px 0px;
+    background-repeat: repeat-y;
+    position: relative;
+}
+
+.tree div.tailLast {
+    padding-left: 18px;
+    position: relative;
+}
+
+div.openLast div.toggle, div.open div.toggle,
+div.openRootLast div.toggle, div.openRoot div.toggle {
+    background-image: url(../pix/trTog.gif);
+    background-position: 0px -11px;
+    background-repeat: no-repeat;
+}
+
+.tree div.toggle {
+    position: absolute;
+    line-height: 11px;
+    top: 3px;
+    left: 2px;
+    width: 11px;
+    height: 11px;
+    background-image: url(../pix/trTog.gif);
+    background-repeat: no-repeat;
+    background-color: white;
+    cursor: default;
+}
+
+.tree div.icon {
+    position: absolute;
+    line-height: 16px;
+    top: 0px;
+    left: 18px;
+    width: 16px;
+    height: 16px;
+    background-color: inherit;
+    cursor: default;
+}
+
+.tree div.click {
+    cursor: pointer;
+    _cursor: hand;
+}
+
+.tree div.label {
+    position: relative;
+    top: 0px;
+    left: 35px;
+    line-height: 13px;
+    width: 100px;
+    padding: 1px 2px 2px 2px;
+}
+
+.tree div.treeSel, .tree .dndGroup div.label {
+    background-color: #fd8;
+}
+
+
+.tree .dndDrop div.label {
+    background-color: #ff6;
+}
+
+.tree ins {
+    display: block;
+    padding-top: 16px;
+    text-decoration: none;
+}
+
+.tree ins.dndDrop {
+    background-color: #ff6;
+}
+
+table.treeTable {
+    border-collapse: collapse;
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: 11px;
+    border: 1px solid #ddd;
+}
+
+table.treeTable td {
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+table.treeTable div.treeRow {
+    height: 15px; /* tree row height - border width */
+    line-height: 15px;
+}
+
+.dndDummy {
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #666;
+    filter: alpha(opacity=70);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+	-moz-opacity: 0.70;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    z-index: 100;
+}
+
+.dndDummy div.icon {
+    position: absolute;
+    line-height: 16px;
+    top: 0px;
+    left: 18px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    cursor: default;
+}
+
+.dndDummy div.label {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    line-height: 13px;
+    width: 100px;
+    padding: 1px 2px 3px 35px;
+}
+
+.dndDummy div.toggle {
+    display: none;
+}
+
+.groupSel {
+    position: absolute;
+    border: 1px dashed black;
+    z-index: 3;
+}

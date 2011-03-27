@@ -1,0 +1,71 @@
+<project name="workflow" default="build" basedir=".">
+
+    <property name="root" value="../../.."/>
+    <property name="root.src" value="${root}/src"/>
+	<property file="${root.src}/build.properties"/>
+    <dirname property="Workf.home" file="${ant.file}"/>
+    <property name="Workf.src" value="${Workf.home}/java"/>
+    <property name="Workf.build" value="${Workf.home}/.built"/>
+    <property name="Workf.classbin" value="${Workf.build}/classes"/>
+
+    <path id="classpath.build">
+        <fileset dir="${root}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root}/src/common/dist/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <path id="classpath.test">
+        <path refid="classpath.build"/>
+        <dirset dir="${Workf.classbin}"/>
+    </path>
+
+    <patternset id="meta.files">
+		<include name="**/*.xml"/>
+		<include name="**/*.properties"/>
+	</patternset>
+
+    <target name="init">
+        <mkdir dir="${Workf.classbin}"/>
+        <taskdef name="schemaupdate" classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask">
+            <classpath refid="classpath.test"/>
+            <classpath path="${Workf.classbin}"/>
+        </taskdef>
+
+        <ant antfile="${root.src}/common/build.xml"/>
+    </target>
+	
+	<target name="clean">
+	    <delete dir="${Workf.classbin}"/>
+	</target>
+	
+	<target name="build" depends="compile"/>
+
+    <target name="compile" depends="init" description="Compile main source tree java files into class files">
+        <!-- Compile the java files -->
+        <javac destdir="${Workf.classbin}" debug="${compile.debug}"
+				deprecation="${compile.deprecation}"
+				optimize="${compile.optimize}"
+				target="${compile.target}" source="${compile.sourcever}">
+            <src path="${Workf.src}"/>
+            <exclude name="**/CVS/**"/>
+            <classpath refid="classpath.build"/>
+        </javac>
+
+        <copy todir="${Workf.classbin}">
+			<fileset dir="${Workf.src}">
+				<patternset refid="meta.files"/>
+			</fileset>
+		</copy>
+
+    </target>
+
+
+    <target name="test-ddl" depends="compile" description="">
+        <schemaupdate config="${Workf.home}/test-etc/hibernate.cfg.xml"/>
+	</target>
+
+
+</project>

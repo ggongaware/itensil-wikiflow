@@ -1,0 +1,49 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+
+	<xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <project id="">
+            	<name/>
+            	<description/>
+            </project>
+        </xf:instance>
+        
+        <xf:submission id="submission" replace="none" method="post" action="../proj/newProject">
+            <xf:action ev:event="xforms-submit-done">
+                <script>
+                	var name = model.getSubmitResponse().documentElement.getAttribute("name");
+                	location.href = "../proj/page?proj=" + Uri.escape(name);
+                </script>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+		
+		<xf:bind nodeset="name" type="ix:fileName" constraint=". != ''"/>
+		
+   	</xf:model>
+   	
+   	<div style="padding:6px;width:350px">
+ 	
+ 		<xf:input ref="name">
+          <xf:label>Name:</xf:label>
+          <xf:hint>This name needs to be unique.</xf:hint>
+        </xf:input>
+
+        <xf:textarea ref="description" style="width:20em;height:3em">
+            <xf:label>Description:</xf:label>
+        </xf:textarea>
+
+        <xf:submit submission="submission" class="diagBtn dbCreate"/>
+
+    </div>
+
+</form>

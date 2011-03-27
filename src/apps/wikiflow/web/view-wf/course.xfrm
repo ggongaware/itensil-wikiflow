@@ -1,0 +1,102 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins">
+
+            <launch xmlns="">
+                <flow/>
+                <path>/home/course</path>
+                <student/>
+                <submitId/>
+                <master-flow/>
+                <name/>
+                <description/>
+                <startDate/>
+                <dueDate/>
+                <priority/>
+                <parent/>
+                <parentStep/>
+                <project/>
+                <proj-lock/>
+                <meet/>
+            </launch>
+
+        </xf:instance>
+        
+        <xf:instance id="prc" src="../act/processList?uri=/home/course"/>
+
+        <xf:bind nodeset="name" type="ix:fileName" constraint=". != ''"/>
+        <xf:bind type="xsd:date" nodeset="startDate|dueDate" relevant="meet != 1"/>
+        <xf:bind nodeset="project" relevant="../parent = '' and meet != 1" readonly="../proj-lock = 1"/>
+        <xf:bind type="xsd:dateTime" nodeset="instance('prc')/node/@lastmodified"/>
+
+        <xf:submission id="submission" replace="none" method="post" action="../act/launch">
+        	<xf:action ev:event="xforms-submit">
+        		<xf:setvalue ref="name" value="concat(../student, '- ', ../flow)"/>
+        	</xf:action>
+            <xf:action ev:event="xforms-submit-done">
+            	<script>
+            		var doc = model.getSubmitResponse();
+            		model._actId = doc.documentElement.getAttribute("id");
+            	</script>
+                <xf:toggle case="submsg"/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:8px;width:350px">
+
+		New course for: <xf:output ref="student" style="font-weight:bold"/>
+		<div style="margin:4px">
+		<div style="width:335px;height:200px;overflow:auto;background-color:#fff;border:1px solid #666">
+			<xf:select1 ref="flow" appearance="full">
+				<xf:itemset nodeset="instance('prc')/node">
+					<xf:value ref="@uri"/>
+					<xf:label>
+					<table style="width:280px;" cellpadding="0" cellspacing="0" border="0">
+					<tr class="flowRow">
+					<td style="padding:0px 6px 0px 6px;">
+					<script>
+						var style = model.getValue("@style", contextNode);
+						var icon = style ? style.substring(5) : "def";
+						makeElementNbSpd(uiParent, "div", "icon " + icon + "Ico");
+					</script>
+					</td><td><xf:output ref="@uri" style="font-weight:bold"/>
+					<div class="desc"><xf:output ref="@description"/></div>
+					</td>
+					<td style="text-align:right;padding-right:6px;width:120px">
+					<xf:output ref="@lastmodified" style="color:#09c"/>
+					</td>
+					</tr>
+					</table>
+					</xf:label>
+				</xf:itemset>
+			</xf:select1>
+	    </div>
+	    </div>
+
+        <xf:textarea ref="description" style="width:20em;height:3em">
+            <xf:label>Notes:</xf:label>
+            <xf:hint>Optional.</xf:hint>
+        </xf:textarea>
+
+        <xf:input ref="dueDate" style="width:10em">
+          <xf:label>Due:</xf:label>
+          <xf:hint>Optional.</xf:hint>
+        </xf:input>
+        
+        <xf:submit submission="submission" class="diagBtn dbLaunch" style="margin-top:10px"/>
+        
+    </div>
+
+</form>

@@ -1,0 +1,1 @@
+<%-- Used to have: IE css image preload --%>

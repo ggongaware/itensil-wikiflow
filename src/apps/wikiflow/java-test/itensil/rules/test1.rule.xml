@@ -1,0 +1,21 @@
+<ruleset xmlns="http://itensil.com/ns/rules">
+	<data>
+		<attr name="mycash" type="ix:currencyUSD:array"/>
+		<attr name="mytxt" type="xsd:string"/><attr name="mynum" type="xsd:NMTOKENS"><item label="Labels" value="value"/><item label="Label 3" value="value4"/><item label="Label rr" value="valueee"/><item label="Label" value="valuea"/></attr><attr name="test" type="xsd:NMTOKEN"><item label="Labelss" value="value"/><item label="Label4" value="value4"/></attr></data>
+	<returns>
+		<return id="pass"/>
+		<return id="fail"/>
+		<return id="return"/>
+		<return id="subby"/>
+		</returns>
+	<rule id="default">
+		<set type="" field="mytxt" value="7"/><when type="ix:currencyUSD:array" field="mycash" op="=" arg="4" aggregate="min"><return id="pass"/></when><when type="xpath" test="days-from-date(now())"><set type="" field="test" value="'value4'"/><set type="" field="mynum" value="'value4'"/><return id="return"/></when><otherwise><return id="fail"/></otherwise>
+	</rule>
+	<rule id="my sub">
+		<when type="xsd:string" field="fun" op="=" arg="yes" aggregate=""><return id="fail"/><otherwise><when type="xsd:float" field="mynum" op="=" arg="" aggregate=""/></otherwise>
+		</when><otherwise>
+			<return id="pass"/>
+		</otherwise><return id="fail"/>
+	</rule>
+	<rule id="rule"><return id="subby"/></rule>
+</ruleset>

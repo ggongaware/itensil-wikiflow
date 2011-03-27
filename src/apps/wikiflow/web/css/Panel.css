@@ -1,0 +1,109 @@
+div.panBarBtn {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    width: 11px;
+    height: 9px;
+    text-decoration: none;
+    font-size: 1px;
+    line-height: 1px;
+    behavior: url(../css/ieHover.htc);
+    cursor: pointer;
+}
+
+div.panBarBtn:hover, div.panBarBtn_hover {
+    background-position: -11px 0px;
+}
+
+div.panMin {
+    left: 4px;
+    top: 3px;
+    background-position: 0px 0px;
+    background-image: url(../pix/panel/btnsSet.gif);
+}
+
+div.panMax {
+    left: 4px;
+    top: 3px;
+    background-position: 0px -9px;
+    background-image: url(../pix/panel/btnsSet.gif);
+}
+
+div.panBar {
+    position: absolute;
+    background-color: #ABB7D1;
+    height: 14px;
+    overflow: hidden;
+    left: 0px;
+    top: 2px;
+    cursor: n-resize;
+    font-size: 11px;
+}
+
+div.panBarMin {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #79859F;
+}
+
+div.panHelp {
+    right: 2px;
+    top: 2px;
+    width: 10px;
+    height: 12px;
+    background-position: 0px 0px !important;
+    background-image: url(../pix/panel/bntHelp.gif);
+}
+
+div.panTitle {
+    position: absolute;
+    left: 20px;
+    top: 1px;
+    color: white;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    height: 11px;
+}
+
+div.panVSplit {
+    position: absolute;
+    width: 5px;
+    font-size: 1px;
+    cursor: e-resize;
+    top: 0px;
+}
+
+div.panelSet {
+    position: absolute;
+    font-size: 11px;
+    background-color: #ABB7D1;
+    -khtml-user-select: none;
+}
+
+div.panContent {
+    position: absolute;
+    left: 0px;
+    top: 16px;
+    overflow: auto;
+    background-color: #FFF;
+    border: 1px solid #79859F;
+}
+
+div.panel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+div.panCol {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+div.frameCover {
+	position: absolute;
+	z-index: 12;
+	cursor: pointer;
+	background-image: url(../pix/nil.gif);
+}

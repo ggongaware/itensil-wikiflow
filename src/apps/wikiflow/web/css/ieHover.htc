@@ -1,0 +1,36 @@
+<PUBLIC:ATTACH EVENT="onmouseover" ONEVENT="hoverOver()" />
+<PUBLIC:ATTACH EVENT="onmouseout" ONEVENT="hoverOut()" />
+<SCRIPT LANGUAGE="JScript">
+var lastClass = null;
+
+function hoverOver() {
+    if (event.srcElement == element || event.srcElement.parentNode == element) {
+        if (lastClass != null) return;
+        var cls = element.className;
+        var clsList = cls.split(" ");
+
+        // first class gets hover
+        var hCls = clsList[0];
+        lastClass = hCls + "_hover";
+        clsList.push(lastClass);
+        element.className = clsList.join(" ");
+    }
+}
+
+function hoverOut() {
+    if (event.srcElement == element || event.srcElement.parentNode == element) {
+        if (lastClass == null) return;
+        var cls = element.className;
+        var clsList = cls.split(" ");
+        for (var i = 0; i < clsList.length; i++) {
+            if (clsList[i] == lastClass) {
+                clsList.splice(i, 1);                
+                break;
+            }
+        }
+        lastClass = null;        
+        element.className = clsList.join(" ");
+    }
+}
+
+</SCRIPT>

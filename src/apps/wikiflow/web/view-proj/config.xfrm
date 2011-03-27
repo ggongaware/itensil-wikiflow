@@ -1,0 +1,60 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms">
+
+
+	<xf:model id="fmodel">
+
+        <xf:instance id="ins">
+            <config xmlns=""><view/></config>
+        </xf:instance>
+        
+        <xf:instance id="dat">
+        	<dataColumns xmlns=""/>
+        </xf:instance>
+        
+        <xf:submission id="submission" replace="none" method="put" action="">
+            <xf:action ev:event="xforms-submit-done">
+            	<xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+		
+   	</xf:model>
+   	<div style="position:relative;width:400px;height:300px;">
+ 	
+ 		
+
+			<div style="position:absolute;top:10px;left:10px">
+			Display Colums:
+			<div style="width:160px;height:200px;padding:4px;border:1px solid #999;overflow:auto">
+				<xf:repeat nodeset="view/column">
+				<div style="background-color:#fff;padding:4px;margin:2px;"><xf:output ref="@name"/>
+					<b style="color:#900;cursor:pointer">&#160;x<xf:destroy ref="." ev:event="click"/></b></div>
+				</xf:repeat>
+			</div>
+			</div>
+			
+			<div style="position:absolute;top:10px;left:200px">
+			Available Columns:
+			<div style="width:160px;height:200px;padding:4px;border:1px solid #999;overflow:auto">
+			<xf:repeat nodeset="instance('dat')/column">
+				<div style="background-color:#fff;padding:4px;margin:2px;cursor:pointer">
+				<xf:duplicate ref="instance('ins')/view" origin="." ev:event="click"/>
+				<b style="color:#009">&lt;&#160;</b>
+				<xf:output ref="@name"/></div>
+			</xf:repeat>
+			</div>
+			</div>
+ 	
+ 		
+        <xf:submit submission="submission" class="diagBtn dbSave" style="position:absolute;top:240px;left:10px"/>
+
+    </div>
+
+</form>

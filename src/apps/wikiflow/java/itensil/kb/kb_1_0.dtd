@@ -1,0 +1,33 @@
+<!--
+Copyright 2005 Itensil, Inc.
+Knowledgebase DTD
+    Version: 1.0
+    Author: Grant Gongaware
+    Mime: application/knowledgebase+xml
+    Extension: .kb
+-->
+
+<!ELEMENT knowledgebase (inherit?, article*) >
+<!ATTLIST knowledgebase
+    showAuthor (true | false) "true"
+    showDate (true | false) "true"
+    policy CDATA #IMPLIED
+    attachPrefix CDATA #IMPLIED
+    attachIndex (true | false) "true">
+
+
+<!ELEMENT inherit EMPTY>
+<!ATTLIST inherit
+    uri CDATA #REQUIRED
+    localUris CDATA #IMPLIED>
+
+<!ELEMENT article (#PCDATA)>
+<!ATTLIST article
+    id ID #REQUIRED
+    categories CDATA #IMPLIED
+    createTime CDATA #IMPLIED
+    createBy CDATA #IMPLIED
+    modifyTime CDATA #IMPLIED
+    modifyBy CDATA #IMPLIED
+    refId CDATA #IMPLIED>
+

@@ -1,0 +1,60 @@
+<form xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:exf="http://www.exforms.org/exf/1-0"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ix="http://itensil.com/ns/xforms"
+    xmlns:ir="http://itensil.com/repository"
+    xmlns:d="DAV:">
+
+    <xf:model id="fmodel">
+
+        <xf:instance id="ins" src="../uspace/getSelf"/>
+        <xf:instance id="tz" src="../uspace/timezones"/>
+        
+        <xf:bind nodeset="name" constraint=". != ''"/>
+        <xf:bind nodeset="timezone" constraint=". != ''"/>
+        <xf:bind nodeset="email" type="ix:email" constraint=". != ''"/>
+
+        <xf:submission id="submission" replace="none" method="post" action="../uspace/setSelf">
+            <xf:action ev:event="xforms-submit-done">
+                <xf:close/>
+			</xf:action>
+			<xf:action ev:event="xforms-submit-error">
+				<xf:message level="modal">Problem saving...</xf:message>
+			</xf:action>
+		</xf:submission>
+
+    </xf:model>
+
+    <div style="padding:6px;width:400px">
+
+        <xf:input ref="email">
+         <xf:label>Email:</xf:label>
+          <xf:hint>Also used as your login.</xf:hint>
+        </xf:input>
+
+        <xf:input ref="name">
+          <xf:label>Name:</xf:label>
+        </xf:input>        
+
+		<xf:select1 ref="timezone" style="font-size:10px">
+          <xf:label>Time-zone:</xf:label>
+          <xf:itemset nodeset="instance('tz')/zone">
+          		<xf:label ref="@name"/>
+          		<xf:value ref="@id"/>
+          </xf:itemset>
+        </xf:select1> 
+        
+        <xf:select ref="flags">
+            <xf:label>Preferences:</xf:label>
+            <xf:item><xf:label>Disable Email alerts</xf:label><xf:value>noeml</xf:value></xf:item>
+        </xf:select>
+
+
+
+        <xf:submit submission="submission" class="diagBtn dbSave"/>
+
+    </div>
+
+</form>
