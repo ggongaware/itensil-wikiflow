@@ -1,1 +1,108 @@
-Install instructions and more to come.
+Itensil Installation
+
+There is also an itensil_install.pdf with screen shots and better formatting.
+
+Requirements
+
+Operating System with Java 1.5 support. Includes: Windows 2000 or better, Linux, Solaris, and Mac OSX.
+-Administrator / root access, or MySQL and Java pre-installed
+-Text editor (Like notepad, or vi)
+-Web-browser
+-Internet Explorer 6+
+-Firefox 1.5+
+-Safari 2+
+-Opera 9+ 
+
+
+Prerequisites 
+-Java 1.5.x SDK (J2SE  5.0)  http://java.sun.com/javase/downloads/index_jdk5.jsp
+-MySQL Server Version 4.1, 5.0 or 5.1 http://dev.mysql.com/downloads/mysql/5.1.html
+-Tomcat 5.5 or better http://tomcat.apache.org/download-55.cgi
+
+Install Summary
+
+This documents covers the following steps:
+-Installing prerequisites
+-Creating MySQL user and database
+-Configuring Apache Tomcat
+-Startup
+-Community Creation
+-Mail Delivery Settings
+
+
+Install Prerequisites
+Install Java and MySQL using the install methods provided within their respective packages.
+If you are building Wikiflow from scratch, use the ant build scripts located in:
+src/apps/wikiflow/build.xml
+Use wither the “jboss.war” target, or the “war.exploded” target/
+For jboss.war, copy the dist/wikiflow.war file into the tomcat’s webapps folder.
+For war.exploded, link or copy the contents, to a subfolder in webapps, or webapps/ROOT.
+
+Creating MySQL user and database
+
+You will need to login to MySQL with the console client or with the Query Browse tool to execute some MySQL commands. You will be creating a MySQL user and database. The names and passwords can be customized and reused in the “Configuring Apache Tomcat” step.
+
+Create database:
+# CREATE DATABASE  itensildb;
+
+Create user:
+# GRANT ALL PRIVILEGES ON itensildb.* TO 'itensildb'@'localhost'     IDENTIFIED BY 'itensildbPass' WITH GRANT OPTION;
+
+Activate user:
+# FLUSH PRIVILEGES;
+
+Configuring Apache Tomcat
+This step can be skipped if you used the default database, user, and password from above. With a text editor edit this file: $TOMCAT_HOME/conf/context.xml
+
+For XML element <Resource name="jdbc/ItensilDS" adjust the following to match your customizations:
+
+username="itensildb" 
+password="itensildbPass"
+url="jdbc:mysql://localhost/itensildb?autoReconnect=true"
+
+Startup
+Upon successful startup. Itensil will auto-create or upgrade the database schema for the newest version of the Itensil build.
+Windows:
+# $TOMCAT_HOME/bin/startup.bat
+Unix:
+# $TOMCAT_HOME/bin/startup.sh
+
+With a browser attempt to connect to: http://localhost:8080/
+
+The default user for the application is the sysadmin account. We recommend using this user only for managing communities, application help and mail settings. The sysadmin login is initially set to:
+
+Username: sysadmin@itensil.net Password: pass
+
+Adjust this name and password with “Settings” link on the top-right, after login.
+
+Later, when you need to shutdown:
+Windows:
+# $TOMCAT_HOME/bin/shutdown.bat
+Unix:
+# $TOMCAT_HOME/bin/shutdown.sh
+
+The most informative error and status messages can be found in $TOMCAT_HOME/logs/tomcat.log
+For additional tomcat settings and information visit:
+http://tomcat.apache.org/tomcat-5.5-doc/index.html
+
+
+Community Creation
+Communities are the highest level of segmentation for users and files within the application. Each community gets a set of users and a home file folder. Users can exist in more than one community, but can only be in one community per-session.
+
+Community Segmentation Chart:
+￼
+
+Organizations:
+Model an organization as units and departments. Members in the organization have positions which can be used for relative role assignments and access control.
+￼
+
+Community Management Screen:
+Login as the sysadmin, and click the “Communities” links in the top right.
+￼
+
+Itensil uses network hostnames to target users to a particular community. If a user arrives at a hostname he does not have a matching community for, he will be repointed to his first community after login.
+
+
+Mail Delivery Settings
+Itensil can send email alerts on process events. Use the mail delivery settings to configure a method for Itensil to send email. Properties inside are JavaMail properties. Refer to JavaMail documents to further customize the mail options.
+http://java.sun.com/products/javamail/javadocs/index.html
