@@ -572,7 +572,10 @@ var ActivityTree = {
         	// link to home
         	link = H.div({klass:"link"}, App.edu ? "Return home >" : "Find other work on the Home To Do List >");
 	        link.onclick = function() {
-	        		location.href = "../home/";
+	        		var lhf = "../home/";
+	        		if (App.kiosk) lhf += "kiosk.jsp";
+	        		if (App.embed) lhf += "?embed=1";
+	        		location.href = lhf;
 	        	};
 	        msgElem.appendChild(link);
         }
